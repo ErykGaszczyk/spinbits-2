@@ -7,6 +7,7 @@
 
 # data backup
 to backup data:
+
 1. `./all.sh stop strapi`
 2. `./all.sh exec db`
 3. `mysqldump --ssl-mode=disabled --user=root --password=strapi -h mysql strapi > ./assets/dump.sql`
