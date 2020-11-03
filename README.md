@@ -20,13 +20,13 @@ before making any request, you need to get auth token:
 
 1. `./all.sh exec strapi bash`
 2. `node getToken.mjs`
-3. grab token and put it into "Authorization" header like so <pre>{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjA0NDE4NjYyLCJleHAiOjE2MDcwMTA2NjJ9.vZCVhr6zjfpjRkdYM_pR_KUMFXsKwvH5qylUE9vjHhk"}</pre>
+3. grab token and put it into "Authorization" header like so ```{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjA0NDE4NjYyLCJleHAiOjE2MDcwMTA2NjJ9.vZCVhr6zjfpjRkdYM_pR_KUMFXsKwvH5qylUE9vjHhk"}```
 4. alternatively you can make POST request to `http://localhost:1337/auth/local` with data: <pre>identifier: 'api@spinbits.io',
 password: 'RE}C2fzd-[JW%-Wh'</pre>
 
 # login
 generic admin account: 
-<pre>
+```
 login: admin@spinbits.io
 pass: v.Q;CVQW4z^DRU.]
-</pre>
+```
