@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_blog_authors",
+  "info": {
+    "name": "author",
+    "icon": "meh"
+  },
+  "options": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "picture": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    }
+  }
+}

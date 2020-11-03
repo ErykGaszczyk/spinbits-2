@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_blog_custom_metas",
+  "info": {
+    "name": "custom-meta",
+    "icon": "rss-square"
+  },
+  "options": {},
+  "attributes": {
+    "key": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    }
+  }
+}
