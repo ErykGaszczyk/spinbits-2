@@ -1,6 +1,6 @@
 {
   "kind": "collectionType",
-  "collectionName": "Blog",
+  "collectionName": "blog",
   "info": {
     "name": "Blog post",
     "description": ""
