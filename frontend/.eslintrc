@@ -25,6 +25,8 @@
     "import/resolver": {
       "alias": [
         ["@components", "./src/components"],
+        ["@templates", "./src/templates"],
+        ["@styles", "./src/styles"],
         ["@static", "./static"]
       ]
     }
