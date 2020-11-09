@@ -1,0 +1,34 @@
+{
+  "env": {
+    "browser": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "prettier",
+    "prettier/react"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "strict": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": [
+        ["@components", "./src/components"],
+        ["@templates", "./src/templates"],
+        ["@styles", "./src/styles"],
+        ["@static", "./static"]
+      ]
+    }
+  }
+}

@@ -1,6 +1,6 @@
 # startup
-1. `./all.sh up -d mysql`
-2. `./all.sh exec db`
+1. `./all.sh up -d db`
+2. `./all.sh exec db bash`
 3. `MYSQL_PWD=strapi mysql --ssl-mode=disabled --user=root -h mysql strapi < /assets/dump.sql`
 4. exit db container and run `./all.sh up -d` 
 5. wait ( first run may take upto 15 minutes !) - to see progress run `./all.sh logs -f strapi`
