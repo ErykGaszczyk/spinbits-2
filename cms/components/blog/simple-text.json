@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_blog_simple_texts",
+  "info": {
+    "name": "simpleText",
+    "icon": "meteor"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "richtext"
+    }
+  }
+}

@@ -12,20 +12,31 @@
   },
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
-    "createdAt": {
-      "type": "date"
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "picture": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
     },
     "content": {
-      "type": "richtext"
-    },
-    "test": {
       "type": "dynamiczone",
       "components": [
-        "blog.author",
-        "blog.custom-meta"
-      ]
+        "blog.paragraph",
+        "blog.simple-text"
+      ],
+      "required": true
     }
   }
 }
