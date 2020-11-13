@@ -3,6 +3,9 @@
  *
  * See: https://www.gatsbyjs.com/docs/gatsby-config/
  */
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
 
 module.exports = {
   plugins: [
@@ -16,6 +19,21 @@ module.exports = {
         options: {
           emitWarning: true,
           failOnError: false,
+        },
+      },
+    },
+    {
+      resolve: 'gatsby-source-graphql',
+      options: {
+        // Arbitrary name for the remote schema Query type
+        typeName: 'CMS',
+        // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
+        fieldName: 'cms',
+        // Url to query from
+        url: `${process.env.GRAPHQL_PLAYGROUND_URL}`,
+        headers: {
+          // Learn about environment variables: https://gatsby.dev/env-vars
+          Authorization: `Bearer ${process.env.AUTHORIZATION_KEY}`,
         },
       },
     },
