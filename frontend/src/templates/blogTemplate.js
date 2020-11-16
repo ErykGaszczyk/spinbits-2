@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 
 const Template = ({ data }) => {
-  const { title, created_at, picture } = data.cms.blogPost;
+  const { title, created_at, picture, content } = data.cms.blogPost;
 
   const renderArticleHeading = () => {
     const { url, name } = picture;
@@ -17,6 +17,23 @@ const Template = ({ data }) => {
     );
   };
 
+  const renderArticleContent = () => {
+    return content.map((item) => {
+      if (item.__typename === 'CMS_ComponentBlogSimpleText') {
+        return <p key={`${item.__typename}-${item.id}`}>{item.text}</p>;
+      }
+      if (item.__typename === 'CMS_ComponentBlogParagraph') {
+        return (
+          <div key={`${item.__typename}-${item.id}`}>
+            <h3>{item.title}</h3>
+            <p markdown="1">{item.text}</p>
+          </div>
+        );
+      }
+      return null;
+    });
+  };
+
   return (
     <>
       <ul>
@@ -25,10 +42,9 @@ const Template = ({ data }) => {
         </li>
       </ul>
       <div>
-        <div />
+        {renderArticleHeading()}
+        {renderArticleContent()}
       </div>
-      <div />
-      <div>{renderArticleHeading()}</div>
     </>
   );
 };
