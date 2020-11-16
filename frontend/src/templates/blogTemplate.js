@@ -1,18 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
+import ReactMarkdown from 'react-markdown';
 
 const Template = ({ data }) => {
   const { title, created_at, picture, content } = data.cms.blogPost;
 
+  const changeDate = (date) => {
+    const currentDate = new Date(date);
+    const year = currentDate.getFullYear();
+    const monthsNames = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+    const month = monthsNames[currentDate.getMonth()];
+    const day = currentDate.getDate();
+
+    return <h2>{`${day} ${month} ${year}`}</h2>;
+  };
+
   const renderArticleHeading = () => {
-    const { url, name } = picture;
+    const { url, name, id } = picture;
     return (
-      <div>
+      <div key={`${id}-${name}`}>
         <h1>{title}</h1>
         {/* TODO: from .env????? */}
         <img width="500" src={`${process.env.IMAGES_URL}${url}`} alt={name} />
-        <p>{created_at}</p>
+        {changeDate(created_at)}
       </div>
     );
   };
@@ -26,12 +50,16 @@ const Template = ({ data }) => {
         return (
           <div key={`${item.__typename}-${item.id}`}>
             <h3>{item.title}</h3>
-            <p markdown="1">{item.text}</p>
+            <ReactMarkdown>{item.text}</ReactMarkdown>
           </div>
         );
       }
       return null;
     });
+  };
+
+  const renderArticle = () => {
+    return [renderArticleHeading(), renderArticleContent()];
   };
 
   return (
@@ -41,10 +69,7 @@ const Template = ({ data }) => {
           <a href="/">home</a>
         </li>
       </ul>
-      <div>
-        {renderArticleHeading()}
-        {renderArticleContent()}
-      </div>
+      <div>{renderArticle()}</div>
     </>
   );
 };
