@@ -30,17 +30,16 @@ const Template = ({ data }) => {
   };
 
   const renderArticleHeading = () => {
-    if (picture !== null) {
-      const { url, name, id } = picture;
+    const { url, name, id } = picture;
 
+    return (
       <div key={`${id}-${name}`}>
         <h1>{title}</h1>
         {/* TODO: from .env????? */}
         <img width="500" src={`${process.env.IMAGES_URL}${url}`} alt={name} />
         {changeDate(created_at)}
-      </div>;
-    }
-    return null;
+      </div>
+    );
   };
 
   const renderArticleContent = () => {
