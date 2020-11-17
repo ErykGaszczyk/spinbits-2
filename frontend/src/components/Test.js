@@ -6,11 +6,7 @@ const TestTitle = styled.p`
   color: red;
 `;
 
-const Test = ({ title }) => (
-  <>
-    <TestTitle>{title}</TestTitle>
-  </>
-);
+const Test = ({ title }) => <TestTitle>{title}</TestTitle>;
 
 Test.propTypes = {
   title: PropTypes.string,

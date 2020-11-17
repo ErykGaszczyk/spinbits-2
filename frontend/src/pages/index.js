@@ -1,6 +1,6 @@
 import React from 'react';
 import Test from '@components/Test';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import styled from 'styled-components';
 import GlobalStyle from '../styles';
 
@@ -32,7 +32,7 @@ const Home = () => {
         {blogPosts.map((item) => {
           return (
             <li key={`${item.id}-${Math.random()}`}>
-              <a href={`/blog/${item.id}`}>{`blog article: ${item.title}`}</a>
+              <Link to={`/blog/${item.id}`}>{`blog article: ${item.title}`}</Link>
             </li>
           );
         })}

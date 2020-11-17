@@ -15,8 +15,6 @@
     "prettier/prettier": "error",
     "no-underscore-dangle": ["error", { "allow": ["__typename"] }],
     "camelcase": ["error", { "allow": ["created_at"] }],
-    // "camelcase": ["error", { "properties": "never", "ignoreDestructuring": true }],
-    // "no-underscore-dangle": "off",
     "strict": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   },

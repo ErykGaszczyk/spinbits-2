@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import ReactMarkdown from 'react-markdown';
 
 const Template = ({ data }) => {
@@ -66,7 +66,7 @@ const Template = ({ data }) => {
     <>
       <ul>
         <li>
-          <a href="/">home</a>
+          <Link to="/">home</Link>
         </li>
       </ul>
       <div>{renderArticle()}</div>
