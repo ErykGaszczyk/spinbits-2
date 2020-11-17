@@ -45,7 +45,7 @@ const CustomCol = styled(Col)`
 const Blog = ({ data }) => {
   const { blogPosts } = data.cms;
   const blogPostsWithoutFirst = [...blogPosts];
-  const fistPost = blogPostsWithoutFirst.shift();
+  const firstPost = blogPostsWithoutFirst.shift();
 
   const renderColumns = () => {
     return blogPostsWithoutFirst.map((item) => {
@@ -84,8 +84,8 @@ const Blog = ({ data }) => {
             <SectionTitle>Blog</SectionTitle>
             <Link to="/blog/2">
               <FirstBlogBox>
-                <Title hover>{fistPost.title}</Title>
-                <Paragraph>{PostDate(fistPost.published_at)}</Paragraph>
+                <Title hover>{firstPost.title}</Title>
+                <Paragraph>{PostDate(firstPost.published_at)}</Paragraph>
               </FirstBlogBox>
             </Link>
           </Col>
