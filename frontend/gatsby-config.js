@@ -42,7 +42,7 @@ module.exports = {
       options: {
         fonts: [
           `Nunito`,
-          `source sans pro:300,400,700`, // you can also specify font weights and styles
+          `source sans pro:300,400,700, 800`, // you can also specify font weights and styles
         ],
         display: 'swap',
       },

@@ -5,8 +5,9 @@ const GlobalStyle = createGlobalStyle`
   ${normalize}
 
   :root {
-    /* --primary-font-color: #ffffff; */
+    --primary-font-color: #1a0b60;
     --secondary-font-color: #5acdfb;
+    --thirdary-font-color: #8087a3;
   }
 
   html {

@@ -5,10 +5,10 @@ import GlobalStyle from '../styles';
 
 const Layout = ({ children }) => {
   return (
-    <div>
+    <>
       <GlobalStyle />
       {children}
-    </div>
+    </>
   );
 };
 
