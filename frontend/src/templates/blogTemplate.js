@@ -46,6 +46,9 @@ const Template = ({ data }) => {
         <li>
           <Link to="/">home</Link>
         </li>
+        <li>
+          <Link to="/blog">blog</Link>
+        </li>
       </ul>
       <div>{renderArticle()}</div>
     </>

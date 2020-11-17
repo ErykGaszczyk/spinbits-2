@@ -6,8 +6,9 @@ const GlobalStyle = createGlobalStyle`
 
   :root {
     --primary-font-color: #1a0b60;
-    --secondary-font-color: #5acdfb;
+    --secondary-font-color: #007bff;
     --thirdary-font-color: #8087a3;
+    --blog-list-box-bg: #f1f5ff;
   }
 
   html {

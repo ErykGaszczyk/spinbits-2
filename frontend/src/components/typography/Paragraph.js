@@ -3,30 +3,46 @@ import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 
 const P = styled.p`
-  font-size: 1rem;
+  font-size: ${(props) =>
+    !props.theme.customStyles ? `${props.theme.fontSize}rem` : `${props.theme.customStyles}rem`};
   margin: 0;
-  color: ${(props) => (!props.theme.color ? props.theme.main : props.theme.color)};
+  margin-bottom: ${(props) =>
+    !props.theme.customStyles ? `${props.theme.mb}rem` : `${props.theme.customStyles}rem`};
+  color: ${(props) =>
+    !props.theme.customStyles ? props.theme.fontColor : props.theme.customStyles};
+  font-weight: ${(props) => (!props.bold ? 'normal' : '800')};
+  transition: 0.5s;
+
+  :hover {
+    color: ${(props) => props.hover && `var(--secondary-font-color)`};
+  }
 `;
 
 const theme = {
-  main: 'var(--thirdary-font-color)',
+  fontColor: 'var(--thirdary-font-color)',
+  fontSize: 1,
+  mb: 0,
 };
 
-const Paragraph = ({ children, color }) => (
+const Paragraph = ({ children, customStyles, bold, hover }) => (
   <ThemeProvider theme={theme}>
-    <P theme={color} color={color}>
+    <P theme={customStyles} customStyles={customStyles} hover={hover} bold={bold}>
       {children}
     </P>
   </ThemeProvider>
 );
 
 Paragraph.propTypes = {
-  children: PropTypes.string.isRequired,
-  color: PropTypes.shape({}),
+  children: PropTypes.node.isRequired,
+  customStyles: PropTypes.shape({}),
+  bold: PropTypes.bool,
+  hover: PropTypes.bool,
 };
 
 Paragraph.defaultProps = {
-  color: '',
+  customStyles: null,
+  bold: false,
+  hover: false,
 };
 
 export default Paragraph;

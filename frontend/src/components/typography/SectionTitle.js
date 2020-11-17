@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const P = styled.p`
   font-style: italic;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 1rem;
   padding: 0 0 0 3.125rem; // 50px
   position: relative;

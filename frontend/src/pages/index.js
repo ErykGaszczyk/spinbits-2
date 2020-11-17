@@ -1,5 +1,4 @@
 import React from 'react';
-import Test from '@components/Test';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import styled from 'styled-components';
 
@@ -58,7 +57,6 @@ const Home = () => {
   return (
     <>
       {renderMenu()}
-      <Test title="Hello Mando!" />
       {renderCustomMeta()}
     </>
   );
