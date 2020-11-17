@@ -2,32 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql, Link } from 'gatsby';
 import ReactMarkdown from 'react-markdown';
+import PostDate from '../helpers/PostDate';
 
 const Template = ({ data }) => {
   const { title, created_at, picture, content } = data.cms.blogPost;
-
-  const changeDate = (date) => {
-    const currentDate = new Date(date);
-    const year = currentDate.getFullYear();
-    const monthsNames = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
-    const month = monthsNames[currentDate.getMonth()];
-    const day = currentDate.getDate();
-
-    return <h2>{`${day} ${month} ${year}`}</h2>;
-  };
 
   const renderArticleHeading = () => {
     const { url, name, id } = picture;
@@ -36,7 +14,7 @@ const Template = ({ data }) => {
       <div key={`${id}-${name}`}>
         <h1>{title}</h1>
         <img width="500" src={`${process.env.IMAGES_URL}${url}`} alt={name} />
-        {changeDate(created_at)}
+        {PostDate(created_at)}
       </div>
     );
   };

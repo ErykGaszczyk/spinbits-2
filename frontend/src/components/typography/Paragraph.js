@@ -22,7 +22,7 @@ const Paragraph = ({ children, color }) => (
 
 Paragraph.propTypes = {
   children: PropTypes.string.isRequired,
-  color: PropTypes.string,
+  color: PropTypes.shape({}),
 };
 
 Paragraph.defaultProps = {
