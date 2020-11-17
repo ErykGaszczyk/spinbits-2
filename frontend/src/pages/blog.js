@@ -9,7 +9,7 @@ const Blog = () => {
   return (
     <Layout>
       <Container>
-        <SectionTitle>dupa</SectionTitle>
+        <SectionTitle>Blog</SectionTitle>
       </Container>
     </Layout>
   );
