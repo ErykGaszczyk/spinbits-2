@@ -4,7 +4,10 @@ import { normalize } from 'styled-normalize';
 const GlobalStyle = createGlobalStyle`
   ${normalize}
 
-  :root {}
+  :root {
+    /* --primary-font-color: #ffffff; */
+    --secondary-font-color: #5acdfb;
+  }
 
   html {
     height: 100%;
