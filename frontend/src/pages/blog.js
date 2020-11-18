@@ -49,10 +49,10 @@ const Blog = ({ data }) => {
 
   const renderColumns = () => {
     return blogPostsWithoutFirst.map((item) => {
-      const { id, title, published_at } = item;
+      const { id, title, publishedAt } = item;
 
       return (
-        <CustomCol key={`${id}-${published_at}`} lg="4">
+        <CustomCol key={`${id}-${publishedAt}`} lg="4">
           <Link to={`/blog/${id}`}>
             <ColumnBox>
               <div>
@@ -68,7 +68,7 @@ const Blog = ({ data }) => {
                   {title}
                 </Paragraph>
               </div>
-              <Paragraph>{PostDate(published_at)}</Paragraph>
+              <Paragraph>{PostDate(publishedAt)}</Paragraph>
             </ColumnBox>
           </Link>
         </CustomCol>
@@ -85,7 +85,7 @@ const Blog = ({ data }) => {
             <Link to="/blog/2">
               <FirstBlogBox>
                 <Title hover>{firstPost.title}</Title>
-                <Paragraph>{PostDate(firstPost.published_at)}</Paragraph>
+                <Paragraph>{PostDate(firstPost.publishedAt)}</Paragraph>
               </FirstBlogBox>
             </Link>
           </Col>
@@ -101,7 +101,7 @@ export const pageQuery = graphql`
     cms {
       blogPosts(sort: "published_at:desc") {
         id
-        published_at
+        publishedAt: published_at
         title
       }
     }
@@ -115,7 +115,7 @@ Blog.propTypes = {
         PropTypes.shape({
           id: PropTypes.string,
           title: PropTypes.string,
-          published_at: PropTypes.string,
+          publishedAt: PropTypes.string,
         })
       ),
     }),
