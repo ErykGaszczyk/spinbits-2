@@ -26,8 +26,6 @@ const CustomLink = styled(Link)`
 `;
 
 const Template = ({ data }) => {
-  const { title, picture } = data.cms.blogPost;
-
   const renderParagraphUnderTitle = () => {
     const { content } = data.cms.blogPost;
 
@@ -38,10 +36,10 @@ const Template = ({ data }) => {
   };
 
   const renderArticleHeading = () => {
-    const { name, id } = picture;
+    const { title, id } = data.cms.blogPost;
 
     return (
-      <div key={`${id}-${name}`}>
+      <div key={`${id}-${title}`}>
         <Title customStyles={{ fontColor: 'var(--secondary-font-color)' }}>{title}</Title>
         {renderParagraphUnderTitle()}
       </div>
@@ -49,7 +47,7 @@ const Template = ({ data }) => {
   };
 
   const renderArticlePicture = () => {
-    const { name, url } = picture;
+    const { name, url } = data.cms.blogPost.picture;
     return <img width="100%" src={`${process.env.IMAGES_URL}${url}`} alt={name} />;
   };
 
