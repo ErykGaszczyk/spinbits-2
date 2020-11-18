@@ -4,11 +4,17 @@ import { normalize } from 'styled-normalize';
 const GlobalStyle = createGlobalStyle`
   ${normalize}
 
-  :root {}
+  :root {
+    --primary-font-color: #1a0b60;
+    --secondary-font-color: #007bff;
+    --thirdary-font-color: #8087a3;
+    --blog-list-box-bg: #f1f5ff;
+  }
 
   html {
     height: 100%;
     font-size: 16px;
+    font-family: 'Nunito', sans-serif; 
 
     body {}
     

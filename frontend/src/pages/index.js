@@ -1,8 +1,6 @@
 import React from 'react';
-import Test from '@components/Test';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import styled from 'styled-components';
-import GlobalStyle from '../styles';
 
 const randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
@@ -29,6 +27,9 @@ const Home = () => {
   const renderMenu = () => {
     return (
       <ul>
+        <li>
+          <Link to="/blog">Blog</Link>
+        </li>
         {blogPosts.map((item) => {
           return (
             <li key={`${item.id}-${Math.random()}`}>
@@ -55,9 +56,7 @@ const Home = () => {
 
   return (
     <>
-      <GlobalStyle />
       {renderMenu()}
-      <Test title="Hello Mando!" />
       {renderCustomMeta()}
     </>
   );

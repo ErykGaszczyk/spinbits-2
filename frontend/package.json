@@ -16,10 +16,13 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "@bootstrap-styled/v4": "^3.4.0",
     "babel-plugin-styled-components": "^1.11.1",
+    "bootstrap-styled": "^2.7.2",
     "dotenv": "^8.2.0",
     "gatsby": "^2.25.3",
     "gatsby-alias-imports": "^1.0.6",
+    "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-styled-components": "^3.3.14",
     "gatsby-source-graphql": "^2.7.7",
     "prop-types": "^15.7.2",
