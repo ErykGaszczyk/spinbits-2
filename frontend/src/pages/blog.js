@@ -27,7 +27,6 @@ const ColumnBox = styled.div`
   min-height: 21.875rem; // 350px
   max-height: 21.875rem; // 350px
   padding: 3.75rem 2.188rem; // 60px 35px
-  background-color: pink;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

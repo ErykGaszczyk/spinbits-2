@@ -1,34 +1,67 @@
 import React from 'react';
+import Title from '@components/typography/Title';
+import Layout from '@components/Layout';
 import PropTypes from 'prop-types';
 import { graphql, Link } from 'gatsby';
+import SectionTitle from '@components/typography/SectionTitle';
 import ReactMarkdown from 'react-markdown';
-import PostDate from '../helpers/PostDate';
+import { Container, Row, Col } from '@bootstrap-styled/v4';
+import styled from 'styled-components';
+import Paragraph from '@components/typography/Paragraph';
+// import PostDate from '../helpers/PostDate';
+
+const ContentRow = styled(Row)`
+  justify-content: space-between;
+`;
 
 const Template = ({ data }) => {
-  const { title, created_at, picture, content } = data.cms.blogPost;
+  const { title, picture } = data.cms.blogPost;
+
+  const renderParagraphUnderTitle = () => {
+    const { content } = data.cms.blogPost;
+
+    if (content[0] && content[0].__typename === 'CMS_ComponentBlogSimpleText') {
+      return <Paragraph>{content[0].text}</Paragraph>;
+    }
+    return null;
+  };
 
   const renderArticleHeading = () => {
-    const { url, name, id } = picture;
+    const { name, id } = picture;
 
     return (
       <div key={`${id}-${name}`}>
-        <h1>{title}</h1>
-        <img width="500" src={`${process.env.IMAGES_URL}${url}`} alt={name} />
-        {PostDate(created_at)}
+        <Title customStyles={{ fontColor: 'var(--secondary-font-color)' }}>{title}</Title>
+        {renderParagraphUnderTitle()}
       </div>
     );
   };
 
+  const renderArticlePicture = () => {
+    const { name, url } = picture;
+    return <img width="100%" src={`${process.env.IMAGES_URL}${url}`} alt={name} />;
+  };
+
   const renderArticleContent = () => {
-    return content.map((item) => {
+    const { content } = data.cms.blogPost;
+    const blogContentWithoutFirstSimpleText = [...content];
+
+    if (content[0] && content[0].__typename === 'CMS_ComponentBlogSimpleText') {
+      // eslint-disable-next-line
+      const blogContent = blogContentWithoutFirstSimpleText.shift();
+    }
+
+    return blogContentWithoutFirstSimpleText.map((item) => {
       if (item.__typename === 'CMS_ComponentBlogSimpleText') {
-        return <p key={`${item.__typename}-${item.id}`}>{item.text}</p>;
+        return <Paragraph key={`${item.__typename}-${item.id}`}>{item.text}</Paragraph>;
       }
       if (item.__typename === 'CMS_ComponentBlogParagraph') {
         return (
           <div key={`${item.__typename}-${item.id}`}>
             <h3>{item.title}</h3>
-            <ReactMarkdown>{item.text}</ReactMarkdown>
+            <Paragraph>
+              <ReactMarkdown>{item.text}</ReactMarkdown>
+            </Paragraph>
           </div>
         );
       }
@@ -37,7 +70,27 @@ const Template = ({ data }) => {
   };
 
   const renderArticle = () => {
-    return [renderArticleHeading(), renderArticleContent()];
+    return (
+      <Layout>
+        <Container>
+          <Row>
+            <Col sm="12">
+              <SectionTitle>Blog</SectionTitle>
+            </Col>
+          </Row>
+          <Row>
+            <Col sm="6">{renderArticleHeading()}</Col>
+            <Col sm="6">{renderArticlePicture()}</Col>
+          </Row>
+          <ContentRow>
+            <Col sm={8}>{renderArticleContent()}</Col>
+            <Col sm="3">
+              <p>Inne artykuly</p>
+            </Col>
+          </ContentRow>
+        </Container>
+      </Layout>
+    );
   };
 
   return (
@@ -95,6 +148,7 @@ Template.propTypes = {
             id: PropTypes.string,
             title: PropTypes.string,
             text: PropTypes.string,
+            __typename: PropTypes.string,
           })
         ),
         picture: PropTypes.shape({
