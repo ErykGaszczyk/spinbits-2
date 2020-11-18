@@ -8,10 +8,21 @@ import ReactMarkdown from 'react-markdown';
 import { Container, Row, Col } from '@bootstrap-styled/v4';
 import styled from 'styled-components';
 import Paragraph from '@components/typography/Paragraph';
-// import PostDate from '../helpers/PostDate';
+import { ColumnBox } from '../pages/blog';
+import PostDate from '../helpers/PostDate';
 
 const ContentRow = styled(Row)`
+  margin: 2rem 0 0 0;
   justify-content: space-between;
+`;
+
+const CustomMarkdown = styled(ReactMarkdown)`
+  color: var(--thirdary-font-color);
+`;
+
+const CustomLink = styled(Link)`
+  display: block;
+  margin: 0 0 2rem 0;
 `;
 
 const Template = ({ data }) => {
@@ -47,26 +58,65 @@ const Template = ({ data }) => {
     const blogContentWithoutFirstSimpleText = [...content];
 
     if (content[0] && content[0].__typename === 'CMS_ComponentBlogSimpleText') {
-      // eslint-disable-next-line
-      const blogContent = blogContentWithoutFirstSimpleText.shift();
+      blogContentWithoutFirstSimpleText.shift();
     }
 
     return blogContentWithoutFirstSimpleText.map((item) => {
-      if (item.__typename === 'CMS_ComponentBlogSimpleText') {
-        return <Paragraph key={`${item.__typename}-${item.id}`}>{item.text}</Paragraph>;
-      }
-      if (item.__typename === 'CMS_ComponentBlogParagraph') {
+      const { __typename, id, text, title: subTitle } = item;
+      if (__typename === 'CMS_ComponentBlogSimpleText') {
         return (
-          <div key={`${item.__typename}-${item.id}`}>
-            <h3>{item.title}</h3>
-            <Paragraph>
-              <ReactMarkdown>{item.text}</ReactMarkdown>
+          <Paragraph
+            customStyles={{ mb: 1, fontColor: 'var(--thirdary-font-color)' }}
+            key={`${__typename}-${id}`}
+          >
+            {text}
+          </Paragraph>
+        );
+      }
+      if (__typename === 'CMS_ComponentBlogParagraph') {
+        return (
+          <div key={`${__typename}-${item.id}`}>
+            <Paragraph customStyles={{ fontColor: 'var(--secondary-font-color)', fontSize: 1.2 }}>
+              {subTitle}
             </Paragraph>
+            <CustomMarkdown>{text}</CustomMarkdown>
           </div>
         );
       }
       return null;
     });
+  };
+
+  const renderSidePosts = () => {
+    const { title: currentPostTitle } = data.cms.blogPost;
+    const { blogPosts: sidePosts } = data.nextPosts;
+    return sidePosts
+      .filter((item) => {
+        return item.title !== currentPostTitle;
+      })
+      .map((el) => {
+        const { id, title: sidePostTitle, publishedAt } = el;
+        return (
+          <CustomLink to={`/blog/${id}`} key={`${id}-${sidePostTitle}`}>
+            <ColumnBox>
+              <div>
+                <Paragraph customStyles={{ fontColor: 'var(--secondary-font-color)', mb: 1 }}>
+                  {/* TODO: */}
+                  Technologie trzeba dorobić w strapi
+                </Paragraph>
+                <Paragraph
+                  bold
+                  hover
+                  customStyles={{ fontColor: 'var(--primary-font-color)', fontSize: 1.75 }}
+                >
+                  {sidePostTitle}
+                </Paragraph>
+              </div>
+              <Paragraph>{PostDate(publishedAt)}</Paragraph>
+            </ColumnBox>
+          </CustomLink>
+        );
+      });
   };
 
   const renderArticle = () => {
@@ -79,13 +129,19 @@ const Template = ({ data }) => {
             </Col>
           </Row>
           <Row>
-            <Col sm="6">{renderArticleHeading()}</Col>
-            <Col sm="6">{renderArticlePicture()}</Col>
+            <Col xs={12} lg={6}>
+              {renderArticleHeading()}
+            </Col>
+            <Col xs={12} lg={6}>
+              {renderArticlePicture()}
+            </Col>
           </Row>
           <ContentRow>
-            <Col sm={8}>{renderArticleContent()}</Col>
-            <Col sm="3">
-              <p>Inne artykuly</p>
+            <Col lg={7} xl={8}>
+              {renderArticleContent()}
+            </Col>
+            <Col lg={5} xl={4}>
+              {renderSidePosts()}
             </Col>
           </ContentRow>
         </Container>
@@ -103,7 +159,7 @@ const Template = ({ data }) => {
           <Link to="/blog">blog</Link>
         </li>
       </ul>
-      <div>{renderArticle()}</div>
+      {renderArticle()}
     </>
   );
 };
@@ -114,6 +170,7 @@ export const pageQuery = graphql`
       blogPost(id: $id) {
         id
         title
+        publishedAt: published_at
         picture {
           url
           name
@@ -133,6 +190,13 @@ export const pageQuery = graphql`
         created_at
       }
     }
+    nextPosts: cms {
+      blogPosts(sort: "published_at:desc", limit: 4) {
+        id
+        title
+        publishedAt: published_at
+      }
+    }
   }
 `;
 
@@ -142,7 +206,7 @@ Template.propTypes = {
       blogPost: PropTypes.shape({
         id: PropTypes.string,
         title: PropTypes.string,
-        created_at: PropTypes.string,
+        publishedAt: PropTypes.string,
         content: PropTypes.arrayOf(
           PropTypes.shape({
             id: PropTypes.string,
@@ -157,6 +221,15 @@ Template.propTypes = {
           name: PropTypes.string,
         }),
       }),
+    }),
+    nextPosts: PropTypes.shape({
+      blogPosts: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string,
+          title: PropTypes.string,
+          publishedAt: PropTypes.string,
+        })
+      ),
     }),
   }).isRequired,
 };

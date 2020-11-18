@@ -7,7 +7,7 @@ const H1 = styled.h1`
   font-weight: 800;
   color: ${(props) =>
     !props.theme.customStyles ? props.theme.fontColor : props.theme.customStyles};
-  margin: 0;
+  margin-top: 0;
   transition: 0.5s;
 
   :hover {
@@ -17,8 +17,6 @@ const H1 = styled.h1`
 
 const theme = {
   fontColor: 'var(--thirdary-font-color)',
-  fontSize: 1,
-  mb: 0,
 };
 
 const Title = ({ children, hover, customStyles }) => (
