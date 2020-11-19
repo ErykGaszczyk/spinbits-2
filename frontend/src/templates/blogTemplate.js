@@ -52,18 +52,21 @@ const Template = ({ data }) => {
   };
 
   const renderComponentBlogSimpleText = (content) => {
-    const { text } = content;
+    const { id, __typename, text } = content;
     return (
-      <Paragraph customStyles={{ mb: 1, fontColor: 'var(--thirdary-font-color)' }}>
+      <Paragraph
+        key={`${id}-${__typename}`}
+        customStyles={{ mb: 1, fontColor: 'var(--thirdary-font-color)' }}
+      >
         {text}
       </Paragraph>
     );
   };
 
   const renderComponentBlogParagraph = (content) => {
-    const { title, text } = content;
+    const { id, __typename, title, text } = content;
     return (
-      <div>
+      <div key={`${id}-${__typename}`}>
         <Paragraph customStyles={{ fontColor: 'var(--secondary-font-color)', fontSize: 1.2 }}>
           {title}
         </Paragraph>
