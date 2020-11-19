@@ -89,10 +89,10 @@ const Template = ({ data }) => {
     };
 
     return blogContentWithoutFirstSimpleText.map((item) => {
-      const renderFunction = functionMap[item.__typename];
       if (typeof functionMap[item.__typename] === 'undefined') {
         throw new Error(`${item.__typename} type is unsupported`);
       }
+      const renderFunction = functionMap[item.__typename];
       const returnValue = renderFunction(item);
 
       return returnValue;
