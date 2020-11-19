@@ -9,14 +9,14 @@
 to backup data:
 
 1. `./all.sh stop strapi`
-2. `./all.sh exec db`
+2. `./all.sh exec db bash`
 3. `mysqldump --ssl-mode=disabled --user=root --password=strapi -h mysql strapi > ./assets/dump.sql`
 4. `./all.sh start strapi`
 
 to restore backup:
 
 1. `./all.sh stop strapi`
-2. `./all.sh exec db`
+2. `./all.sh exec db bash`
 3. `MYSQL_PWD=strapi mysql --ssl-mode=disabled --user=root -h mysql strapi < /assets/dump.sql`
 4. `./all.sh start strapi`
 
