@@ -17,6 +17,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Nunito', sans-serif; 
 
     body {}
+
+    button {
+      border: none;
+    }
     
     ul {
       margin: 0;
