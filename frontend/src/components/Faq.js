@@ -1,9 +1,10 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Container, Row, Col } from '@bootstrap-styled/v4';
 import SectionTitle from '@components/typography/SectionTitle';
 import { P } from '@components/typography/Paragraph.styled';
+import { StaticQuery, graphql } from 'gatsby';
 
 const Title = styled(P)`
   font-size: 2.063rem;
@@ -24,7 +25,7 @@ const Button = styled.button`
   color: #fff;
 `;
 
-const Faq = () => {
+const Faq = ({ data }) => {
   return (
     <Container>
       <Row>
@@ -47,8 +48,37 @@ const Faq = () => {
   );
 };
 
-Faq.propTypes = {};
+export default function MyFaq() {
+  return (
+    <StaticQuery
+      query={graphql`
+        query {
+          cms {
+            faqs {
+              content
+              title
+              id
+            }
+          }
+        }
+      `}
+      render={(data) => <Faq data={data} />}
+    />
+  );
+}
+
+Faq.propTypes = {
+  data: PropTypes.shape({
+    cms: PropTypes.shape({
+      faqs: PropTypes.arrayOf(
+        PropTypes.shape({
+          content: PropTypes.string,
+          title: PropTypes.string,
+          id: PropTypes.string,
+        })
+      ),
+    }),
+  }).isRequired,
+};
 
 Faq.defaultProps = {};
-
-export default Faq;
