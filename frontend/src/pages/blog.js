@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link, graphql } from 'gatsby';
 import Layout from '@components/Layout';
-import Title from '@components/typography/Title';
+import { H1 } from '@components/typography/Title.styled';
 import SectionTitle from '@components/typography/SectionTitle';
 import Paragraph from '@components/typography/Paragraph';
 import { Container, Row, Col } from '@bootstrap-styled/v4';
 import FirstPostBg from '@static/images/blog/1st-blog-bg.webp';
+import NextPostBox from '@components/NextPostBox';
 import PostDate from '../helpers/PostDate';
 
 const FirstBlogBox = styled.div`
@@ -23,21 +24,16 @@ const FirstBlogBox = styled.div`
   justify-content: space-between;
 `;
 
-export const ColumnBox = styled.div`
-  min-height: 21.875rem; // 350px
-  padding: 3.75rem 2.188rem; // 60px 35px
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: var(--blog-list-box-bg);
-`;
-
 const CustomRow = styled(Row)`
   margin: 0 0 1rem 0;
 `;
 
 const CustomCol = styled(Col)`
   margin: 0 0 1rem 0;
+`;
+
+const FirstPostTitle = styled(H1)`
+  color: var(--primary-font-color);
 `;
 
 const Blog = ({ data }) => {
@@ -51,24 +47,7 @@ const Blog = ({ data }) => {
 
       return (
         <CustomCol key={`${id}-${publishedAt}`} lg="4">
-          <Link to={`/blog/${id}`}>
-            <ColumnBox>
-              <div>
-                <Paragraph customStyles={{ fontColor: 'var(--secondary-font-color)', mb: 1 }}>
-                  {/* TODO: */}
-                  Technologie trzeba dorobić w strapi
-                </Paragraph>
-                <Paragraph
-                  bold
-                  hover
-                  customStyles={{ fontColor: 'var(--primary-font-color)', fontSize: 1.75 }}
-                >
-                  {title}
-                </Paragraph>
-              </div>
-              <Paragraph>{PostDate(publishedAt)}</Paragraph>
-            </ColumnBox>
-          </Link>
+          <NextPostBox id={id} title={title} date={publishedAt} />
         </CustomCol>
       );
     });
@@ -83,9 +62,7 @@ const Blog = ({ data }) => {
             <SectionTitle>Blog</SectionTitle>
             <Link to="/blog/2">
               <FirstBlogBox>
-                <Title hover customStyles={{ fontColor: 'var(--primary-font-color)' }}>
-                  {firstPost.title}
-                </Title>
+                <FirstPostTitle hover>{firstPost.title}</FirstPostTitle>
                 <Paragraph>{PostDate(firstPost.publishedAt)}</Paragraph>
               </FirstBlogBox>
             </Link>
