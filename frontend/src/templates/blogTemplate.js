@@ -51,6 +51,27 @@ const Template = ({ data }) => {
     return <img width="100%" src={`${process.env.IMAGES_URL}${url}`} alt={name} />;
   };
 
+  const renderComponentBlogSimpleText = (content) => {
+    const { text } = content;
+    return (
+      <Paragraph customStyles={{ mb: 1, fontColor: 'var(--thirdary-font-color)' }}>
+        {text}
+      </Paragraph>
+    );
+  };
+
+  const renderComponentBlogParagraph = (content) => {
+    const { title, text } = content;
+    return (
+      <div>
+        <Paragraph customStyles={{ fontColor: 'var(--secondary-font-color)', fontSize: 1.2 }}>
+          {title}
+        </Paragraph>
+        <CustomMarkdown>{text}</CustomMarkdown>
+      </div>
+    );
+  };
+
   const renderArticleContent = () => {
     const { content } = data.cms.blogPost;
     const blogContentWithoutFirstSimpleText = [...content];
@@ -59,29 +80,16 @@ const Template = ({ data }) => {
       blogContentWithoutFirstSimpleText.shift();
     }
 
+    const functionMap = {
+      CMS_ComponentBlogSimpleText: renderComponentBlogSimpleText,
+      CMS_ComponentBlogParagraph: renderComponentBlogParagraph,
+    };
+
     return blogContentWithoutFirstSimpleText.map((item) => {
-      const { __typename, id, text, title: subTitle } = item;
-      if (__typename === 'CMS_ComponentBlogSimpleText') {
-        return (
-          <Paragraph
-            customStyles={{ mb: 1, fontColor: 'var(--thirdary-font-color)' }}
-            key={`${__typename}-${id}`}
-          >
-            {text}
-          </Paragraph>
-        );
-      }
-      if (__typename === 'CMS_ComponentBlogParagraph') {
-        return (
-          <div key={`${__typename}-${item.id}`}>
-            <Paragraph customStyles={{ fontColor: 'var(--secondary-font-color)', fontSize: 1.2 }}>
-              {subTitle}
-            </Paragraph>
-            <CustomMarkdown>{text}</CustomMarkdown>
-          </div>
-        );
-      }
-      return null;
+      const renderFunction = functionMap[item.__typename];
+      const returnValue = renderFunction(item);
+
+      return returnValue;
     });
   };
 
@@ -117,8 +125,16 @@ const Template = ({ data }) => {
       });
   };
 
-  const renderArticle = () => {
-    return (
+  return (
+    <>
+      <ul>
+        <li>
+          <Link to="/">home</Link>
+        </li>
+        <li>
+          <Link to="/blog">blog</Link>
+        </li>
+      </ul>
       <Layout>
         <Container>
           <Row>
@@ -144,20 +160,6 @@ const Template = ({ data }) => {
           </ContentRow>
         </Container>
       </Layout>
-    );
-  };
-
-  return (
-    <>
-      <ul>
-        <li>
-          <Link to="/">home</Link>
-        </li>
-        <li>
-          <Link to="/blog">blog</Link>
-        </li>
-      </ul>
-      {renderArticle()}
     </>
   );
 };
