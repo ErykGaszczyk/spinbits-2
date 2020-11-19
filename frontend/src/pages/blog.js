@@ -23,11 +23,9 @@ const FirstBlogBox = styled.div`
   justify-content: space-between;
 `;
 
-const ColumnBox = styled.div`
+export const ColumnBox = styled.div`
   min-height: 21.875rem; // 350px
-  max-height: 21.875rem; // 350px
   padding: 3.75rem 2.188rem; // 60px 35px
-  background-color: pink;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -78,13 +76,16 @@ const Blog = ({ data }) => {
 
   return (
     <Layout>
+      <Link to="/">home</Link>
       <Container>
         <CustomRow>
           <Col sm="12">
             <SectionTitle>Blog</SectionTitle>
             <Link to="/blog/2">
               <FirstBlogBox>
-                <Title hover>{firstPost.title}</Title>
+                <Title hover customStyles={{ fontColor: 'var(--primary-font-color)' }}>
+                  {firstPost.title}
+                </Title>
                 <Paragraph>{PostDate(firstPost.publishedAt)}</Paragraph>
               </FirstBlogBox>
             </Link>

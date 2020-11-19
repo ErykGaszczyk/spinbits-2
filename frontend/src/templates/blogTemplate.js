@@ -1,43 +1,134 @@
 import React from 'react';
+import Title from '@components/typography/Title';
+import Layout from '@components/Layout';
 import PropTypes from 'prop-types';
 import { graphql, Link } from 'gatsby';
+import SectionTitle from '@components/typography/SectionTitle';
 import ReactMarkdown from 'react-markdown';
+import { Container, Row, Col } from '@bootstrap-styled/v4';
+import styled from 'styled-components';
+import Paragraph from '@components/typography/Paragraph';
+import { ColumnBox } from '../pages/blog';
 import PostDate from '../helpers/PostDate';
 
+const ContentRow = styled(Row)`
+  margin: 2rem 0 0 0;
+  justify-content: space-between;
+`;
+
+const CustomMarkdown = styled(ReactMarkdown)`
+  color: var(--thirdary-font-color);
+`;
+
+const CustomLink = styled(Link)`
+  display: block;
+  margin: 0 0 2rem 0;
+`;
+
 const Template = ({ data }) => {
-  const { title, created_at, picture, content } = data.cms.blogPost;
+  const renderParagraphUnderTitle = () => {
+    const { content } = data.cms.blogPost;
+
+    if (content[0] && content[0].__typename === 'CMS_ComponentBlogSimpleText') {
+      return <Paragraph>{content[0].text}</Paragraph>;
+    }
+    return null;
+  };
 
   const renderArticleHeading = () => {
-    const { url, name, id } = picture;
+    const { title, id } = data.cms.blogPost;
 
     return (
-      <div key={`${id}-${name}`}>
-        <h1>{title}</h1>
-        <img width="500" src={`${process.env.IMAGES_URL}${url}`} alt={name} />
-        {PostDate(created_at)}
+      <div key={`${id}-${title}`}>
+        <Title customStyles={{ fontColor: 'var(--secondary-font-color)' }}>{title}</Title>
+        {renderParagraphUnderTitle()}
+      </div>
+    );
+  };
+
+  const renderArticlePicture = () => {
+    const { name, url } = data.cms.blogPost.picture;
+    return <img width="100%" src={`${process.env.IMAGES_URL}${url}`} alt={name} />;
+  };
+
+  const renderComponentBlogSimpleText = (content) => {
+    const { id, __typename, text } = content;
+    return (
+      <Paragraph
+        key={`${id}-${__typename}`}
+        customStyles={{ mb: 1, fontColor: 'var(--thirdary-font-color)' }}
+      >
+        {text}
+      </Paragraph>
+    );
+  };
+
+  const renderComponentBlogParagraph = (content) => {
+    const { id, __typename, title, text } = content;
+    return (
+      <div key={`${id}-${__typename}`}>
+        <Paragraph customStyles={{ fontColor: 'var(--secondary-font-color)', fontSize: 1.2 }}>
+          {title}
+        </Paragraph>
+        <CustomMarkdown>{text}</CustomMarkdown>
       </div>
     );
   };
 
   const renderArticleContent = () => {
-    return content.map((item) => {
-      if (item.__typename === 'CMS_ComponentBlogSimpleText') {
-        return <p key={`${item.__typename}-${item.id}`}>{item.text}</p>;
+    const { content } = data.cms.blogPost;
+    const blogContentWithoutFirstSimpleText = [...content];
+
+    if (content[0] && content[0].__typename === 'CMS_ComponentBlogSimpleText') {
+      blogContentWithoutFirstSimpleText.shift();
+    }
+
+    const functionMap = {
+      CMS_ComponentBlogSimpleText: renderComponentBlogSimpleText,
+      CMS_ComponentBlogParagraph: renderComponentBlogParagraph,
+    };
+
+    return blogContentWithoutFirstSimpleText.map((item) => {
+      if (typeof functionMap[item.__typename] === 'undefined') {
+        throw new Error(`${item.__typename} type is unsupported`);
       }
-      if (item.__typename === 'CMS_ComponentBlogParagraph') {
-        return (
-          <div key={`${item.__typename}-${item.id}`}>
-            <h3>{item.title}</h3>
-            <ReactMarkdown>{item.text}</ReactMarkdown>
-          </div>
-        );
-      }
-      return null;
+      const renderFunction = functionMap[item.__typename];
+      const returnValue = renderFunction(item);
+
+      return returnValue;
     });
   };
 
-  const renderArticle = () => {
-    return [renderArticleHeading(), renderArticleContent()];
+  const renderSidePosts = () => {
+    const { title: currentPostTitle } = data.cms.blogPost;
+    const { blogPosts: sidePosts } = data.nextPosts;
+    return sidePosts
+      .filter((item) => {
+        return item.title !== currentPostTitle;
+      })
+      .map((el) => {
+        const { id, title: sidePostTitle, publishedAt } = el;
+        return (
+          <CustomLink to={`/blog/${id}`} key={`${id}-${sidePostTitle}`}>
+            <ColumnBox>
+              <div>
+                <Paragraph customStyles={{ fontColor: 'var(--secondary-font-color)', mb: 1 }}>
+                  {/* TODO: */}
+                  Technologie trzeba dorobić w strapi
+                </Paragraph>
+                <Paragraph
+                  bold
+                  hover
+                  customStyles={{ fontColor: 'var(--primary-font-color)', fontSize: 1.75 }}
+                >
+                  {sidePostTitle}
+                </Paragraph>
+              </div>
+              <Paragraph>{PostDate(publishedAt)}</Paragraph>
+            </ColumnBox>
+          </CustomLink>
+        );
+      });
   };
 
   return (
@@ -50,7 +141,31 @@ const Template = ({ data }) => {
           <Link to="/blog">blog</Link>
         </li>
       </ul>
-      <div>{renderArticle()}</div>
+      <Layout>
+        <Container>
+          <Row>
+            <Col sm="12">
+              <SectionTitle>Blog</SectionTitle>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12} lg={6}>
+              {renderArticleHeading()}
+            </Col>
+            <Col xs={12} lg={6}>
+              {renderArticlePicture()}
+            </Col>
+          </Row>
+          <ContentRow>
+            <Col lg={7} xl={8}>
+              {renderArticleContent()}
+            </Col>
+            <Col lg={5} xl={4}>
+              {renderSidePosts()}
+            </Col>
+          </ContentRow>
+        </Container>
+      </Layout>
     </>
   );
 };
@@ -61,6 +176,7 @@ export const pageQuery = graphql`
       blogPost(id: $id) {
         id
         title
+        publishedAt: published_at
         picture {
           url
           name
@@ -80,6 +196,13 @@ export const pageQuery = graphql`
         created_at
       }
     }
+    nextPosts: cms {
+      blogPosts(sort: "published_at:desc", limit: 4) {
+        id
+        title
+        publishedAt: published_at
+      }
+    }
   }
 `;
 
@@ -89,12 +212,13 @@ Template.propTypes = {
       blogPost: PropTypes.shape({
         id: PropTypes.string,
         title: PropTypes.string,
-        created_at: PropTypes.string,
+        publishedAt: PropTypes.string,
         content: PropTypes.arrayOf(
           PropTypes.shape({
             id: PropTypes.string,
             title: PropTypes.string,
             text: PropTypes.string,
+            __typename: PropTypes.string,
           })
         ),
         picture: PropTypes.shape({
@@ -103,6 +227,15 @@ Template.propTypes = {
           name: PropTypes.string,
         }),
       }),
+    }),
+    nextPosts: PropTypes.shape({
+      blogPosts: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string,
+          title: PropTypes.string,
+          publishedAt: PropTypes.string,
+        })
+      ),
     }),
   }).isRequired,
 };
