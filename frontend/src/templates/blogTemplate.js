@@ -8,6 +8,7 @@ import ReactMarkdown from 'react-markdown';
 import { Container, Row, Col } from '@bootstrap-styled/v4';
 import styled from 'styled-components';
 import Paragraph from '@components/typography/Paragraph';
+import Faq from '@components/Faq';
 import { ColumnBox } from '../pages/blog';
 import PostDate from '../helpers/PostDate';
 
@@ -162,6 +163,7 @@ const Template = ({ data }) => {
             </Col>
           </ContentRow>
         </Container>
+        <Faq />
       </Layout>
     </>
   );

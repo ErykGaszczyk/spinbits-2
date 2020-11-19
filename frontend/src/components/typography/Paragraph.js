@@ -16,6 +16,10 @@ const P = styled.p`
   :hover {
     color: ${(props) => props.hover && `var(--secondary-font-color)`};
   }
+  strong {
+    font-weight: normal;
+    color: var(--secondary-font-color);
+  }
 `;
 
 const theme = {
