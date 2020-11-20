@@ -7,7 +7,7 @@ import { P } from '@components/typography/Paragraph.styled';
 import { StaticQuery, graphql } from 'gatsby';
 import ReactMarkdown from 'react-markdown';
 
-const Title = styled(P)`
+const MainTitle = styled(P)`
   font-size: 2.063rem;
   color: var(--primary-font-color);
 `;
@@ -18,39 +18,47 @@ const SideButton = styled.button`
   border-radius: 0.313rem; // 5px
   transition: 0.5s;
   border: none;
-  color: #fff;
+  color: var(--white);
 `;
 
-const AccordionBox = styled.div`
+const AccordionContainer = styled.div`
   margin: 0 0 1rem 0;
 `;
 
 const CustomButton = styled.button`
-  background-color: #f1f5ff;
-  padding: 23px;
   color: var(--primary-font-color);
-  font-size: 20px;
+  background-color: var(--blog-list-box-bg);
+  padding: 1.438rem; //23px;
+  font-size: 1.25rem; //20px;
+  font-weight: 800;
   width: 100%;
-  ${(props) => (props.isOpen ? 'border-radius: 8px 8px 0 0' : 'border-radius: 8px')};
+  border-radius: ${(props) => (props.isOpen ? '0.5rem 0.5rem 0 0' : '0.5rem')};
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   :hover {
     cursor: pointer;
+    p {
+      color: var(--secondary-font-color);
+    }
+  }
+
+  p {
+    margin: 0;
+    transition: 0.5s;
   }
 `;
 
 const ContentParagraph = styled(ReactMarkdown)`
   background-color: var(--primary-font-color);
   border-radius: 0 0 8px 8px;
-  /* color: var(--secondary-font-color); */
-  color: #5acdfb;
+  color: var(--accordion-content-font-color);
   padding: 1rem;
 
   strong {
     font-weight: normal;
-    color: white;
+    color: var(--white);
   }
 `;
 
@@ -62,7 +70,7 @@ const Faq = ({ data }) => {
       const [isOpen, setIsOpen] = useState(false);
       const { id, title, content } = item;
       return (
-        <AccordionBox key={`${id}-${title}`}>
+        <AccordionContainer key={`${id}-${title}`}>
           <CustomButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
             <p>{title}</p>
             <span>{isOpen ? '-' : '+'}</span>
@@ -70,7 +78,7 @@ const Faq = ({ data }) => {
           <Collapse isOpen={isOpen}>
             <ContentParagraph>{content}</ContentParagraph>
           </Collapse>
-        </AccordionBox>
+        </AccordionContainer>
       );
     });
   };
@@ -84,9 +92,10 @@ const Faq = ({ data }) => {
       </Row>
       <Row>
         <Col xs={12} lg={5}>
-          <Title>
+          <MainTitle>
             Any <strong>questions?</strong> Don&apos;t hesitate to ask us
-          </Title>
+          </MainTitle>
+          {/* {TODO: add <a href/>} */}
           <SideButton type="button">Ask a question</SideButton>
         </Col>
         <Col xs={12} lg={7}>
