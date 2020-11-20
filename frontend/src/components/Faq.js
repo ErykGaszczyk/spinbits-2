@@ -17,7 +17,6 @@ const SideButton = styled.button`
   padding: 1.063rem 2.5rem; // 17px 40px
   border-radius: 0.313rem; // 5px
   transition: 0.5s;
-  border: none;
   color: var(--white);
 `;
 

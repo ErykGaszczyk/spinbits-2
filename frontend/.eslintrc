@@ -16,16 +16,7 @@
     "no-underscore-dangle": ["error", { "allow": ["__typename"] }],
     "camelcase": ["error", { "allow": [""] }],
     "strict": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
-  },
-  "settings": {
-    "import/resolver": {
-      "alias": [
-        ["@components", "./src/components"],
-        ["@templates", "./src/templates"],
-        ["@styles", "./src/styles"],
-        ["@static", "./static"]
-      ]
-    }
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "import/no-unresolved": "off"
   }
 }

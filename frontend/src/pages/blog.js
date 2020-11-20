@@ -54,7 +54,6 @@ const Blog = ({ data }) => {
 
   return (
     <Layout>
-      <Link to="/">home</Link>
       <Container>
         <CustomRow>
           <Col sm="12">

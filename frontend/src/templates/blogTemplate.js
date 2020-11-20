@@ -2,13 +2,12 @@ import React from 'react';
 import { H1 } from '@components/typography/Title.styled';
 import Layout from '@components/Layout';
 import PropTypes from 'prop-types';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import SectionTitle from '@components/typography/SectionTitle';
 import ReactMarkdown from 'react-markdown';
 import { Container, Row, Col } from '@bootstrap-styled/v4';
 import styled from 'styled-components';
 import { P } from '@components/typography/Paragraph.styled';
-import Faq from '@components/Faq';
 import NextPostBox from '@components/NextPostBox';
 
 const ContentRow = styled(Row)`
@@ -120,42 +119,31 @@ const Template = ({ data }) => {
   };
 
   return (
-    <>
-      <ul>
-        <li>
-          <Link to="/">home</Link>
-        </li>
-        <li>
-          <Link to="/blog">blog</Link>
-        </li>
-      </ul>
-      <Layout>
-        <Container>
-          <Row>
-            <Col sm="12">
-              <SectionTitle>Blog</SectionTitle>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12} lg={6}>
-              {renderArticleHeading()}
-            </Col>
-            <Col xs={12} lg={6}>
-              {renderArticlePicture()}
-            </Col>
-          </Row>
-          <ContentRow>
-            <Col lg={7} xl={8}>
-              {renderArticleContent()}
-            </Col>
-            <Col lg={5} xl={4}>
-              {renderSidePosts()}
-            </Col>
-          </ContentRow>
-        </Container>
-        <Faq />
-      </Layout>
-    </>
+    <Layout>
+      <Container>
+        <Row>
+          <Col sm="12">
+            <SectionTitle>Blog</SectionTitle>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12} lg={6}>
+            {renderArticleHeading()}
+          </Col>
+          <Col xs={12} lg={6}>
+            {renderArticlePicture()}
+          </Col>
+        </Row>
+        <ContentRow>
+          <Col lg={7} xl={8}>
+            {renderArticleContent()}
+          </Col>
+          <Col lg={5} xl={4}>
+            {renderSidePosts()}
+          </Col>
+        </ContentRow>
+      </Container>
+    </Layout>
   );
 };
 

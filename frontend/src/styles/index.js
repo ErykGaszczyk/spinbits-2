@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
     --blog-list-box-bg: #f1f5ff;
     --accordion-content-font-color: #5acdfb;
     --white: #ffffff;
+    --menu-shadow: #dadada;
   }
 
   html {
