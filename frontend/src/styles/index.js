@@ -9,6 +9,8 @@ const GlobalStyle = createGlobalStyle`
     --secondary-font-color: #007bff;
     --thirdary-font-color: #8087a3;
     --blog-list-box-bg: #f1f5ff;
+    --accordion-content-font-color: #5acdfb;
+    --white: #ffffff;
   }
 
   html {
@@ -17,6 +19,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Nunito', sans-serif; 
 
     body {}
+
+    button {
+      border: none;
+    }
     
     ul {
       margin: 0;

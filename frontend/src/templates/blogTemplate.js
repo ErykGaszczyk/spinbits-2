@@ -1,5 +1,5 @@
 import React from 'react';
-import Title from '@components/typography/Title';
+import { H1 } from '@components/typography/Title.styled';
 import Layout from '@components/Layout';
 import PropTypes from 'prop-types';
 import { graphql, Link } from 'gatsby';
@@ -7,9 +7,9 @@ import SectionTitle from '@components/typography/SectionTitle';
 import ReactMarkdown from 'react-markdown';
 import { Container, Row, Col } from '@bootstrap-styled/v4';
 import styled from 'styled-components';
-import Paragraph from '@components/typography/Paragraph';
-import { ColumnBox } from '../pages/blog';
-import PostDate from '../helpers/PostDate';
+import { P } from '@components/typography/Paragraph.styled';
+import Faq from '@components/Faq';
+import NextPostBox from '@components/NextPostBox';
 
 const ContentRow = styled(Row)`
   margin: 2rem 0 0 0;
@@ -20,9 +20,21 @@ const CustomMarkdown = styled(ReactMarkdown)`
   color: var(--thirdary-font-color);
 `;
 
-const CustomLink = styled(Link)`
-  display: block;
+const SidePostBox = styled.div`
   margin: 0 0 2rem 0;
+`;
+
+const ArticleTitle = styled(H1)`
+  color: var(--secondary-font-color);
+`;
+
+const SimpleTextParagraph = styled(P)`
+  color: var(--thirdary-font-color);
+`;
+
+const BlogSubtitleParagraph = styled(P)`
+  color: var(--secondary-font-color);
+  font-size: 1.2rem;
 `;
 
 const Template = ({ data }) => {
@@ -30,7 +42,7 @@ const Template = ({ data }) => {
     const { content } = data.cms.blogPost;
 
     if (content[0] && content[0].__typename === 'CMS_ComponentBlogSimpleText') {
-      return <Paragraph>{content[0].text}</Paragraph>;
+      return <SimpleTextParagraph>{content[0].text}</SimpleTextParagraph>;
     }
     return null;
   };
@@ -40,7 +52,7 @@ const Template = ({ data }) => {
 
     return (
       <div key={`${id}-${title}`}>
-        <Title customStyles={{ fontColor: 'var(--secondary-font-color)' }}>{title}</Title>
+        <ArticleTitle>{title}</ArticleTitle>
         {renderParagraphUnderTitle()}
       </div>
     );
@@ -53,23 +65,14 @@ const Template = ({ data }) => {
 
   const renderComponentBlogSimpleText = (content) => {
     const { id, __typename, text } = content;
-    return (
-      <Paragraph
-        key={`${id}-${__typename}`}
-        customStyles={{ mb: 1, fontColor: 'var(--thirdary-font-color)' }}
-      >
-        {text}
-      </Paragraph>
-    );
+    return <SimpleTextParagraph key={`${id}-${__typename}`}>{text}</SimpleTextParagraph>;
   };
 
   const renderComponentBlogParagraph = (content) => {
     const { id, __typename, title, text } = content;
     return (
       <div key={`${id}-${__typename}`}>
-        <Paragraph customStyles={{ fontColor: 'var(--secondary-font-color)', fontSize: 1.2 }}>
-          {title}
-        </Paragraph>
+        <BlogSubtitleParagraph>{title}</BlogSubtitleParagraph>
         <CustomMarkdown>{text}</CustomMarkdown>
       </div>
     );
@@ -109,24 +112,9 @@ const Template = ({ data }) => {
       .map((el) => {
         const { id, title: sidePostTitle, publishedAt } = el;
         return (
-          <CustomLink to={`/blog/${id}`} key={`${id}-${sidePostTitle}`}>
-            <ColumnBox>
-              <div>
-                <Paragraph customStyles={{ fontColor: 'var(--secondary-font-color)', mb: 1 }}>
-                  {/* TODO: */}
-                  Technologie trzeba dorobić w strapi
-                </Paragraph>
-                <Paragraph
-                  bold
-                  hover
-                  customStyles={{ fontColor: 'var(--primary-font-color)', fontSize: 1.75 }}
-                >
-                  {sidePostTitle}
-                </Paragraph>
-              </div>
-              <Paragraph>{PostDate(publishedAt)}</Paragraph>
-            </ColumnBox>
-          </CustomLink>
+          <SidePostBox key={`${id}-${sidePostTitle}`}>
+            <NextPostBox id={id} title={sidePostTitle} date={publishedAt} />
+          </SidePostBox>
         );
       });
   };
@@ -165,6 +153,7 @@ const Template = ({ data }) => {
             </Col>
           </ContentRow>
         </Container>
+        <Faq />
       </Layout>
     </>
   );
