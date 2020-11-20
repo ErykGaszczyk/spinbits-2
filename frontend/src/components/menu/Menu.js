@@ -9,7 +9,7 @@ import { menuItems } from '../../utils/menu-data';
 
 const NavShadow = styled.div`
   background-color: var(--white);
-  box-shadow: 0 0 1rem 0 #e5e5e5; // TODO: color
+  box-shadow: 0 0 1rem 0 var(--menu-shadow);
   position: fixed;
   width: 100%;
   z-index: 9999;

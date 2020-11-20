@@ -7,7 +7,7 @@ const DropdownContent = styled.div`
   display: none;
   position: absolute;
   background-color: var(--white);
-  box-shadow: 0 0.5rem 1rem 0 #e5e5e5; // TODO: color
+  box-shadow: 0 0.5rem 1rem 0 var(--menu-shadow);
   border-radius: 0.5rem;
   z-index: 1;
   padding: 0 1rem;
@@ -44,7 +44,7 @@ const Dropdown = styled.div`
   }
 `;
 
-const DropdownBtn = ({ name, url, subitems }) => {
+const DropdownMenuItem = ({ name, url, subitems }) => {
   const renderDropdownItems = () => {
     return subitems.map((item) => (
       <DropdownItem key={`${item.slug}-${item.id}`} to={item.url}>
@@ -61,10 +61,10 @@ const DropdownBtn = ({ name, url, subitems }) => {
   );
 };
 
-DropdownBtn.propTypes = {
+DropdownMenuItem.propTypes = {
   name: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   subitems: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-export default DropdownBtn;
+export default DropdownMenuItem;
