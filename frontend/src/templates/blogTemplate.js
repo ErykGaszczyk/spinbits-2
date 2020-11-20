@@ -8,7 +8,6 @@ import ReactMarkdown from 'react-markdown';
 import { Container, Row, Col } from '@bootstrap-styled/v4';
 import styled from 'styled-components';
 import { P } from '@components/typography/Paragraph.styled';
-import Faq from '@components/Faq';
 import NextPostBox from '@components/NextPostBox';
 
 const ContentRow = styled(Row)`
@@ -144,7 +143,6 @@ const Template = ({ data }) => {
           </Col>
         </ContentRow>
       </Container>
-      <Faq />
     </Layout>
   );
 };

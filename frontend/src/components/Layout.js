@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Menu from '@components/menu/Menu';
+import Faq from '@components/Faq';
 import GlobalStyle from '../styles';
 
 const LayoutBox = styled.div`
@@ -18,6 +19,7 @@ const Layout = ({ children }) => {
       <GlobalStyle />
       <Menu />
       <ChildrenContainter>{children}</ChildrenContainter>
+      <Faq />
     </LayoutBox>
   );
 };
