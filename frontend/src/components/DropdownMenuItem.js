@@ -1,69 +1,103 @@
-import { Link } from 'gatsby';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'gatsby';
+import { DEVICE } from '../assets/const';
 
-const DropdownContent = styled.div`
-  display: none;
-  position: absolute;
-  background-color: var(--white);
-  box-shadow: 0 0.5rem 1rem 0 var(--menu-shadow);
-  border-radius: 0.5rem;
+const { LG } = DEVICE;
+
+const DropdownContent = styled.ul`
+  display: ${(props) => (props.isOpen ? 'block' : 'none')};
   z-index: 1;
   padding: 0 1rem;
   min-width: 160px;
+
+  @media ${LG} {
+    position: absolute;
+    background-color: var(--white);
+    box-shadow: 0 0.5rem 1rem 0 var(--menu-shadow);
+    border-radius: 0.5rem;
+  }
 `;
 
-const Dropbtn = styled(Link)`
+const Dropdown = styled.li`
   font-weight: 800;
   color: var(--primary-font-color);
-  background: none;
-  padding: 0;
-  cursor: pointer;
+  &:not(:last-child) {
+    margin: 0 0 1rem 0;
+  }
+
+  &:hover {
+    color: var(--secondary-font-color);
+    cursor: pointer;
+  }
+
+  @media ${LG} {
+    position: relative;
+    &:not(:last-child) {
+      margin: 0 1rem 0 0;
+    }
+    &:hover ${DropdownContent} {
+      display: block;
+    }
+  }
 `;
 
-const DropdownItem = styled(Link)`
-  color: var(--primary-font-color);
-  font-weight: 800;
-  padding: 0.75rem 0;
-  display: block;
-  transition: 0.2s;
+const DropdownItem = styled.li`
+  a {
+    color: var(--primary-font-color);
+    padding: 0.75rem 0;
+    display: block;
+    transition: 0.2s;
+    cursor: pointer;
+    transition: 0.2s;
+    color: var(--accordion-content-font-color);
+
+    &:hover {
+      color: var(--primary-font-color);
+    }
+
+    @media ${LG} {
+      color: var(--primary-font-color);
+      &:hover {
+        color: var(--secondary-font-color);
+      }
+    }
+  }
 
   &:hover {
     color: var(--secondary-font-color);
   }
 `;
 
-const Dropdown = styled.div`
-  position: relative;
-  display: inline-block;
-  margin: 0 1rem 0 0;
+const DropdownMenuItem = ({ name, subitems }) => {
+  const [isOpen, setIsOpen] = useState(false);
 
-  &:hover ${DropdownContent} {
-    display: block;
-  }
-`;
+  const toggleSubItems = () => {
+    setIsOpen((origin) => !origin);
+  };
 
-const DropdownMenuItem = ({ name, url, subitems }) => {
   const renderDropdownItems = () => {
-    return subitems.map((item) => (
-      <DropdownItem key={`${item.slug}-${item.id}`} to={item.url}>
-        {item.name}
-      </DropdownItem>
-    ));
+    return subitems.map((item) => {
+      const { slug, id, url, name: subname } = item;
+      return (
+        <DropdownItem key={`${slug}-${id}`}>
+          <Link to={url}>{subname}</Link>
+        </DropdownItem>
+      );
+    });
   };
 
   return (
-    <Dropdown>
-      <Dropbtn to={url}>{name}</Dropbtn>
-      <DropdownContent>{renderDropdownItems()}</DropdownContent>
+    <Dropdown onClick={toggleSubItems}>
+      {name}
+      <DropdownContent isOpen={isOpen}>{renderDropdownItems()}</DropdownContent>
     </Dropdown>
   );
 };
 
 DropdownMenuItem.propTypes = {
   name: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
   subitems: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

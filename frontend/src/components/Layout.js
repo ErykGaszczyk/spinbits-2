@@ -6,7 +6,7 @@ import Faq from '@components/Faq';
 import GlobalStyle from '../styles';
 
 const LayoutBox = styled.div`
-  padding: 0 0 5rem 0;
+  padding: 0 0 5rem 0; // TODO: usunąć jak będzie footer
 `;
 
 const ChildrenContainter = styled.div`
