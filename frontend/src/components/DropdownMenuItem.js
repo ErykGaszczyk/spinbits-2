@@ -1,25 +1,36 @@
-import { Link } from 'gatsby';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'gatsby';
+import { DEVICE } from '../assets/const';
 
-const DropdownContent = styled.div`
-  display: none;
-  position: absolute;
-  background-color: var(--white);
-  box-shadow: 0 0.5rem 1rem 0 var(--menu-shadow);
-  border-radius: 0.5rem;
+const { LG } = DEVICE;
+
+const DropdownContent = styled.ul`
+  display: ${(props) => (props.isOpen ? 'block' : 'none')};
   z-index: 1;
   padding: 0 1rem;
   min-width: 160px;
+
+  @media ${LG} {
+    position: absolute;
+    background-color: var(--white);
+    box-shadow: 0 0.5rem 1rem 0 var(--menu-shadow);
+    border-radius: 0.5rem;
+  }
 `;
 
-const Dropbtn = styled(Link)`
+const Dropbtn = styled.span`
   font-weight: 800;
   color: var(--primary-font-color);
   background: none;
   padding: 0;
   cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    color: var(--secondary-font-color);
+  }
 `;
 
 const DropdownItem = styled(Link)`
@@ -36,34 +47,43 @@ const DropdownItem = styled(Link)`
 
 const Dropdown = styled.div`
   position: relative;
-  display: inline-block;
   margin: 0 1rem 0 0;
 
-  &:hover ${DropdownContent} {
-    display: block;
+  @media ${LG} {
+    &:hover ${DropdownContent} {
+      display: block;
+    }
   }
 `;
 
-const DropdownMenuItem = ({ name, url, subitems }) => {
+const DropdownMenuItem = ({ name, subitems }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleSubItems = () => {
+    setIsOpen((origin) => !origin);
+  };
+
   const renderDropdownItems = () => {
-    return subitems.map((item) => (
-      <DropdownItem key={`${item.slug}-${item.id}`} to={item.url}>
-        {item.name}
-      </DropdownItem>
-    ));
+    return subitems.map((item) => {
+      const { slug, id, url, name: subname } = item;
+      return (
+        <li key={`${slug}-${id}`}>
+          <DropdownItem to={url}>{subname}</DropdownItem>
+        </li>
+      );
+    });
   };
 
   return (
-    <Dropdown>
-      <Dropbtn to={url}>{name}</Dropbtn>
-      <DropdownContent>{renderDropdownItems()}</DropdownContent>
+    <Dropdown onClick={toggleSubItems}>
+      <Dropbtn>{name}</Dropbtn>
+      <DropdownContent isOpen={isOpen}>{renderDropdownItems()}</DropdownContent>
     </Dropdown>
   );
 };
 
 DropdownMenuItem.propTypes = {
   name: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
   subitems: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

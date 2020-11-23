@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import SpinbitsLogo from '@static/images/logo/logo.webp';
 import { Link } from 'gatsby';
-import { Navbar, NavbarToggler, Collapse, Nav, Container } from '@bootstrap-styled/v4';
+import { Container, Row, Col } from '@bootstrap-styled/v4';
 import DropdownMenuItem from '../DropdownMenuItem';
 import { menuItems } from '../../utils/menu-data';
-
-import { DEVICE } from '../../assets/const';
-
-const { LG } = DEVICE;
 
 const NavShadow = styled.div`
   background-color: var(--white);
@@ -19,45 +15,41 @@ const NavShadow = styled.div`
   z-index: 9999;
 `;
 
+const NavContainer = styled.div`
+  padding: 1rem 0;
+`;
+
+const NavWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`;
+
 const Logo = styled.img`
   width: 100%;
 `;
 
-const NavBrandBox = styled.div`
+const Navigation = styled.nav`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  align-content: center;
+  justify-content: flex-end;
+  width: 100%;
 `;
 
 const NavItem = styled(Link)`
   color: var(--primary-font-color);
   font-weight: 800;
-  transition: 0.2s;
-
   &:not(:last-child) {
     margin: 0 1rem 0 0;
-  }
-
-  &:hover {
-    color: var(--secondary-font-color);
-  }
-`;
-
-const CustomCollapse = styled(Collapse)`
-  @media ${LG} {
-    display: flex;
-    justify-content: flex-end;
   }
 `;
 
 const Menu = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const renderMenuItems = () => {
     return menuItems.map((item) => {
       const { id, slug, name, url, dropdown } = item;
       return dropdown && dropdown !== 'undefined' ? (
-        <DropdownMenuItem key={`${slug}-${id}`} name={name} subitems={dropdown} />
+        <DropdownMenuItem key={`${slug}-${id}`} url={url} name={name} subitems={dropdown} />
       ) : (
         <NavItem key={`${slug}-${id}`} to={url}>
           {name}
@@ -68,20 +60,22 @@ const Menu = () => {
 
   return (
     <NavShadow>
-      <Navbar color="faded" light toggleable="md">
-        <Container>
-          <NavBrandBox>
-            <Link to="/#free-estimation">
-              <Logo src={SpinbitsLogo} alt="Spinbits - logo" />
-            </Link>
-
-            <NavbarToggler onClick={() => setIsOpen(!isOpen)} />
-          </NavBrandBox>
-          <CustomCollapse navbar isOpen={isOpen}>
-            <Nav navbar>{renderMenuItems()}</Nav>
-          </CustomCollapse>
-        </Container>
-      </Navbar>
+      <Container>
+        <Row>
+          <Col>
+            <NavContainer>
+              <NavWrapper>
+                <Link to="/">
+                  <Logo src={SpinbitsLogo} alt="Spinbits - logo" />
+                </Link>
+                <Navigation>
+                  <div>{renderMenuItems()}</div>
+                </Navigation>
+              </NavWrapper>
+            </NavContainer>
+          </Col>
+        </Row>
+      </Container>
     </NavShadow>
   );
 };
