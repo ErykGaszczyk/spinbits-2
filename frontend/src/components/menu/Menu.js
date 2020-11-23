@@ -34,13 +34,14 @@ const NavItem = styled(Link)`
   color: var(--primary-font-color);
   font-weight: 800;
   transition: 0.2s;
-
-  &:not(:last-child) {
-    margin: 0 1rem 0 0;
-  }
+  margin: 0 0 1rem 0;
 
   &:hover {
     color: var(--secondary-font-color);
+  }
+
+  @media ${LG} {
+    margin: 0 1rem 0 0;
   }
 `;
 

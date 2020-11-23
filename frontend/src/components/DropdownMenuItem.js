@@ -20,39 +20,53 @@ const DropdownContent = styled.ul`
   }
 `;
 
-const Dropbtn = styled.span`
+const Dropdown = styled.li`
   font-weight: 800;
   color: var(--primary-font-color);
-  background: none;
-  padding: 0;
-  cursor: pointer;
-  transition: 0.2s;
+  &:not(:last-child) {
+    margin: 0 0 1rem 0;
+  }
 
   &:hover {
     color: var(--secondary-font-color);
+    cursor: pointer;
   }
-`;
-
-const DropdownItem = styled(Link)`
-  color: var(--primary-font-color);
-  font-weight: 800;
-  padding: 0.75rem 0;
-  display: block;
-  transition: 0.2s;
-
-  &:hover {
-    color: var(--secondary-font-color);
-  }
-`;
-
-const Dropdown = styled.div`
-  position: relative;
-  margin: 0 1rem 0 0;
 
   @media ${LG} {
+    position: relative;
+    &:not(:last-child) {
+      margin: 0 1rem 0 0;
+    }
     &:hover ${DropdownContent} {
       display: block;
     }
+  }
+`;
+
+const DropdownItem = styled.li`
+  a {
+    color: var(--primary-font-color);
+    padding: 0.75rem 0;
+    display: block;
+    transition: 0.2s;
+    cursor: pointer;
+    transition: 0.2s;
+    color: var(--accordion-content-font-color);
+
+    &:hover {
+      color: var(--primary-font-color);
+    }
+
+    @media ${LG} {
+      color: var(--primary-font-color);
+      &:hover {
+        color: var(--secondary-font-color);
+      }
+    }
+  }
+
+  &:hover {
+    color: var(--secondary-font-color);
   }
 `;
 
@@ -67,16 +81,16 @@ const DropdownMenuItem = ({ name, subitems }) => {
     return subitems.map((item) => {
       const { slug, id, url, name: subname } = item;
       return (
-        <li key={`${slug}-${id}`}>
-          <DropdownItem to={url}>{subname}</DropdownItem>
-        </li>
+        <DropdownItem key={`${slug}-${id}`}>
+          <Link to={url}>{subname}</Link>
+        </DropdownItem>
       );
     });
   };
 
   return (
     <Dropdown onClick={toggleSubItems}>
-      <Dropbtn>{name}</Dropbtn>
+      {name}
       <DropdownContent isOpen={isOpen}>{renderDropdownItems()}</DropdownContent>
     </Dropdown>
   );
