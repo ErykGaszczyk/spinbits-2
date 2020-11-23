@@ -16,7 +16,21 @@ const NavShadow = styled.div`
   box-shadow: 0 0 1rem 0 var(--menu-shadow);
   position: fixed;
   width: 100%;
+  height: ${(props) => (props.isOpen ? '100%' : 'unset')};
   z-index: 9999;
+`;
+
+const CustomContainer = styled(Container)`
+  height: 100%;
+`;
+
+const CustomNavbar = styled(Navbar)`
+  height: 100%;
+  overflow-y: auto;
+  padding: 0.5rem 0 !important;
+  @media ${LG} {
+    overflow-y: visible;
+  }
 `;
 
 const Logo = styled.img`
@@ -46,23 +60,24 @@ const NavItem = styled(Link)`
 `;
 
 const CustomCollapse = styled(Collapse)`
+  width: 100%;
+  padding: 0 0 1rem 0;
+
   @media ${LG} {
+    padding: 0;
+    position: unset;
     display: flex;
     justify-content: flex-end;
   }
 
   ${Nav} {
     text-align: center;
+    padding: 0 0 1rem 0;
     @media ${LG} {
+      padding: 0;
       text-align: left;
     }
   }
-`;
-
-const CustomNavbar = styled(Navbar)`
-  overflow-y: scroll;
-  padding-left: 0;
-  padding-right: 0;
 `;
 
 const Menu = () => {
@@ -81,19 +96,21 @@ const Menu = () => {
   };
 
   return (
-    <NavShadow>
-      <CustomNavbar light toggleable="md">
-        <NavBrandBox>
-          <Link to="/#free-estimation">
-            <Logo src={SpinbitsLogo} alt="Spinbits - logo" />
-          </Link>
+    <NavShadow isOpen={isOpen}>
+      <CustomContainer>
+        <CustomNavbar light toggleable="md">
+          <NavBrandBox>
+            <Link to="/">
+              <Logo src={SpinbitsLogo} alt="Spinbits - logo" />
+            </Link>
 
-          <NavbarToggler onClick={() => setIsOpen(!isOpen)} />
-        </NavBrandBox>
-        <CustomCollapse navbar isOpen={isOpen}>
-          <Nav navbar>{renderMenuItems()}</Nav>
-        </CustomCollapse>
-      </CustomNavbar>
+            <NavbarToggler onClick={() => setIsOpen(!isOpen)} />
+          </NavBrandBox>
+          <CustomCollapse navbar isOpen={isOpen}>
+            <Nav navbar>{renderMenuItems()}</Nav>
+          </CustomCollapse>
+        </CustomNavbar>
+      </CustomContainer>
     </NavShadow>
   );
 };
