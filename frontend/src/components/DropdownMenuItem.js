@@ -71,7 +71,7 @@ const DropdownItem = styled.li`
 `;
 
 const DropdownMenuItem = ({ name, subitems }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const toggleSubItems = () => {
     setIsOpen((origin) => !origin);

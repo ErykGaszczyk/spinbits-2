@@ -50,6 +50,19 @@ const CustomCollapse = styled(Collapse)`
     display: flex;
     justify-content: flex-end;
   }
+
+  ${Nav} {
+    text-align: center;
+    @media ${LG} {
+      text-align: left;
+    }
+  }
+`;
+
+const CustomNavbar = styled(Navbar)`
+  overflow-y: scroll;
+  padding-left: 0;
+  padding-right: 0;
 `;
 
 const Menu = () => {
@@ -69,20 +82,18 @@ const Menu = () => {
 
   return (
     <NavShadow>
-      <Navbar color="faded" light toggleable="md">
-        <Container>
-          <NavBrandBox>
-            <Link to="/#free-estimation">
-              <Logo src={SpinbitsLogo} alt="Spinbits - logo" />
-            </Link>
+      <CustomNavbar light toggleable="md">
+        <NavBrandBox>
+          <Link to="/#free-estimation">
+            <Logo src={SpinbitsLogo} alt="Spinbits - logo" />
+          </Link>
 
-            <NavbarToggler onClick={() => setIsOpen(!isOpen)} />
-          </NavBrandBox>
-          <CustomCollapse navbar isOpen={isOpen}>
-            <Nav navbar>{renderMenuItems()}</Nav>
-          </CustomCollapse>
-        </Container>
-      </Navbar>
+          <NavbarToggler onClick={() => setIsOpen(!isOpen)} />
+        </NavBrandBox>
+        <CustomCollapse navbar isOpen={isOpen}>
+          <Nav navbar>{renderMenuItems()}</Nav>
+        </CustomCollapse>
+      </CustomNavbar>
     </NavShadow>
   );
 };

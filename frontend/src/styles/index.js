@@ -18,8 +18,11 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     font-size: 16px;
     font-family: 'Nunito', sans-serif; 
+    overflow: hidden;
 
-    body {}
+    body {
+      overflow: hidden;
+    }
 
     button {
       border: none;
