@@ -119,6 +119,10 @@ const StyledBurger = styled.button`
       transform: ${(props) => (props.burgerLines ? 'rotate(-45deg)' : 'rotate(0)')};
     }
   }
+
+  @media ${LG} {
+    display: none;
+  }
 `;
 
 const Menu = () => {
