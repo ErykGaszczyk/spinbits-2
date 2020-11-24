@@ -10,7 +10,7 @@ import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';
 import { faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { facebookAddress, linkedinAddress } from '@utils/variables';
-import Hero from '@images/home/hero.webp';
+import Hero from '@images/who-we-are/hero.webp';
 import { Link } from 'gatsby';
 import { DEVICE } from '@assets/const';
 
