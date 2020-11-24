@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import SectionTitle from '@components/typography/SectionTitle';
+import SectionTopTitle from '@components/typography/SectionTopTitle';
 import { Row, Col } from '@bootstrap-styled/v4';
 import Title from '@components/typography/Title';
 import Paragraph from '@components/typography/Paragraph';
@@ -15,6 +15,10 @@ import { Link } from 'gatsby';
 import { DEVICE } from '@assets/const';
 
 const { MD } = DEVICE;
+
+const CustomContainer = styled(SpinContainer)`
+  position: relative;
+`;
 
 const PortfolioButton = styled(Button)`
   border-bottom: 2px solid var(--light-font-color);
@@ -69,15 +73,15 @@ const ImgContainer = styled.div`
 
 const WhoWeAreSection = () => {
   return (
-    <SpinContainer>
+    <CustomContainer>
       <Row>
         <Col>
-          <SectionTitle>Who we are</SectionTitle>
+          <SectionTopTitle>Who we are</SectionTopTitle>
         </Col>
       </Row>
       <RowAlignCenter>
         <Col md={7}>
-          <Title coloredStrong hover>
+          <Title coloredStrong>
             <strong>IT specialist</strong> that understand your <strong>business</strong> and will
             help you <strong>grow</strong>
           </Title>
@@ -110,7 +114,7 @@ const WhoWeAreSection = () => {
           <img width="100%" src={Hero} alt="hero" />
         </ImgContainer>
       </RowAlignCenter>
-    </SpinContainer>
+    </CustomContainer>
   );
 };
 

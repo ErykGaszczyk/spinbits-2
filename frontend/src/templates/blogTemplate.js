@@ -3,7 +3,7 @@ import { H1 } from '@components/typography/Title.styled';
 import Layout from '@components/Layout';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import SectionTitle from '@components/typography/SectionTitle';
+import SectionTopTitle from '@components/typography/SectionTopTitle';
 import ReactMarkdown from 'react-markdown';
 import { Container, Row, Col } from '@bootstrap-styled/v4';
 import styled from 'styled-components';
@@ -123,7 +123,7 @@ const Template = ({ data }) => {
       <Container>
         <Row>
           <Col sm="12">
-            <SectionTitle>Blog</SectionTitle>
+            <SectionTopTitle>Blog</SectionTopTitle>
           </Col>
         </Row>
         <Row>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Container, Row, Col, Collapse } from '@bootstrap-styled/v4';
-import SectionTitle from '@components/typography/SectionTitle';
+import SectionTopTitle from '@components/typography/SectionTopTitle';
 import { P } from '@components/typography/Paragraph.styled';
 import { StaticQuery, graphql } from 'gatsby';
 import ReactMarkdown from 'react-markdown';
@@ -33,6 +33,10 @@ const CustomButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  :focus {
+    outline: none;
+  }
 
   :hover {
     cursor: pointer;
@@ -84,7 +88,7 @@ const Faq = ({ data }) => {
     <Container>
       <Row>
         <Col>
-          <SectionTitle>FAQ</SectionTitle>
+          <SectionTopTitle>FAQ</SectionTopTitle>
         </Col>
       </Row>
       <Row>

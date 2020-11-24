@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import SectionTitle from '@components/typography/SectionTitle';
+import SectionTopTitle from '@components/typography/SectionTopTitle';
 import { Row, Col } from '@bootstrap-styled/v4';
-import Paragraph from '@components/typography/Paragraph';
-import { P } from '@components/typography/Paragraph.styled';
 import { SpinContainer } from '@components/overrides';
+import Paragraph from '@components/typography/Paragraph';
+import SectionTitle from '@components/typography/SectionTitle';
+import { P } from '@components/typography/Paragraph.styled';
 import { DEVICE } from '@assets/const';
 import Discussion from '@images/services/discussion.webp';
 import Planing from '@images/services/planing.webp';
@@ -220,10 +221,10 @@ const ServicesSection = () => {
           </ServicesTechnologyContainer>
         </Col>
         <Col md={6} xl={{ offset: 1 }}>
-          <SectionTitle>Services</SectionTitle>
-          <ServicesParagraph coloredStrong bold>
+          <SectionTopTitle>Services</SectionTopTitle>
+          <SectionTitle coloredStrong>
             What can we do <strong>for you</strong>
-          </ServicesParagraph>
+          </SectionTitle>
           <Paragraph>
             We can help you to pick the right path to build your project. To offer the best possible
             quality, we need to use only the best available tools. That&apos;s why we work with

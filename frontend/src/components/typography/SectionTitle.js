@@ -1,32 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { P } from '@components/typography/Paragraph.styled';
 
-const P = styled.p`
-  font-style: italic;
+const Title = styled(P)`
+  font-size: 2.25rem;
+  color: var(--primary-font-color);
   font-weight: 800;
-  font-size: 1rem;
-  padding: 0 0 0 3.125rem; // 50px
-  position: relative;
-  color: var(--light-font-color);
-
-  ::before {
-    content: '';
-    position: absolute;
-    height: 0.125rem;
-    width: 2.188rem;
-    left: 0;
-    background-color: var(--light-font-color);
-    top: calc(50% - 1px);
+  strong {
+    ${(props) => props.coloredStrong && `color: var(--light-font-color)`};
   }
 `;
 
-const SectionTitle = ({ children }) => {
-  return <P>{children}</P>;
-};
+const SectionTitle = ({ children, coloredStrong }) => (
+  <Title coloredStrong={coloredStrong}>{children}</Title>
+);
 
 SectionTitle.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  coloredStrong: PropTypes.bool,
+};
+
+SectionTitle.defaultProps = {
+  coloredStrong: false,
 };
 
 export default SectionTitle;
