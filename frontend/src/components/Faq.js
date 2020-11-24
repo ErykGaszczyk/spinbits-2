@@ -6,18 +6,16 @@ import SectionTitle from '@components/typography/SectionTitle';
 import { P } from '@components/typography/Paragraph.styled';
 import { StaticQuery, graphql } from 'gatsby';
 import ReactMarkdown from 'react-markdown';
+import SpinButton from '@components/SpinButton';
 
 const MainTitle = styled(P)`
   font-size: 2.063rem;
+  font-weight: 900;
   color: var(--primary-font-color);
-`;
 
-const SideButton = styled.button`
-  background-color: var(--secondary-font-color);
-  padding: 1.063rem 2.5rem; // 17px 40px
-  border-radius: 0.313rem; // 5px
-  transition: 0.5s;
-  color: var(--white);
+  strong {
+    color: var(--light-font-color);
+  }
 `;
 
 const AccordionContainer = styled.div`
@@ -52,7 +50,7 @@ const CustomButton = styled.button`
 const ContentParagraph = styled(ReactMarkdown)`
   background-color: var(--primary-font-color);
   border-radius: 0 0 8px 8px;
-  color: var(--accordion-content-font-color);
+  color: var(--light-font-color);
   padding: 1rem;
 
   strong {
@@ -95,7 +93,7 @@ const Faq = ({ data }) => {
             Any <strong>questions?</strong> Don&apos;t hesitate to ask us
           </MainTitle>
           {/* {TODO: add <a href/>} */}
-          <SideButton type="button">Ask a question</SideButton>
+          <SpinButton url="/">Ask a question</SpinButton>
         </Col>
         <Col xs={12} lg={7}>
           {renderAccordion()}

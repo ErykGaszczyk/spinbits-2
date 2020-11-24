@@ -7,9 +7,9 @@ import { H1 } from '@components/typography/Title.styled';
 import SectionTitle from '@components/typography/SectionTitle';
 import Paragraph from '@components/typography/Paragraph';
 import { Container, Row, Col } from '@bootstrap-styled/v4';
-import FirstPostBg from '@static/images/blog/1st-blog-bg.webp';
+import FirstPostBg from '@images/blog/1st-blog-bg.webp';
 import NextPostBox from '@components/NextPostBox';
-import PostDate from '../helpers/PostDate';
+import PostDate from '@helpers/PostDate';
 
 const FirstBlogBox = styled.div`
   background-image: url(${FirstPostBg});

@@ -8,6 +8,10 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         '@templates': path.resolve(__dirname, 'src/templates'),
         '@styles': path.resolve(__dirname, 'src/styles'),
         '@static': path.resolve(__dirname, 'static'),
+        '@images': path.resolve(__dirname, 'static/images'),
+        '@assets': path.resolve(__dirname, 'src/assets'),
+        '@helpers': path.resolve(__dirname, 'src/helpers'),
+        '@utils': path.resolve(__dirname, 'src/utils'),
       },
     },
   });

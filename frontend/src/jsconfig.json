@@ -5,7 +5,11 @@
       "@components": ["src/components"],
       "@templates": ["src/templates"],
       "@styles": ["src/styles"],
-      "@static": ["static"]
+      "@static": ["static"],
+      "@images": ["static/images"],
+      "@assets": ["src/assets"],
+      "@helpers": ["src/helpers"],
+      "@utils": ["src/utils"]
     }
   }
 }

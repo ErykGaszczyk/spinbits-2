@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import SpinbitsLogo from '@static/images/logo/logo.webp';
+import SpinbitsLogo from '@images/logo/logo.webp';
 import { Link } from 'gatsby';
 import { Navbar, Collapse, Nav, Container } from '@bootstrap-styled/v4';
+import { menuItems } from '@utils/menu-data';
+import { DEVICE, MOBILE_BREAKPOINT } from '@assets/const';
 import DropdownMenuItem from '../DropdownMenuItem';
-import { menuItems } from '../../utils/menu-data';
-
-import { DEVICE, MOBILE_BREAKPOINT } from '../../assets/const';
 
 const { sm } = MOBILE_BREAKPOINT;
 const { LG } = DEVICE;

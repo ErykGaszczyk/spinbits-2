@@ -8,7 +8,7 @@ const P = styled.p`
   font-size: 1rem;
   padding: 0 0 0 3.125rem; // 50px
   position: relative;
-  color: var(--secondary-font-color);
+  color: var(--light-font-color);
 
   ::before {
     content: '';
@@ -16,7 +16,7 @@ const P = styled.p`
     height: 0.125rem;
     width: 2.188rem;
     left: 0;
-    background-color: var(--secondary-font-color);
+    background-color: var(--light-font-color);
     top: calc(50% - 1px);
   }
 `;

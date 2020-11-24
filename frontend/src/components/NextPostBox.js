@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { P } from '@components/typography/Paragraph.styled';
 import Paragraph from '@components/typography/Paragraph';
 import { Link } from 'gatsby';
-import PostDate from '../helpers/PostDate';
+import PostDate from '@helpers/PostDate';
 
 const TagParagraph = styled(P)`
   color: var(--secondary-font-color);
