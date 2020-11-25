@@ -41,7 +41,7 @@ const FontAwesome = styled(FontAwesomeIcon)`
 `;
 
 const TestimonialsSection = () => {
-  const testimonial = [
+  const testimonialData = [
     {
       id: 1,
       text: `We were looking for a company that will build our new website for many, long months. I am very pleased that this company was spinbits. I appreciate honesty, individual approach, budget, and technology consulting. We&apos;ve also received more features and updates than expected - as a bonus from spinbits. Eryk, as a Project Manager proposed solutions to our problems, shared his experience on IT and marketing during the project. We&apos;re very happy with the results and our cooperation. We can recommend spinbits`,
@@ -106,7 +106,7 @@ const TestimonialsSection = () => {
   };
 
   const renderTestimonials = () => {
-    const rows = testimonial.reduce((row, key, index) => {
+    const rows = testimonialData.reduce((row, key, index) => {
       return (index % 2 === 0 ? row.push([key]) : row[row.length - 1].push(key)) && row;
     }, []);
 
