@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Row, Col } from '@bootstrap-styled/v4';
 import { SpinContainer } from '@components/overrides';
-import Slider from 'react-slick';
 import Blockchain from '@images/technologies/blockchain.webp';
 import Css3 from '@images/technologies/css3.webp';
 import Flutter from '@images/technologies/flutter.webp';
@@ -13,6 +12,7 @@ import Python from '@images/technologies/python.webp';
 import ReactLogo from '@images/technologies/react.webp';
 import Symfony from '@images/technologies/symfony.webp';
 import Wordpress from '@images/technologies/wordpress.webp';
+import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Link } from 'gatsby';
@@ -151,9 +151,5 @@ const TechnologiesSliderSection = () => {
     </SpinContainer>
   );
 };
-
-TechnologiesSliderSection.propTypes = {};
-
-TechnologiesSliderSection.defaultProps = {};
 
 export default TechnologiesSliderSection;
