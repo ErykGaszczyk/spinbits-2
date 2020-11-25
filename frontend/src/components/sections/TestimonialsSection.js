@@ -111,12 +111,12 @@ const TestimonialsSection = () => {
     }, []);
 
     return rows.map((row) => {
-      const { id, text, author, position, stars } = row[0] && row[0];
-      const { id: id2, text: text2, author: author2, position: position2, stars: stars2 } =
+      const { id, text, author, position, stars } = row[0];
+      const { text: text2, author: author2, position: position2, stars: stars2 } =
         typeof row[1] !== 'undefined' && row[1];
 
       return (
-        <Col lg={6} key={`${id}-${id2}`}>
+        <Col lg={6} key={id}>
           <TestimonialBox>
             <TestimonialParagraph>{text}</TestimonialParagraph>
             <AuthorParagraph>{author}</AuthorParagraph>
@@ -141,6 +141,7 @@ const TestimonialsSection = () => {
       <Row>
         <Col lg={8}>
           <Row>
+            {/* // TODO: odkomencić dla slidera resztę usunąć */}
             {/* {renderTestimonials()} */}
             <Col lg={6}>
               <TestimonialBox>

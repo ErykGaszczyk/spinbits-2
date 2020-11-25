@@ -25,16 +25,17 @@ const Img = styled.img`
 
 const ItemBox = styled.div`
   background: var(--blog-list-box-bg);
-  border-radius: 8px;
-  padding: 45px 45px 0;
+  border-radius: 0.5rem;
+  padding: 2.813rem 2.813rem 0;
   transition: 0.4s;
+  margin: 0 0 2rem 0;
 
   img {
     margin-left: auto;
     margin-right: auto;
     display: block;
-    transform: translateY(15px);
-    border-radius: 14px;
+    transform: translateY(1rem);
+    border-radius: 1rem;
     max-width: 100%;
     height: auto;
   }
@@ -123,6 +124,39 @@ const PortfolioSection = () => {
     },
   ];
 
+  const renderPortfolioCols = () => {
+    const rows = portfolioiData.reduce((row, key, index) => {
+      return (index % 2 === 0 ? row.push([key]) : row[row.length - 1].push(key)) && row;
+    }, []);
+
+    return rows.map((row) => {
+      const { id, technologies, title, img } = row[0];
+      const { technologies: technologies2, title: title2, img: img2 } =
+        typeof row[1] !== 'undefined' && row[1];
+
+      return (
+        <Col lg={6} key={id}>
+          <TechnologiesLink to="/projects">
+            <ItemBox>
+              <TechnologiesParagraph>{technologies}</TechnologiesParagraph>
+              <TechnologiesTitleParagraph>{title}</TechnologiesTitleParagraph>
+              <img src={img} alt={`Spinbits - ${title}`} />
+            </ItemBox>
+          </TechnologiesLink>
+          {row[1] && (
+            <TechnologiesLink to="/projects">
+              <ItemBox>
+                <TechnologiesParagraph>{technologies2}</TechnologiesParagraph>
+                <TechnologiesTitleParagraph>{title2}</TechnologiesTitleParagraph>
+                <img src={img2} alt={`Spinbits - ${title2}`} />
+              </ItemBox>
+            </TechnologiesLink>
+          )}
+        </Col>
+      );
+    });
+  };
+
   return (
     <SpinContainer>
       <Row>
@@ -140,6 +174,8 @@ const PortfolioSection = () => {
         </Col>
         <Col lg={8}>
           <Row>
+            {/* // TODO: odkomencić dla slidera resztę usunąć */}
+            {/* {renderPortfolioCols()} */}
             <Col lg={6}>
               <TechnologiesLink to="/projects">
                 <ItemBox>
