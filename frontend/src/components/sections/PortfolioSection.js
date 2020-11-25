@@ -175,21 +175,7 @@ const PortfolioSection = () => {
         <Col lg={8}>
           <Row>
             {/* // TODO: odkomencić dla slidera resztę usunąć */}
-            {/* {renderPortfolioCols()} */}
-            <Col lg={6}>
-              <TechnologiesLink to="/projects">
-                <ItemBox>
-                  <TechnologiesParagraph>
-                    PHP, Symfony, JavaScript, HTML, Figma, AWS
-                  </TechnologiesParagraph>
-                  <TechnologiesTitleParagraph>
-                    Fintech solution between the e-commerce platforms, customers and banks that
-                    lower payment fraud risks.
-                  </TechnologiesTitleParagraph>
-                  <img src={Plants} alt="" />
-                </ItemBox>
-              </TechnologiesLink>
-            </Col>
+            {/* <Slider {...settings}>{renderPortfolioCols()}</Slider> */}
           </Row>
         </Col>
       </Row>
