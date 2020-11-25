@@ -136,7 +136,7 @@ const PortfolioSection = () => {
 
   const settings = {
     dots: false,
-    // autoplay: true,
+    autoplay: true,
     infinite: true,
     arrows: false,
     speed: 500,

@@ -22,14 +22,14 @@ const Img = styled.img`
 `;
 
 const TestimonialColumn = styled.div`
-  padding: 1rem;
+  padding: 2rem;
 `;
 
 const TestimonialBox = styled.div`
-  padding: 25px 28px;
-  background: #fff;
-  box-shadow: 0 0 30px rgba(0, 17, 100, 0.1);
-  border-radius: 8px;
+  padding: 1.563rem 1.75rem;
+  background: var(--white);
+  box-shadow: 0 0 1.875rem rgba(0, 17, 100, 0.1);
+  border-radius: 0.5rem;
   letter-spacing: -0.2px;
   margin: 0 0 1rem 0;
 `;
@@ -37,7 +37,7 @@ const TestimonialBox = styled.div`
 const TestimonialParagraph = styled(P)`
   font-family: 'Playfair Display';
   font-weight: 400;
-  line-height: 30px;
+  line-height: 1.875rem;
   color: var(--primary-font-color);
 `;
 
@@ -183,9 +183,5 @@ const TestimonialsSection = () => {
     </SpinContainer>
   );
 };
-
-TestimonialsSection.propTypes = {};
-
-TestimonialsSection.defaultProps = {};
 
 export default TestimonialsSection;
