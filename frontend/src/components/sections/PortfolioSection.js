@@ -22,7 +22,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { MOBILE_BREAKPOINT } from '@assets/const';
 
-const { sm, md, lg } = MOBILE_BREAKPOINT;
+const { md } = MOBILE_BREAKPOINT;
 
 const Img = styled.img`
   width: 100%;
@@ -136,7 +136,7 @@ const PortfolioSection = () => {
 
   const settings = {
     dots: false,
-    autoplay: true,
+    // autoplay: true,
     infinite: true,
     arrows: false,
     speed: 500,
