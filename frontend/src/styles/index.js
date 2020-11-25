@@ -12,6 +12,8 @@ const GlobalStyle = createGlobalStyle`
     --light-font-color: #5acdfb;
     --white: #ffffff;
     --menu-shadow: #dadada;
+    --testimonial-author-color: #0c2d67;
+    --testimonial-stars-color: #ffc700;
   }
 
   html {

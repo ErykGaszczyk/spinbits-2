@@ -21,7 +21,7 @@ const DropdownContent = styled.ul`
 `;
 
 const Dropdown = styled.li`
-  font-weight: 800;
+  font-weight: 700;
   color: var(--primary-font-color);
   &:not(:last-child) {
     margin: 0 0 1rem 0;

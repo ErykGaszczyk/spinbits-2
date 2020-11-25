@@ -100,7 +100,7 @@ const AboutUsSection = () => {
           <DescriptionContainer>
             <DescriptionContainerTitle>{title}</DescriptionContainerTitle>
             <Paragraph>{text1}</Paragraph>
-            <Paragraph>{text2}</Paragraph>
+            {text2 && <Paragraph>{text2}</Paragraph>}
           </DescriptionContainer>
         </AboutBox>
       );

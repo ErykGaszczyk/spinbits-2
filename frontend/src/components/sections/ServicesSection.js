@@ -181,7 +181,7 @@ const ServicesSection = () => {
   const renderTechnologies = () => {
     return technologies.map((item) => {
       return (
-        <div>
+        <div key={item}>
           <div />
           {item}
         </div>

@@ -49,7 +49,7 @@ const NavBrandBox = styled.div`
 
 const NavItem = styled(Link)`
   color: var(--primary-font-color);
-  font-weight: 800;
+  font-weight: 700;
   transition: 0.2s;
   margin: 0 0 1rem 0;
 
