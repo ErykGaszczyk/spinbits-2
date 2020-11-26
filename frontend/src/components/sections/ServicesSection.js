@@ -87,6 +87,7 @@ const MoreTechnologiesCol = styled(Col)`
   margin: 0 0 2rem 0;
   @media ${XL} {
     margin: 0;
+    padding-right: 0 !important;
   }
 `;
 
@@ -152,7 +153,7 @@ const ServicesSection = () => {
     {
       id: 2,
       icon: `${Planing}`,
-      title: `DevOps`,
+      title: `Support & Maintenance`,
       text1: `Successfully launched project is only the beginning of journey.`,
       text2: `Let us keep your product and infrastructure safe and stable, so you will be able to look into future of your business.`,
       // TODO: url
@@ -161,7 +162,7 @@ const ServicesSection = () => {
     {
       id: 3,
       icon: `${Discussion}`,
-      title: `Outsourcing`,
+      title: `Outsourcing & Body Leasing`,
       text1: `Creating adaptive and scalable business is not easy and we know it.`,
       text2: `That's why we understand the need of always available, experienced and well managed specialists.`,
       // TODO: url
@@ -170,7 +171,7 @@ const ServicesSection = () => {
     {
       id: 4,
       icon: `${Seo}`,
-      title: `Marketing`,
+      title: `Digital Marketing`,
       text1: `Most agencies are great in marketing but not in technology.`,
       text2: `We combine both to deliver effects, not promises - 94% of our customers stay with us for the next campaigns and new projects.`,
       // TODO: url
