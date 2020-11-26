@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Container, Row, Col, Collapse } from '@bootstrap-styled/v4';
+import { Row, Col, Collapse } from '@bootstrap-styled/v4';
+import { SpinContainer } from '@components/overrides';
 import SectionTopTitle from '@components/typography/SectionTopTitle';
 import { P } from '@components/typography/Paragraph.styled';
 import { StaticQuery, graphql } from 'gatsby';
@@ -90,7 +91,7 @@ const Faq = ({ data }) => {
   };
 
   return (
-    <Container>
+    <SpinContainer>
       <Row>
         <Col data-sal="slide-down" data-sal-easing="easeOutCubic">
           <SectionTopTitle>FAQ</SectionTopTitle>
@@ -108,7 +109,7 @@ const Faq = ({ data }) => {
           {renderAccordion()}
         </Col>
       </Row>
-    </Container>
+    </SpinContainer>
   );
 };
 

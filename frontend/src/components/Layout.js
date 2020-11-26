@@ -3,11 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Menu from '@components/menu/Menu';
 import Faq from '@components/Faq';
+import Footer from '@components/Footer';
 import GlobalStyle from '../styles';
-
-const LayoutBox = styled.div`
-  padding: 0 0 5rem 0; // TODO: usunąć jak będzie footer
-`;
 
 const ChildrenContainter = styled.div`
   padding: 7rem 0 0 0;
@@ -15,12 +12,13 @@ const ChildrenContainter = styled.div`
 
 const Layout = ({ children }) => {
   return (
-    <LayoutBox>
+    <>
       <GlobalStyle />
       <Menu />
       <ChildrenContainter>{children}</ChildrenContainter>
       <Faq />
-    </LayoutBox>
+      <Footer />
+    </>
   );
 };
 

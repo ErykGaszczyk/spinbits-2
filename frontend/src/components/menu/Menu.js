@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import SpinbitsLogo from '@images/logo/logo.webp';
+import Logo from '@components/Logo';
 import { Link } from 'gatsby';
 import { Navbar, Collapse, Nav, Container } from '@bootstrap-styled/v4';
 import { menuItems } from '@utils/menu-data';
@@ -12,7 +12,7 @@ const { LG } = DEVICE;
 
 const NavShadow = styled.div`
   background-color: var(--white);
-  box-shadow: 0 0 1rem 0 var(--menu-shadow);
+  box-shadow: 0 0 1rem 0 var(--shadow);
   position: fixed;
   width: 100%;
   height: ${(props) => (props.isOpen ? '100%' : 'unset')};
@@ -34,10 +34,6 @@ const CustomNavbar = styled(Navbar)`
   @media ${LG} {
     overflow-y: visible;
   }
-`;
-
-const Logo = styled.img`
-  width: 100%;
 `;
 
 const NavBrandBox = styled.div`
@@ -145,7 +141,7 @@ const Menu = () => {
         <CustomNavbar light toggleable="md">
           <NavBrandBox>
             <Link to="/">
-              <Logo src={SpinbitsLogo} alt="Spinbits - logo" />
+              <Logo />
             </Link>
             <StyledBurger burgerLines={isOpen} onClick={() => setIsOpen(!isOpen)}>
               <div />
