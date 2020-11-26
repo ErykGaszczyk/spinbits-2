@@ -93,7 +93,7 @@ const AboutUsSection = () => {
       const { id, icon, title, text1, text2 } = item;
 
       return (
-        <AboutBox key={`${title}-${id}`}>
+        <AboutBox key={`${title}-${id}`} data-sal="slide-up" data-sal-easing="easeOutCubic">
           <IconBox>
             <img src={icon} alt={`Spinbits - ${title}`} />
           </IconBox>
@@ -113,7 +113,7 @@ const AboutUsSection = () => {
         <Col lg={6} xl={5}>
           {renderAboutData()}
         </Col>
-        <Col lg={6} xl={{ offset: 1 }}>
+        <Col lg={6} xl={{ offset: 1 }} data-sal="slide-left" data-sal-easing="easeOutCubic">
           <SectionTopTitle>About us</SectionTopTitle>
           <SectionTitle coloredStrong>
             We <strong>believe</strong> in having a wide picture, while <strong>perfecting</strong>{' '}
@@ -126,8 +126,15 @@ const AboutUsSection = () => {
             love to get to know you and make your plans real.
           </MarginParagraph>
           {/* // TODO: url */}
-          <SpinButton url="/">Contact us</SpinButton>
-          <Img src={About} alt="Spinbits - About us" />
+          <SpinButton url="/" data-sal="slide-up" data-sal-easing="easeOutCubic">
+            Contact us
+          </SpinButton>
+          <Img
+            src={About}
+            alt="Spinbits - About us"
+            data-sal="slide-up"
+            data-sal-easing="easeOutCubic"
+          />
         </Col>
       </Row>
     </SpinContainer>

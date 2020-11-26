@@ -4,9 +4,10 @@ import styled from 'styled-components';
 import { Link, graphql } from 'gatsby';
 import Layout from '@components/Layout';
 import { H1 } from '@components/typography/Title.styled';
+import { SpinContainer } from '@components/overrides';
 import SectionTopTitle from '@components/typography/SectionTopTitle';
 import Paragraph from '@components/typography/Paragraph';
-import { Container, Row, Col } from '@bootstrap-styled/v4';
+import { Row, Col } from '@bootstrap-styled/v4';
 import FirstPostBg from '@images/blog/1st-blog-bg.webp';
 import NextPostBox from '@components/NextPostBox';
 import PostDate from '@helpers/PostDate';
@@ -41,11 +42,17 @@ const Blog = ({ data }) => {
   const firstPost = blogPostsWithoutFirst.shift();
 
   const renderColumns = () => {
-    return blogPostsWithoutFirst.map((item) => {
+    return blogPostsWithoutFirst.map((item, index) => {
       const { id, title, publishedAt } = item;
 
       return (
-        <CustomCol key={`${id}-${publishedAt}`} lg="4">
+        <CustomCol
+          key={`${id}-${publishedAt}`}
+          lg="4"
+          data-sal="slide-up"
+          data-sal-easing="easeOutCubic"
+          data-sal-delay={100 * index}
+        >
           <NextPostBox id={id} title={title} date={publishedAt} />
         </CustomCol>
       );
@@ -54,9 +61,9 @@ const Blog = ({ data }) => {
 
   return (
     <Layout>
-      <Container>
+      <SpinContainer>
         <CustomRow>
-          <Col sm="12">
+          <Col sm="12" data-sal="slide-down" data-sal-easing="easeOutCubic">
             <SectionTopTitle>Blog</SectionTopTitle>
             <Link to="/blog/2">
               <FirstBlogBox>
@@ -67,7 +74,7 @@ const Blog = ({ data }) => {
           </Col>
         </CustomRow>
         <Row>{renderColumns()}</Row>
-      </Container>
+      </SpinContainer>
     </Layout>
   );
 };

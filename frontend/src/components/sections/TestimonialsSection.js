@@ -147,14 +147,14 @@ const TestimonialsSection = () => {
 
       return (
         <TestimonialColumn key={id}>
-          <TestimonialBox>
+          <TestimonialBox data-sal="slide-up" data-sal-easing="easeOutCubic">
             <TestimonialParagraph>{text}</TestimonialParagraph>
             <AuthorParagraph>{author}</AuthorParagraph>
             <Paragraph>{position}</Paragraph>
             {renderStars(stars)}
           </TestimonialBox>
           {row[1] && (
-            <TestimonialBox>
+            <TestimonialBox data-sal="slide-up" data-sal-easing="easeOutCubic">
               <TestimonialParagraph>{text2}</TestimonialParagraph>
               <AuthorParagraph>{author2}</AuthorParagraph>
               <Paragraph>{position2}</Paragraph>
@@ -172,7 +172,7 @@ const TestimonialsSection = () => {
         <Col lg={8}>
           <Slider {...settings}>{renderTestimonials()}</Slider>
         </Col>
-        <Col lg={4}>
+        <Col lg={4} data-sal="slide-left" data-sal-easing="easeOutCubic">
           <SectionTopTitle>Testimonials</SectionTopTitle>
           <SectionTitle coloredStrong>
             See what our customers and <strong>partners</strong> say about us

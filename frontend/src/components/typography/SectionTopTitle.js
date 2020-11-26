@@ -6,6 +6,7 @@ const P = styled.p`
   font-style: italic;
   font-weight: 800;
   font-size: 1rem;
+  margin-top: 0;
   padding: 0 0 0 3.125rem; // 50px
   position: relative;
   color: var(--light-font-color);

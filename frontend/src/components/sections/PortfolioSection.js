@@ -166,7 +166,7 @@ const PortfolioSection = () => {
 
       return (
         <TechnologiesColumn key={id}>
-          <TechnologiesLink to="/projects">
+          <TechnologiesLink to="/projects" data-sal="slide-up" data-sal-easing="easeOutCubic">
             <ItemBox>
               <TechnologiesParagraph>{technologies}</TechnologiesParagraph>
               <TechnologiesTitleParagraph>{title}</TechnologiesTitleParagraph>
@@ -174,7 +174,7 @@ const PortfolioSection = () => {
             </ItemBox>
           </TechnologiesLink>
           {row[1] && (
-            <TechnologiesLink to="/projects">
+            <TechnologiesLink to="/projects" data-sal="slide-up" data-sal-easing="easeOutCubic">
               <ItemBox>
                 <TechnologiesParagraph>{technologies2}</TechnologiesParagraph>
                 <TechnologiesTitleParagraph>{title2}</TechnologiesTitleParagraph>
@@ -190,7 +190,7 @@ const PortfolioSection = () => {
   return (
     <SpinContainer>
       <Row>
-        <Col lg={4}>
+        <Col lg={4} data-sal="slide-right" data-sal-easing="easeOutCubic">
           <SectionTopTitle>Portfolio</SectionTopTitle>
           <SectionTitle coloredStrong>
             Check out what we have <strong>built together</strong> with our great customers

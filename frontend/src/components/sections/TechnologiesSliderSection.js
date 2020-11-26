@@ -142,7 +142,7 @@ const TechnologiesSliderSection = () => {
     });
   };
   return (
-    <SpinContainer>
+    <SpinContainer data-sal="slide-up" data-sal-easing="easeOutCubic">
       <Row>
         <Col>
           <Slider {...settings}>{renderTechnologisIcon()}</Slider>

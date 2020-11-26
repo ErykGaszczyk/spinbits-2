@@ -74,13 +74,13 @@ const ImgContainer = styled.div`
 const WhoWeAreSection = () => {
   return (
     <CustomContainer>
-      <Row>
+      <Row data-sal="slide-down" data-sal-easing="easeOutCubic">
         <Col>
           <SectionTopTitle>Who we are</SectionTopTitle>
         </Col>
       </Row>
       <RowAlignCenter>
-        <Col md={7}>
+        <Col md={7} data-sal="slide-right" data-sal-easing="easeOutCubic">
           <Title coloredStrong>
             <strong>IT specialist</strong> that understand your <strong>business</strong> and will
             help you <strong>grow</strong>
@@ -110,7 +110,7 @@ const WhoWeAreSection = () => {
             </Link>
           </FontawesomeContainer>
         </Col>
-        <ImgContainer>
+        <ImgContainer data-sal="slide-left" data-sal-easing="easeOutCubic">
           <img width="100%" src={Hero} alt="hero" />
         </ImgContainer>
       </RowAlignCenter>

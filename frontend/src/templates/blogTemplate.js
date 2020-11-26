@@ -64,13 +64,21 @@ const Template = ({ data }) => {
 
   const renderComponentBlogSimpleText = (content) => {
     const { id, __typename, text } = content;
-    return <SimpleTextParagraph key={`${id}-${__typename}`}>{text}</SimpleTextParagraph>;
+    return (
+      <SimpleTextParagraph
+        key={`${id}-${__typename}`}
+        data-sal="slide-up"
+        data-sal-easing="easeOutCubic"
+      >
+        {text}
+      </SimpleTextParagraph>
+    );
   };
 
   const renderComponentBlogParagraph = (content) => {
     const { id, __typename, title, text } = content;
     return (
-      <div key={`${id}-${__typename}`}>
+      <div key={`${id}-${__typename}`} data-sal="slide-up" data-sal-easing="easeOutCubic">
         <BlogSubtitleParagraph>{title}</BlogSubtitleParagraph>
         <CustomMarkdown>{text}</CustomMarkdown>
       </div>
@@ -111,7 +119,11 @@ const Template = ({ data }) => {
       .map((el) => {
         const { id, title: sidePostTitle, publishedAt } = el;
         return (
-          <SidePostBox key={`${id}-${sidePostTitle}`}>
+          <SidePostBox
+            key={`${id}-${sidePostTitle}`}
+            data-sal="slide-left"
+            data-sal-easing="easeOutCubic"
+          >
             <NextPostBox id={id} title={sidePostTitle} date={publishedAt} />
           </SidePostBox>
         );
@@ -121,16 +133,16 @@ const Template = ({ data }) => {
   return (
     <Layout>
       <Container>
-        <Row>
+        <Row data-sal="slide-down" data-sal-easing="easeOutCubic">
           <Col sm="12">
             <SectionTopTitle>Blog</SectionTopTitle>
           </Col>
         </Row>
         <Row>
-          <Col xs={12} lg={6}>
+          <Col xs={12} lg={6} data-sal="slide-up" data-sal-easing="easeOutCubic">
             {renderArticleHeading()}
           </Col>
-          <Col xs={12} lg={6}>
+          <Col xs={12} lg={6} data-sal="slide-left" data-sal-easing="easeOutCubic">
             {renderArticlePicture()}
           </Col>
         </Row>

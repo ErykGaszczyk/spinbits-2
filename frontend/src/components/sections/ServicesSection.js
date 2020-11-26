@@ -190,10 +190,18 @@ const ServicesSection = () => {
   };
 
   const renderMoreTechnologies = () => {
-    return moreTechnologies.map((item) => {
+    return moreTechnologies.map((item, index) => {
       const { id, icon, title, text1, text2, url } = item;
       return (
-        <MoreTechnologiesCol xs={12} sm={6} lg={3} key={`${title}-${id}`}>
+        <MoreTechnologiesCol
+          xs={12}
+          sm={6}
+          lg={3}
+          key={`${title}-${id}`}
+          data-sal="slide-up"
+          data-sal-easing="easeOutCubic"
+          data-sal-delay={200 * index}
+        >
           <MoreTechnologiesLink to={url}>
             <ServiceContainer>
               <IconBox>
@@ -214,13 +222,13 @@ const ServicesSection = () => {
   return (
     <CustomContainer>
       <Row>
-        <Col md={6} xl={5}>
+        <Col md={6} xl={5} data-sal="slide-right" data-sal-easing="easeOutCubic">
           <ServicesTechnologyContainer>
             <ServicesTechnologyParagraph bold>Technologies</ServicesTechnologyParagraph>
             <TechnologgiesList>{renderTechnologies()}</TechnologgiesList>
           </ServicesTechnologyContainer>
         </Col>
-        <Col md={6} xl={{ offset: 1 }}>
+        <Col md={6} xl={{ offset: 1 }} data-sal="slide-down" data-sal-easing="easeOutCubic">
           <SectionTopTitle>Services</SectionTopTitle>
           <SectionTitle coloredStrong>
             What can we do <strong>for you</strong>
