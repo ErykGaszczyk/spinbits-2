@@ -108,7 +108,7 @@ const AboutUsSection = () => {
   };
 
   return (
-    <SpinContainer>
+    <SpinContainer id="about">
       <Row>
         <Col lg={6} xl={5}>
           {renderAboutData()}

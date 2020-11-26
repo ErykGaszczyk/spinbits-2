@@ -167,7 +167,7 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <SpinContainer>
+    <SpinContainer id="testimonials">
       <Row>
         <Col lg={8}>
           <Slider {...settings}>{renderTestimonials()}</Slider>
