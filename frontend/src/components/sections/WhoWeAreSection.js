@@ -5,40 +5,19 @@ import { Row, Col } from '@bootstrap-styled/v4';
 import Title from '@components/typography/Title';
 import Paragraph from '@components/typography/Paragraph';
 import { SpinContainer, RowAlignCenter } from '@components/overrides';
-import SpinButton, { Button } from '@components/SpinButton';
-import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';
+import SpinButton from '@components/SpinButton';
 import { faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { facebookAddress, linkedinAddress } from '@utils/variables';
 import Hero from '@images/who-we-are/hero.webp';
 import { Link } from 'gatsby';
 import { DEVICE } from '@assets/const';
+import DownloadButton from '@components/DownloadButton';
 
 const { MD } = DEVICE;
 
 const CustomContainer = styled(SpinContainer)`
   position: relative;
-`;
-
-const PortfolioButton = styled(Button)`
-  border-bottom: 2px solid var(--light-font-color);
-  background-color: transparent;
-  padding: 1.063rem 0; // 17px
-  border-radius: 0;
-  margin: 0 0 0 2rem;
-
-  &:hover {
-    bottom: 2px solid var(--light-font-color);
-    a {
-      color: var(--light-font-color);
-    }
-  }
-
-  a {
-    font-weight: 800;
-    color: var(--primary-font-color);
-    transition: 0.3s;
-  }
 `;
 
 const ButtonsContainer = styled.div`
@@ -94,12 +73,7 @@ const WhoWeAreSection = () => {
           {/* TODO: url */}
           <ButtonsContainer>
             <SpinButton url="/">Free project estimation</SpinButton>
-            <PortfolioButton>
-              {/* TODO: url */}
-              <Link to="/">
-                Our portfolio <FontAwesomeIcon icon={faLongArrowAltRight} />
-              </Link>
-            </PortfolioButton>
+            <DownloadButton />
           </ButtonsContainer>
           <FontawesomeContainer>
             <Link to={facebookAddress}>

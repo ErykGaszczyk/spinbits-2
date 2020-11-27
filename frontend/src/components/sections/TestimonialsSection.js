@@ -22,7 +22,7 @@ const Img = styled.img`
 `;
 
 const TestimonialColumn = styled.div`
-  padding: 2rem;
+  padding: 0 2rem 2rem 2rem;
 `;
 
 const TestimonialBox = styled.div`
