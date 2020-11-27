@@ -20,7 +20,7 @@ pipelines:
           caches:
             - node
           script:
-            - curl strapi:1337/graphql
+            - ./pipelines/strapiReady.sh
             - cd frontend && yarn build
           services:
             - mysql
