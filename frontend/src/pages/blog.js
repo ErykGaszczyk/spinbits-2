@@ -4,12 +4,12 @@ import styled from 'styled-components';
 import { Link, graphql } from 'gatsby';
 import Layout from '@components/Layout';
 import { H1 } from '@components/typography/Title.styled';
-import SectionTitle from '@components/typography/SectionTitle';
+import SectionTopTitle from '@components/typography/SectionTopTitle';
 import Paragraph from '@components/typography/Paragraph';
 import { Container, Row, Col } from '@bootstrap-styled/v4';
-import FirstPostBg from '@static/images/blog/1st-blog-bg.webp';
+import FirstPostBg from '@images/blog/1st-blog-bg.webp';
 import NextPostBox from '@components/NextPostBox';
-import PostDate from '../helpers/PostDate';
+import PostDate from '@helpers/PostDate';
 
 const FirstBlogBox = styled.div`
   background-image: url(${FirstPostBg});
@@ -57,7 +57,7 @@ const Blog = ({ data }) => {
       <Container>
         <CustomRow>
           <Col sm="12">
-            <SectionTitle>Blog</SectionTitle>
+            <SectionTopTitle>Blog</SectionTopTitle>
             <Link to="/blog/2">
               <FirstBlogBox>
                 <FirstPostTitle hover>{firstPost.title}</FirstPostTitle>

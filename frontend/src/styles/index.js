@@ -9,9 +9,11 @@ const GlobalStyle = createGlobalStyle`
     --secondary-font-color: #007bff;
     --thirdary-font-color: #8087a3;
     --blog-list-box-bg: #f1f5ff;
-    --accordion-content-font-color: #5acdfb;
+    --light-font-color: #5acdfb;
     --white: #ffffff;
     --menu-shadow: #dadada;
+    --testimonial-author-color: #0c2d67;
+    --testimonial-stars-color: #ffc700;
   }
 
   html {

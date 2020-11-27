@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-import { DEVICE } from '../assets/const';
+import { DEVICE } from '@assets/const';
 
 const { LG } = DEVICE;
 
@@ -21,7 +21,7 @@ const DropdownContent = styled.ul`
 `;
 
 const Dropdown = styled.li`
-  font-weight: 800;
+  font-weight: 700;
   color: var(--primary-font-color);
   &:not(:last-child) {
     margin: 0 0 1rem 0;
@@ -51,7 +51,7 @@ const DropdownItem = styled.li`
     transition: 0.2s;
     cursor: pointer;
     transition: 0.2s;
-    color: var(--accordion-content-font-color);
+    color: var(--light-font-color);
 
     &:hover {
       color: var(--primary-font-color);

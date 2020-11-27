@@ -10,6 +10,7 @@ require('dotenv').config({
 module.exports = {
   plugins: [
     `gatsby-plugin-styled-components`,
+    `gatsby-plugin-fontawesome-css`,
     {
       resolve: 'gatsby-plugin-eslint',
       options: {
@@ -41,8 +42,8 @@ module.exports = {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [
-          `Nunito`,
-          `source sans pro:300,400,700, 800`, // you can also specify font weights and styles
+          `Nunito\:300,400,700,800,900`, // you can also specify font weights and styles
+          `Playfair Display`,
         ],
         display: 'swap',
       },
