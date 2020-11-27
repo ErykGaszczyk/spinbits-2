@@ -6,6 +6,7 @@ export const P = styled.p`
   color: var(--thirdary-font-color);
   font-weight: ${(props) => (!props.bold ? 'normal' : '800')};
   transition: 0.5s;
+  ${(props) => props.center && `text-align: center`};
 
   strong {
     ${(props) => props.coloredStrong && `color: var(--light-font-color)`};

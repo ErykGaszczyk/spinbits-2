@@ -5,6 +5,7 @@ import { SpinContainer } from '@components/overrides';
 import SectionTopTitle from '@components/typography/SectionTopTitle';
 import SectionTitle from '@components/typography/SectionTitle';
 import Paragraph from '@components/typography/Paragraph';
+import { P } from '@components/typography/Paragraph.styled';
 import Apps from '@images/our-expertise/apps.webp';
 import B2b from '@images/our-expertise/b2b.webp';
 import B2c from '@images/our-expertise/b2c.webp';
@@ -12,15 +13,51 @@ import Blockchain from '@images/our-expertise/blockchain.webp';
 import Intranet from '@images/our-expertise/intranet.webp';
 import Mobile from '@images/our-expertise/mobile.webp';
 import ReactCardFlip from 'react-card-flip';
+import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const CardContainer = styled.div`
-  background-color: #f1f5ff;
-  padding: 30px;
-  min-height: 100%;
+const CustomRow = styled(Row)`
+  margin: 2rem 0 0 0;
 `;
 
 const CustomCol = styled(Col)`
-  margin: 0 0 1rem 0;
+  margin: 0 0 2rem 0;
+`;
+
+const CardContainer = styled.div`
+  background-color: var(--blog-list-box-bg);
+  padding: 1.875rem;
+  height: 25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const CardTitle = styled(P)`
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--primary-font-color);
+  text-align: center;
+`;
+
+const ImgBox = styled.div`
+  max-width: 100%;
+  height: auto;
+
+  img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+`;
+
+const FontAwesome = styled(FontAwesomeIcon)`
+  color: var(--secondary-font-color);
+  ${(props) => props.right && 'margin: 0 0 0 auto'}
 `;
 
 const OurExpertise = () => {
@@ -63,33 +100,38 @@ const OurExpertise = () => {
     },
   ];
 
-  // data-sal="slide-up"
-  // data-sal-easing="easeOutCubic"
-  // data-sal-delay={100 * index}
-
   const renderCards = () => {
-    return cardsData.map((item) => {
+    return cardsData.map((item, index) => {
       const { id, title, description, img } = item;
-      const [isFlipped, setIsFlipped] = useState(true);
+      const [isFlipped, setIsFlipped] = useState(false);
       const handleFlip = () => setIsFlipped((origin) => !origin);
 
       return (
-        <CustomCol md={6} lg={4} key={`${id}-${title}`}>
+        <CustomCol
+          md={6}
+          lg={4}
+          key={`${id}-${title}`}
+          data-sal="slide-up"
+          data-sal-easing="easeOutCubic"
+          data-sal-delay={100 * index}
+        >
           <ReactCardFlip
             isFlipped={isFlipped}
             flipDirection="horizontal"
             containerStyle={{ height: '100%' }}
           >
             <CardContainer onClick={handleFlip}>
-              <h3>{title}</h3>
-              <img src={img} alt={`Spinbits - ${title}`} />
-              <button type="button">Click to flip</button>
+              <CardTitle>{title}</CardTitle>
+              <ImgBox>
+                <img src={img} alt={`Spinbits - ${title}`} />
+              </ImgBox>
+              <FontAwesome right icon={faAngleRight} size="2x" />
             </CardContainer>
 
             <CardContainer onClick={handleFlip}>
-              <h3>{title}</h3>
-              <p>{description}</p>
-              <button type="button">Click to flip</button>
+              <CardTitle>{title}</CardTitle>
+              <Paragraph center>{description}</Paragraph>
+              <FontAwesome icon={faAngleLeft} size="2x" />
             </CardContainer>
           </ReactCardFlip>
         </CustomCol>
@@ -110,7 +152,7 @@ const OurExpertise = () => {
           </Paragraph>
         </Col>
       </Row>
-      <Row>{renderCards()}</Row>
+      <CustomRow>{renderCards()}</CustomRow>
     </SpinContainer>
   );
 };
