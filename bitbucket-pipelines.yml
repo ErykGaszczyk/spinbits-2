@@ -15,18 +15,18 @@ pipelines:
             - cd frontend/
             - yarn install
             - yarn lint
-      - step:
-          name: Build and Test
-          caches:
-            - node
-          script:
-            - ./pipelines/strapiReady.sh
-            - cd frontend
-            - cp .env.example .env.development
-            - yarn build
-          services:
-            - mysql
-            - strapi
+#      - step:
+#          name: Build and Test
+#          caches:
+#            - node
+#          script:
+#            - ./pipelines/strapiReady.sh
+#            - cd frontend
+#            - cp .env.example .env.development
+#            - yarn build
+#          services:
+#            - mysql
+#            - strapi
 definitions:
   services:
     strapi:
