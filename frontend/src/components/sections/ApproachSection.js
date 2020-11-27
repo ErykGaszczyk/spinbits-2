@@ -18,7 +18,6 @@ const ColumnBox = styled.div`
   box-shadow: -15px 15px 54px var(--shadow);
   border-radius: 0.5rem;
   padding: 30px 23px;
-  min-height: 450px;
   height: 100%;
 `;
 
