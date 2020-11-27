@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Row, Col, Collapse } from '@bootstrap-styled/v4';
+import { Row, Col } from '@bootstrap-styled/v4';
 import { SpinContainer } from '@components/overrides';
 import SectionTopTitle from '@components/typography/SectionTopTitle';
 import SectionTitle from '@components/typography/SectionTitle';
 import Paragraph from '@components/typography/Paragraph';
-import { P } from '@components/typography/Paragraph.styled';
-import { StaticQuery, graphql } from 'gatsby';
-import ReactMarkdown from 'react-markdown';
-import SpinButton from '@components/SpinButton';
 import Apps from '@images/our-expertise/apps.webp';
 import B2b from '@images/our-expertise/b2b.webp';
 import B2c from '@images/our-expertise/b2c.webp';
 import Blockchain from '@images/our-expertise/blockchain.webp';
 import Intranet from '@images/our-expertise/intranet.webp';
 import Mobile from '@images/our-expertise/mobile.webp';
+import ReactCardFlip from 'react-card-flip';
+
+const CardContainer = styled.div`
+  background-color: #f1f5ff;
+  padding: 30px;
+  min-height: 100%;
+`;
+
+const CustomCol = styled(Col)`
+  margin: 0 0 1rem 0;
+`;
 
 const OurExpertise = () => {
   const cardsData = [
@@ -57,24 +63,36 @@ const OurExpertise = () => {
     },
   ];
 
+  // data-sal="slide-up"
+  // data-sal-easing="easeOutCubic"
+  // data-sal-delay={100 * index}
+
   const renderCards = () => {
-    return cardsData.map((item, index) => {
+    return cardsData.map((item) => {
       const { id, title, description, img } = item;
+      const [isFlipped, setIsFlipped] = useState(true);
+      const handleFlip = () => setIsFlipped((origin) => !origin);
+
       return (
-        <Col
-          md={6}
-          lg={4}
-          key={`${id}-${title}`}
-          data-sal="slide-up"
-          data-sal-easing="easeOutCubic"
-          data-sal-delay={100 * index}
-        >
-          <div>
-            <h3>{title}</h3>
-            <p>{description}</p>
-            <img src={img} alt={`Spinbits - ${title}`} />
-          </div>
-        </Col>
+        <CustomCol md={6} lg={4} key={`${id}-${title}`}>
+          <ReactCardFlip
+            isFlipped={isFlipped}
+            flipDirection="horizontal"
+            containerStyle={{ height: '100%' }}
+          >
+            <CardContainer onClick={handleFlip}>
+              <h3>{title}</h3>
+              <img src={img} alt={`Spinbits - ${title}`} />
+              <button type="button">Click to flip</button>
+            </CardContainer>
+
+            <CardContainer onClick={handleFlip}>
+              <h3>{title}</h3>
+              <p>{description}</p>
+              <button type="button">Click to flip</button>
+            </CardContainer>
+          </ReactCardFlip>
+        </CustomCol>
       );
     });
   };

@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Layout from '@components/Layout';
 
 const scheduleAppointment = () => {
@@ -10,9 +8,5 @@ const scheduleAppointment = () => {
     </Layout>
   );
 };
-
-scheduleAppointment.propTypes = {};
-
-scheduleAppointment.defaultProps = {};
 
 export default scheduleAppointment;

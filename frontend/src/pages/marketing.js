@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Layout from '@components/Layout';
 
 const marketing = () => {
@@ -10,9 +8,5 @@ const marketing = () => {
     </Layout>
   );
 };
-
-marketing.propTypes = {};
-
-marketing.defaultProps = {};
 
 export default marketing;
