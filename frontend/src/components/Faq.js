@@ -67,11 +67,16 @@ const Faq = ({ data }) => {
   const renderAccordion = () => {
     const { faqs } = data.cms;
 
-    return faqs.map((item) => {
+    return faqs.map((item, index) => {
       const [isOpen, setIsOpen] = useState(false);
       const { id, title, content } = item;
       return (
-        <AccordionContainer key={`${id}-${title}`}>
+        <AccordionContainer
+          key={`${id}-${title}`}
+          data-sal="slide-up"
+          data-sal-easing="easeOutCubic"
+          data-sal-delay={100 * index}
+        >
           <CustomButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
             <p>{title}</p>
             <span>{isOpen ? '-' : '+'}</span>
@@ -87,12 +92,12 @@ const Faq = ({ data }) => {
   return (
     <Container>
       <Row>
-        <Col>
+        <Col data-sal="slide-down" data-sal-easing="easeOutCubic">
           <SectionTopTitle>FAQ</SectionTopTitle>
         </Col>
       </Row>
       <Row>
-        <Col xs={12} lg={5}>
+        <Col xs={12} lg={5} data-sal="slide-right" data-sal-easing="easeOutCubic">
           <MainTitle>
             Any <strong>questions?</strong> Don&apos;t hesitate to ask us
           </MainTitle>

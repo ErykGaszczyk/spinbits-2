@@ -9,17 +9,27 @@ import { P } from '@components/typography/Paragraph.styled';
 import Testimonial from '@images/testimonials/testimo.webp';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { MOBILE_BREAKPOINT } from '@assets/const';
+
+const { md } = MOBILE_BREAKPOINT;
 
 const Img = styled.img`
   width: 100%;
   margin: 3rem 0 0 0;
 `;
 
+const TestimonialColumn = styled.div`
+  padding: 2rem;
+`;
+
 const TestimonialBox = styled.div`
-  padding: 25px 28px;
-  background: #fff;
-  box-shadow: 0 0 30px rgba(0, 17, 100, 0.1);
-  border-radius: 8px;
+  padding: 1.563rem 1.75rem;
+  background: var(--white);
+  box-shadow: 0 0 1.875rem rgba(0, 17, 100, 0.1);
+  border-radius: 0.5rem;
   letter-spacing: -0.2px;
   margin: 0 0 1rem 0;
 `;
@@ -27,7 +37,7 @@ const TestimonialBox = styled.div`
 const TestimonialParagraph = styled(P)`
   font-family: 'Playfair Display';
   font-weight: 400;
-  line-height: 30px;
+  line-height: 1.875rem;
   color: var(--primary-font-color);
 `;
 
@@ -93,6 +103,26 @@ const TestimonialsSection = () => {
     },
   ];
 
+  const settings = {
+    dots: false,
+    autoplay: true,
+    infinite: true,
+    arrows: false,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    pauseOnFocus: true,
+    adaptiveHeight: true,
+    responsive: [
+      {
+        breakpoint: md,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
+
   const renderStars = (num) => {
     let n = 0;
     const arr = [];
@@ -116,22 +146,22 @@ const TestimonialsSection = () => {
         typeof row[1] !== 'undefined' && row[1];
 
       return (
-        <Col lg={6} key={id}>
-          <TestimonialBox>
+        <TestimonialColumn key={id}>
+          <TestimonialBox data-sal="slide-up" data-sal-easing="easeOutCubic">
             <TestimonialParagraph>{text}</TestimonialParagraph>
             <AuthorParagraph>{author}</AuthorParagraph>
             <Paragraph>{position}</Paragraph>
             {renderStars(stars)}
           </TestimonialBox>
           {row[1] && (
-            <TestimonialBox>
+            <TestimonialBox data-sal="slide-up" data-sal-easing="easeOutCubic">
               <TestimonialParagraph>{text2}</TestimonialParagraph>
               <AuthorParagraph>{author2}</AuthorParagraph>
               <Paragraph>{position2}</Paragraph>
               {renderStars(stars2)}
             </TestimonialBox>
           )}
-        </Col>
+        </TestimonialColumn>
       );
     });
   };
@@ -140,72 +170,9 @@ const TestimonialsSection = () => {
     <SpinContainer>
       <Row>
         <Col lg={8}>
-          <Row>
-            {/* // TODO: odkomencić dla slidera resztę usunąć */}
-            {/* {renderTestimonials()} */}
-            <Col lg={6}>
-              <TestimonialBox>
-                <TestimonialParagraph>
-                  We were looking for a company that will build our new website for many, long
-                  months. I am very pleased that this company was spinbits. I appreciate honesty,
-                  individual approach, budget, and technology consulting. We&apos;ve also received
-                  more features and updates than expected - as a bonus from spinbits. Eryk, as a
-                  Project Manager proposed solutions to our problems, shared his experience on IT
-                  and marketing during the project. We&apos;re very happy with the results and our
-                  cooperation. We can recommend spinbits!
-                </TestimonialParagraph>
-                <AuthorParagraph>Dominik Groch</AuthorParagraph>
-                <Paragraph>Founder, cos tam cos tam</Paragraph>
-                <FontAwesome icon={faStar} />
-              </TestimonialBox>
-              <TestimonialBox>
-                <TestimonialParagraph>
-                  We were looking for a company that will build our new website for many, long
-                  months. I am very pleased that this company was spinbits. I appreciate honesty,
-                  individual approach, budget, and technology consulting. We&apos;ve also received
-                  more features and updates than expected - as a bonus from spinbits. Eryk, as a
-                  Project Manager proposed solutions to our problems, shared his experience on IT
-                  and marketing during the project. We&apos;re very happy with the results and our
-                  cooperation. We can recommend spinbits!
-                </TestimonialParagraph>
-                <AuthorParagraph>Dominik Groch</AuthorParagraph>
-                <Paragraph>Founder, cos tam cos tam</Paragraph>
-                <FontAwesome icon={faStar} />
-              </TestimonialBox>
-            </Col>
-            <Col lg={6}>
-              <TestimonialBox>
-                <TestimonialParagraph>
-                  We were looking for a company that will build our new website for many, long
-                  months. I am very pleased that this company was spinbits. I appreciate honesty,
-                  individual approach, budget, and technology consulting. We&apos;ve also received
-                  more features and updates than expected - as a bonus from spinbits. Eryk, as a
-                  Project Manager proposed solutions to our problems, shared his experience on IT
-                  and marketing during the project. We&apos;re very happy with the results and our
-                  cooperation. We can recommend spinbits!
-                </TestimonialParagraph>
-                <AuthorParagraph>Dominik Groch</AuthorParagraph>
-                <Paragraph>Founder, cos tam cos tam</Paragraph>
-                <FontAwesome icon={faStar} />
-              </TestimonialBox>
-              <TestimonialBox>
-                <TestimonialParagraph>
-                  We were looking for a company that will build our new website for many, long
-                  months. I am very pleased that this company was spinbits. I appreciate honesty,
-                  individual approach, budget, and technology consulting. We&apos;ve also received
-                  more features and updates than expected - as a bonus from spinbits. Eryk, as a
-                  Project Manager proposed solutions to our problems, shared his experience on IT
-                  and marketing during the project. We&apos;re very happy with the results and our
-                  cooperation. We can recommend spinbits!
-                </TestimonialParagraph>
-                <AuthorParagraph>Dominik Groch</AuthorParagraph>
-                <Paragraph>Founder, cos tam cos tam</Paragraph>
-                <FontAwesome icon={faStar} />
-              </TestimonialBox>
-            </Col>
-          </Row>
+          <Slider {...settings}>{renderTestimonials()}</Slider>
         </Col>
-        <Col lg={4}>
+        <Col lg={4} data-sal="slide-left" data-sal-easing="easeOutCubic">
           <SectionTopTitle>Testimonials</SectionTopTitle>
           <SectionTitle coloredStrong>
             See what our customers and <strong>partners</strong> say about us
@@ -216,9 +183,5 @@ const TestimonialsSection = () => {
     </SpinContainer>
   );
 };
-
-TestimonialsSection.propTypes = {};
-
-TestimonialsSection.defaultProps = {};
 
 export default TestimonialsSection;

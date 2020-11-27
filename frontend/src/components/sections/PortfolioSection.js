@@ -17,6 +17,12 @@ import EcoFriendly from '@images/portfolio/p_4.webp';
 import ScreenLeagueApp from '@images/portfolio/screen_league_app.webp';
 import Landing from '@images/portfolio/shell.webp';
 import Plants from '@images/portfolio/plants.webp';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { MOBILE_BREAKPOINT } from '@assets/const';
+
+const { md } = MOBILE_BREAKPOINT;
 
 const Img = styled.img`
   width: 100%;
@@ -50,6 +56,10 @@ const TechnologiesTitleParagraph = styled(P)`
   font-size: 1.5rem; // 24px
   font-weight: 800;
   color: var(--primary-font-color);
+`;
+
+const TechnologiesColumn = styled.div`
+  padding: 1rem;
 `;
 
 const TechnologiesLink = styled(Link)`
@@ -124,6 +134,26 @@ const PortfolioSection = () => {
     },
   ];
 
+  const settings = {
+    dots: false,
+    autoplay: true,
+    infinite: true,
+    arrows: false,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    pauseOnFocus: true,
+    adaptiveHeight: true,
+    responsive: [
+      {
+        breakpoint: md,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
+
   const renderPortfolioCols = () => {
     const rows = portfolioiData.reduce((row, key, index) => {
       return (index % 2 === 0 ? row.push([key]) : row[row.length - 1].push(key)) && row;
@@ -135,8 +165,8 @@ const PortfolioSection = () => {
         typeof row[1] !== 'undefined' && row[1];
 
       return (
-        <Col lg={6} key={id}>
-          <TechnologiesLink to="/projects">
+        <TechnologiesColumn key={id}>
+          <TechnologiesLink to="/projects" data-sal="slide-up" data-sal-easing="easeOutCubic">
             <ItemBox>
               <TechnologiesParagraph>{technologies}</TechnologiesParagraph>
               <TechnologiesTitleParagraph>{title}</TechnologiesTitleParagraph>
@@ -144,7 +174,7 @@ const PortfolioSection = () => {
             </ItemBox>
           </TechnologiesLink>
           {row[1] && (
-            <TechnologiesLink to="/projects">
+            <TechnologiesLink to="/projects" data-sal="slide-up" data-sal-easing="easeOutCubic">
               <ItemBox>
                 <TechnologiesParagraph>{technologies2}</TechnologiesParagraph>
                 <TechnologiesTitleParagraph>{title2}</TechnologiesTitleParagraph>
@@ -152,7 +182,7 @@ const PortfolioSection = () => {
               </ItemBox>
             </TechnologiesLink>
           )}
-        </Col>
+        </TechnologiesColumn>
       );
     });
   };
@@ -160,7 +190,7 @@ const PortfolioSection = () => {
   return (
     <SpinContainer>
       <Row>
-        <Col lg={4}>
+        <Col lg={4} data-sal="slide-right" data-sal-easing="easeOutCubic">
           <SectionTopTitle>Portfolio</SectionTopTitle>
           <SectionTitle coloredStrong>
             Check out what we have <strong>built together</strong> with our great customers
@@ -173,24 +203,7 @@ const PortfolioSection = () => {
           <Img src={Portfolio} alt="Spinbits - Portfolio" />
         </Col>
         <Col lg={8}>
-          <Row>
-            {/* // TODO: odkomencić dla slidera resztę usunąć */}
-            {/* {renderPortfolioCols()} */}
-            <Col lg={6}>
-              <TechnologiesLink to="/projects">
-                <ItemBox>
-                  <TechnologiesParagraph>
-                    PHP, Symfony, JavaScript, HTML, Figma, AWS
-                  </TechnologiesParagraph>
-                  <TechnologiesTitleParagraph>
-                    Fintech solution between the e-commerce platforms, customers and banks that
-                    lower payment fraud risks.
-                  </TechnologiesTitleParagraph>
-                  <img src={Plants} alt="" />
-                </ItemBox>
-              </TechnologiesLink>
-            </Col>
-          </Row>
+          <Slider {...settings}>{renderPortfolioCols()}</Slider>
         </Col>
       </Row>
     </SpinContainer>
