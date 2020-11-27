@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Logo from '@components/Logo';
 import { P } from '@components/typography/Paragraph.styled';
@@ -68,9 +67,5 @@ const Footer = () => {
     </Container>
   );
 };
-
-Footer.propTypes = {};
-
-Footer.defaultProps = {};
 
 export default Footer;

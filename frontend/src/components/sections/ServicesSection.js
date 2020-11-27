@@ -221,7 +221,7 @@ const ServicesSection = () => {
   };
 
   return (
-    <CustomContainer>
+    <CustomContainer id="services">
       <Row>
         <Col md={6} xl={5} data-sal="slide-right" data-sal-easing="easeOutCubic">
           <ServicesTechnologyContainer>

@@ -52,7 +52,7 @@ const ImgContainer = styled.div`
 
 const WhoWeAreSection = () => {
   return (
-    <CustomContainer>
+    <CustomContainer id="who-we-are">
       <Row data-sal="slide-down" data-sal-easing="easeOutCubic">
         <Col>
           <SectionTopTitle>Who we are</SectionTopTitle>

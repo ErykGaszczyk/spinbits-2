@@ -91,7 +91,7 @@ const Faq = ({ data }) => {
   };
 
   return (
-    <SpinContainer>
+    <SpinContainer id="faq">
       <Row>
         <Col data-sal="slide-down" data-sal-easing="easeOutCubic">
           <SectionTopTitle>FAQ</SectionTopTitle>

@@ -129,19 +129,11 @@ export const menuItems = [
       {
         id: 3,
         name: 'Portfolio',
-        url: '/portfolio',
+        url: '/#portfolio',
         slug: 'portfolio',
       },
     ],
   },
-
-  {
-    id: 5,
-    name: 'Portfolio',
-    url: '/portfolio',
-    slug: 'portfolio',
-  },
-
   {
     id: 6,
     name: 'Blog',

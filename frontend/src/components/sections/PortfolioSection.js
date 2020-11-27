@@ -188,7 +188,7 @@ const PortfolioSection = () => {
   };
 
   return (
-    <SpinContainer>
+    <SpinContainer id="portfolio">
       <Row>
         <Col lg={4} data-sal="slide-right" data-sal-easing="easeOutCubic">
           <SectionTopTitle>Portfolio</SectionTopTitle>
