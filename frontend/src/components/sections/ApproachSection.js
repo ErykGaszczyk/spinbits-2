@@ -10,7 +10,12 @@ import SpinButton from '@components/SpinButton';
 
 const CustomColumn = styled(Col)`
   margin: 2rem 0;
-  ${(props) => props.flexEnd && 'display: flex; justify-content: flex-end'}
+`;
+
+const CustomColumnFlexEnd = styled(CustomColumn)`
+  margin: 2rem 0;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const ColumnBox = styled.div`
@@ -97,10 +102,10 @@ const ApproachSection = ({ data }) => {
         </Col>
       </Row>
       <Row>
-        <CustomColumn flexEnd="true">
+        <CustomColumnFlexEnd>
           {/* TODO: url do modala */}
           <SpinButton url="/">Free project estimation</SpinButton>
-        </CustomColumn>
+        </CustomColumnFlexEnd>
       </Row>
     </SpinContainer>
   );
