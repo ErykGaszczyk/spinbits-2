@@ -12,6 +12,7 @@ pipelines:
           caches:
             - node
           script:
+            - cd frontend/
             - yarn install
             - yarn lint
       - step:
@@ -20,7 +21,7 @@ pipelines:
             - node
           script:
             - curl strapi:1337/graphql
-            - yarn build
+            - cd frontend && yarn build
           services:
             - mysql
             - strapi
