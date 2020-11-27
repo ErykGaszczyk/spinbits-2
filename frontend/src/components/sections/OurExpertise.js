@@ -125,7 +125,7 @@ const OurExpertise = () => {
               <ImgBox>
                 <img src={img} alt={`Spinbits - ${title}`} />
               </ImgBox>
-              <FontAwesome right icon={faAngleRight} size="2x" />
+              <FontAwesome right="true" icon={faAngleRight} size="2x" />
             </CardContainer>
 
             <CardContainer onClick={handleFlip}>
