@@ -15,7 +15,7 @@ const DropdownContent = styled.ul`
   @media ${LG} {
     position: absolute;
     background-color: var(--white);
-    box-shadow: 0 0.5rem 1rem 0 var(--menu-shadow);
+    box-shadow: 0 0.5rem 1rem 0 var(--shadow);
     border-radius: 0.5rem;
   }
 `;

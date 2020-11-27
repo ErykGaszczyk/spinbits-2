@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
     --blog-list-box-bg: #f1f5ff;
     --light-font-color: #5acdfb;
     --white: #ffffff;
-    --menu-shadow: #dadada;
+    --shadow: #dadada;
     --testimonial-author-color: #0c2d67;
     --testimonial-stars-color: #ffc700;
   }
