@@ -10,7 +10,6 @@ import { faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { facebookAddress, linkedinAddress } from '@utils/variables';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Hero from '@images/who-we-are/hero.webp';
-import { Link } from 'gatsby';
 import { DEVICE } from '@assets/const';
 import DownloadButton from '@components/DownloadButton';
 
@@ -76,12 +75,12 @@ const WhoWeAreSection = () => {
             <DownloadButton />
           </ButtonsContainer>
           <FontawesomeContainer>
-            <Link to={facebookAddress}>
+            <a href={facebookAddress}>
               <FontAwesomeIcon icon={faFacebookF} />
-            </Link>
-            <Link to={linkedinAddress}>
+            </a>
+            <a href={linkedinAddress}>
               <FontAwesomeIcon icon={faLinkedinIn} />
-            </Link>
+            </a>
           </FontawesomeContainer>
         </Col>
         <ImgContainer data-sal="slide-left" data-sal-easing="easeOutCubic">

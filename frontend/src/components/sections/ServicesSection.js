@@ -3,9 +3,8 @@ import styled from 'styled-components';
 import SectionTopTitle from '@components/typography/SectionTopTitle';
 import { Row, Col } from '@bootstrap-styled/v4';
 import { SpinContainer } from '@components/overrides';
-import Paragraph from '@components/typography/Paragraph';
 import SectionTitle from '@components/typography/SectionTitle';
-import { P } from '@components/typography/Paragraph.styled';
+import Paragraph, { BasicText } from '@components/typography/Paragraph';
 import { DEVICE } from '@assets/const';
 import Discussion from '@images/services/discussion.webp';
 import Planing from '@images/services/planing.webp';
@@ -22,12 +21,9 @@ const CustomContainer = styled(SpinContainer)`
   }
 `;
 
-const ServicesParagraph = styled(P)`
+const ServicesTechnologyParagraph = styled.p`
+  ${BasicText}
   font-size: 2.25rem;
-  color: var(--primary-font-color);
-`;
-
-const ServicesTechnologyParagraph = styled(ServicesParagraph)`
   color: var(--white);
 `;
 
@@ -109,7 +105,8 @@ const ServiceContainer = styled.div`
   height: 100%;
 `;
 
-const ServiceContainerTitle = styled(P)`
+const ServiceContainerTitle = styled.h3`
+  ${BasicText}
   font-size: 1.5rem;
   color: var(--primary-font-color);
   font-weight: 700;

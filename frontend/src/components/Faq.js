@@ -4,19 +4,16 @@ import styled from 'styled-components';
 import { Row, Col, Collapse } from '@bootstrap-styled/v4';
 import { SpinContainer } from '@components/overrides';
 import SectionTopTitle from '@components/typography/SectionTopTitle';
-import { P } from '@components/typography/Paragraph.styled';
+import { BasicText } from '@components/typography/Paragraph';
 import { StaticQuery, graphql } from 'gatsby';
 import ReactMarkdown from 'react-markdown';
 import SpinButton from '@components/SpinButton';
 
-const MainTitle = styled(P)`
+const MainTitle = styled.h3`
+  ${BasicText}
   font-size: 2.063rem;
   font-weight: 900;
   color: var(--primary-font-color);
-
-  strong {
-    color: var(--light-font-color);
-  }
 `;
 
 const AccordionContainer = styled.div`
@@ -99,7 +96,7 @@ const Faq = ({ data }) => {
       </Row>
       <Row>
         <Col xs={12} lg={5} data-sal="slide-right" data-sal-easing="easeOutCubic">
-          <MainTitle>
+          <MainTitle coloredStrong>
             Any <strong>questions?</strong> Don&apos;t hesitate to ask us
           </MainTitle>
           {/* {TODO: add <a href/>} */}

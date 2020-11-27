@@ -15,12 +15,11 @@ import Wordpress from '@images/technologies/wordpress.webp';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { Link } from 'gatsby';
 import { MOBILE_BREAKPOINT } from '@assets/const';
 
 const { sm, md, lg } = MOBILE_BREAKPOINT;
 
-const ImgWrapper = styled(Link)`
+const ImgWrapper = styled.a`
   img {
     min-height: 65px;
     height: 65px;

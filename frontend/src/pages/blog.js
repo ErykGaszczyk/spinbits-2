@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link, graphql } from 'gatsby';
 import Layout from '@components/Layout';
-import { H1 } from '@components/typography/Title.styled';
+import Title from '@components/typography/Title';
 import { SpinContainer } from '@components/overrides';
 import SectionTopTitle from '@components/typography/SectionTopTitle';
 import Paragraph from '@components/typography/Paragraph';
@@ -30,10 +30,6 @@ const CustomRow = styled(Row)`
 
 const CustomCol = styled(Col)`
   margin: 0 0 1rem 0;
-`;
-
-const FirstPostTitle = styled(H1)`
-  color: var(--primary-font-color);
 `;
 
 const Blog = ({ data }) => {
@@ -67,7 +63,7 @@ const Blog = ({ data }) => {
             <SectionTopTitle>Blog</SectionTopTitle>
             <Link to="/blog/2">
               <FirstBlogBox>
-                <FirstPostTitle hover>{firstPost.title}</FirstPostTitle>
+                <Title hover>{firstPost.title}</Title>
                 <Paragraph>{PostDate(firstPost.publishedAt)}</Paragraph>
               </FirstBlogBox>
             </Link>

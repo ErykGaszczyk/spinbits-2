@@ -4,8 +4,7 @@ import SectionTopTitle from '@components/typography/SectionTopTitle';
 import SectionTitle from '@components/typography/SectionTitle';
 import { Row, Col } from '@bootstrap-styled/v4';
 import { SpinContainer } from '@components/overrides';
-import Paragraph from '@components/typography/Paragraph';
-import { P } from '@components/typography/Paragraph.styled';
+import Paragraph, { BasicText } from '@components/typography/Paragraph';
 import Testimonial from '@images/testimonials/testimo.webp';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -34,14 +33,16 @@ const TestimonialBox = styled.div`
   margin: 0 0 1rem 0;
 `;
 
-const TestimonialParagraph = styled(P)`
+const TestimonialParagraph = styled.p`
+  ${BasicText}
   font-family: 'Playfair Display';
   font-weight: 400;
   line-height: 1.875rem;
   color: var(--primary-font-color);
 `;
 
-const AuthorParagraph = styled(P)`
+const AuthorParagraph = styled.p`
+  ${BasicText}
   font-weight: 700;
   color: var(--testimonial-author-color);
 `;
@@ -130,8 +131,8 @@ const TestimonialsSection = () => {
       n += 1;
       arr.push(n);
     }
-    return arr.map(() => {
-      return <FontAwesome icon={faStar} />;
+    return arr.map((item) => {
+      return <FontAwesome icon={faStar} key={item} />;
     });
   };
 

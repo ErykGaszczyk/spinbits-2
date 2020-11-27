@@ -4,8 +4,7 @@ import SectionTopTitle from '@components/typography/SectionTopTitle';
 import SectionTitle from '@components/typography/SectionTitle';
 import { Row, Col } from '@bootstrap-styled/v4';
 import { SpinContainer } from '@components/overrides';
-import Paragraph from '@components/typography/Paragraph';
-import { P } from '@components/typography/Paragraph.styled';
+import Paragraph, { BasicText } from '@components/typography/Paragraph';
 import About from '@images/about/about.webp';
 import Location from '@images/about/location.webp';
 import StatsUp from '@images/about/stats_up.webp';
@@ -41,7 +40,8 @@ const IconBox = styled.div`
   }
 `;
 
-const MarginParagraph = styled(P)`
+const MarginParagraph = styled.p`
+  ${BasicText}
   margin: 0 0 3rem 0;
 `;
 
@@ -50,7 +50,8 @@ const DescriptionContainer = styled.div`
   width: calc(100% - 3.438rem);
 `;
 
-const DescriptionContainerTitle = styled(P)`
+const DescriptionContainerTitle = styled.h3`
+  ${BasicText}
   font-size: 1.5rem;
   color: var(--primary-font-color);
   font-weight: 700;

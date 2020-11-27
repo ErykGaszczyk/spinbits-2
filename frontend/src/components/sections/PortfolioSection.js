@@ -5,8 +5,7 @@ import SectionTopTitle from '@components/typography/SectionTopTitle';
 import SectionTitle from '@components/typography/SectionTitle';
 import { Row, Col } from '@bootstrap-styled/v4';
 import { SpinContainer } from '@components/overrides';
-import Paragraph from '@components/typography/Paragraph';
-import { P } from '@components/typography/Paragraph.styled';
+import Paragraph, { BasicText } from '@components/typography/Paragraph';
 import Portfolio from '@images/portfolio/portfolio.webp';
 import AutomatedGaming from '@images/portfolio/automated-gameing.webp';
 import CrmSolutions from '@images/portfolio/crm-solutions.webp';
@@ -47,12 +46,14 @@ const ItemBox = styled.div`
   }
 `;
 
-const TechnologiesParagraph = styled(P)`
+const TechnologiesParagraph = styled.p`
+  ${BasicText}
   font-size: 0.875rem; // 14px
   color: var(--secondary-font-color);
 `;
 
-const TechnologiesTitleParagraph = styled(P)`
+const TechnologiesTitleParagraph = styled.h3`
+  ${BasicText}
   font-size: 1.5rem; // 24px
   font-weight: 800;
   color: var(--primary-font-color);

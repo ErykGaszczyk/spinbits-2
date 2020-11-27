@@ -8,18 +8,16 @@ import TestimonialsSection from '@components/sections/TestimonialsSection';
 import TechnologiesSliderSection from '@components/sections/TechnologiesSliderSection';
 
 const Home = () => {
-  const renderSections = () => {
-    return [
-      WhoWeAreSection(),
-      TechnologiesSliderSection(),
-      ServicesSection(),
-      AboutUsSection(),
-      PortfolioSection(),
-      TestimonialsSection(),
-    ];
-  };
-
-  return <Layout>{renderSections()}</Layout>;
+  return (
+    <Layout>
+      <WhoWeAreSection />
+      <TechnologiesSliderSection />
+      <ServicesSection />
+      <AboutUsSection />
+      <PortfolioSection />
+      <TestimonialsSection />
+    </Layout>
+  );
 };
 
 export default Home;

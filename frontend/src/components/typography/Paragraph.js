@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { css } from 'styled-components';
-import { P } from './Paragraph.styled';
+import styled, { css } from 'styled-components';
 
 export const BasicText = css`
   font-size: 1rem;
@@ -18,6 +17,10 @@ export const BasicText = css`
   :hover {
     color: ${(props) => props.hover && `var(--secondary-font-color)`};
   }
+`;
+
+const P = styled.p`
+  ${BasicText}
 `;
 
 const Paragraph = ({ children, bold, hover, coloredStrong, center }) => (

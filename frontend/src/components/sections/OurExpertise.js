@@ -4,8 +4,7 @@ import { Row, Col } from '@bootstrap-styled/v4';
 import { SpinContainer } from '@components/overrides';
 import SectionTopTitle from '@components/typography/SectionTopTitle';
 import SectionTitle from '@components/typography/SectionTitle';
-import Paragraph from '@components/typography/Paragraph';
-import { P } from '@components/typography/Paragraph.styled';
+import Paragraph, { BasicText } from '@components/typography/Paragraph';
 import Apps from '@images/our-expertise/apps.webp';
 import B2b from '@images/our-expertise/b2b.webp';
 import B2c from '@images/our-expertise/b2c.webp';
@@ -37,7 +36,8 @@ const CardContainer = styled.div`
   }
 `;
 
-const CardTitle = styled(P)`
+const CardTitle = styled.h3`
+  ${BasicText}
   font-size: 1.4rem;
   font-weight: 800;
   color: var(--primary-font-color);
