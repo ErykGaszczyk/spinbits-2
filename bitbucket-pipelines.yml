@@ -21,7 +21,9 @@ pipelines:
             - node
           script:
             - ./pipelines/strapiReady.sh
-            - cd frontend && yarn build
+            - cd frontend
+            - cp .env.example .env.development
+            - yarn build
           services:
             - mysql
             - strapi
@@ -37,7 +39,7 @@ definitions:
         DATABASE_USERNAME: strapi
         DATABASE_PASSWORD: strapi
     mysql:
-      image: mysql
+      image: mysql:5.7
       environment:
         MYSQL_DATABASE: strapi
         MYSQL_USERNAME: strapi
