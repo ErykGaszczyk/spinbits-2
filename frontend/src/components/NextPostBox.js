@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { P } from '@components/typography/Paragraph.styled';
-import Paragraph from '@components/typography/Paragraph';
+import Paragraph, { BasicText } from '@components/typography/Paragraph';
 import { Link } from 'gatsby';
 import PostDate from '@helpers/PostDate';
 
-const TagParagraph = styled(P)`
+const TagParagraph = styled.p`
+  ${BasicText}
   color: var(--secondary-font-color);
 `;
 
-const TitleParagraph = styled(P)`
+const TitleParagraph = styled.h3`
+  ${BasicText}
   color: var(--primary-font-color);
   font-size: 1.75rem;
 `;

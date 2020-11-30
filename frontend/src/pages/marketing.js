@@ -1,18 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Layout from '@components/Layout';
+import ApproachSection from '@components/sections/ApproachSection';
+import TestimonialsSection from '@components/sections/TestimonialsSection';
+import { marketingData } from '@utils/pages/marketing-data';
 
 const marketing = () => {
   return (
     <Layout>
       <h1>Marketing</h1>
+      <ApproachSection data={marketingData} />
+      {/* // TODO: form */}
+      <TestimonialsSection />
     </Layout>
   );
 };
-
-marketing.propTypes = {};
-
-marketing.defaultProps = {};
 
 export default marketing;

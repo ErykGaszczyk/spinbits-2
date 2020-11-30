@@ -1,5 +1,5 @@
 import React from 'react';
-import { H1 } from '@components/typography/Title.styled';
+import { TitleText } from '@components/typography/Title';
 import Layout from '@components/Layout';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
@@ -7,7 +7,7 @@ import SectionTopTitle from '@components/typography/SectionTopTitle';
 import ReactMarkdown from 'react-markdown';
 import { Container, Row, Col } from '@bootstrap-styled/v4';
 import styled from 'styled-components';
-import { P } from '@components/typography/Paragraph.styled';
+import Paragraph, { BasicText } from '@components/typography/Paragraph';
 import NextPostBox from '@components/NextPostBox';
 
 const ContentRow = styled(Row)`
@@ -23,15 +23,13 @@ const SidePostBox = styled.div`
   margin: 0 0 2rem 0;
 `;
 
-const ArticleTitle = styled(H1)`
+const ArticleTitle = styled.h1`
+  ${TitleText}
   color: var(--secondary-font-color);
 `;
 
-const SimpleTextParagraph = styled(P)`
-  color: var(--thirdary-font-color);
-`;
-
-const BlogSubtitleParagraph = styled(P)`
+const BlogSubtitleParagraph = styled.h3`
+  ${BasicText}
   color: var(--secondary-font-color);
   font-size: 1.2rem;
 `;
@@ -41,7 +39,7 @@ const Template = ({ data }) => {
     const { content } = data.cms.blogPost;
 
     if (content[0] && content[0].__typename === 'CMS_ComponentBlogSimpleText') {
-      return <SimpleTextParagraph>{content[0].text}</SimpleTextParagraph>;
+      return <Paragraph>{content[0].text}</Paragraph>;
     }
     return null;
   };
@@ -65,13 +63,9 @@ const Template = ({ data }) => {
   const renderComponentBlogSimpleText = (content) => {
     const { id, __typename, text } = content;
     return (
-      <SimpleTextParagraph
-        key={`${id}-${__typename}`}
-        data-sal="slide-up"
-        data-sal-easing="easeOutCubic"
-      >
+      <Paragraph key={`${id}-${__typename}`} data-sal="slide-up" data-sal-easing="easeOutCubic">
         {text}
-      </SimpleTextParagraph>
+      </Paragraph>
     );
   };
 

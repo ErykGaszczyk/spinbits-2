@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Logo from '@components/Logo';
-import { P } from '@components/typography/Paragraph.styled';
+import { BasicText } from '@components/typography/Paragraph';
 import { faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { facebookAddress, linkedinAddress } from '@utils/variables';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'gatsby';
 
 import { Container, Row, Col } from '@bootstrap-styled/v4';
 
@@ -36,7 +35,8 @@ const CopyrightContainer = styled.div`
   padding: 1.5rem 0;
 `;
 
-const CopyParagraph = styled(P)`
+const CopyParagraph = styled.p`
+  ${BasicText}
   font-weight: 600;
   color: var(--primary-font-color);
   margin: 0;
@@ -51,12 +51,12 @@ const Footer = () => {
             <Logo />
             {/* // TODO: tu jeszcze coś będzie */}
             <FontawesomeContainer>
-              <Link to={facebookAddress}>
+              <a href={facebookAddress}>
                 <FontAwesomeIcon icon={faFacebookF} />
-              </Link>
-              <Link to={linkedinAddress}>
+              </a>
+              <a href={linkedinAddress}>
                 <FontAwesomeIcon icon={faLinkedinIn} />
-              </Link>
+              </a>
             </FontawesomeContainer>
           </FooterContainer>
           <CopyrightContainer>
