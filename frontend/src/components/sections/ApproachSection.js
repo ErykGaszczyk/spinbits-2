@@ -20,9 +20,9 @@ const CustomColumnFlexEnd = styled(CustomColumn)`
 
 const ColumnBox = styled.div`
   background: var(--white);
-  box-shadow: -15px 15px 54px var(--shadow);
+  box-shadow: 0 0 1.563rem var(--shadow);
   border-radius: 0.5rem;
-  padding: 30px 23px;
+  padding: 1.875rem 1.438rem;
   height: 100%;
 `;
 

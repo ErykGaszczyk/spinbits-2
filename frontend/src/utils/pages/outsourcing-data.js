@@ -1,4 +1,4 @@
-export const outsourcingData = [
+export const approachData = [
   {
     id: 1,
     title: `Outsource`,

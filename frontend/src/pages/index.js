@@ -16,6 +16,7 @@ const Home = () => {
       <AboutUsSection />
       <PortfolioSection />
       <TestimonialsSection />
+      {/* // TODO: form */}
     </Layout>
   );
 };
