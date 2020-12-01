@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/available-developers",
+      "handler": "available-developers.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/available-developers/count",
+      "handler": "available-developers.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/available-developers/:id",
+      "handler": "available-developers.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/available-developers",
+      "handler": "available-developers.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/available-developers/:id",
+      "handler": "available-developers.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/available-developers/:id",
+      "handler": "available-developers.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

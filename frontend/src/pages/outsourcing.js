@@ -10,6 +10,9 @@ import Paragraph, { BasicText } from '@components/typography/Paragraph';
 import SpinButton from '@components/SpinButton';
 import SpinAccordion from '@components/SpinAccordion';
 import TestimonialsSection from '@components/sections/TestimonialsSection';
+import HeadingSection from '@components/sections/HeadingSection';
+import Title from '@components/typography/Title';
+import outsourcingImg from '@images/outsourcing.webp';
 import { approachData } from '@utils/pages/outsourcing-data';
 
 const MainTitle = styled.h3`
@@ -23,7 +26,22 @@ const outsourcing = ({ data }) => {
   const { availableDevelopers } = data.cms;
   return (
     <Layout>
-      <h1>Outsourcing</h1>
+      <HeadingSection topTitle="Outsourcing & body leasing" img={outsourcingImg}>
+        <Title coloredStrong>
+          <strong>Scalable</strong> and <strong>reliable</strong> team
+        </Title>
+        <Paragraph>
+          Current markets are always changing, decision making is fast and you need to grab
+          opportunities.{' '}
+        </Paragraph>
+        <Paragraph>
+          Spinbits offers solutions to keep up with the pace - both outsourcing and body leasing.
+        </Paragraph>
+        <Paragraph>
+          Our team members are experienced developers, designers, and managers that first work on
+          our internal projects - that’s why we are sure of their capabilities and expertise level.
+        </Paragraph>
+      </HeadingSection>
       <ApproachSection data={approachData} />
       <SpinContainer>
         <Row>
