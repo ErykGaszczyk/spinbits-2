@@ -26,6 +26,7 @@
     "dotenv": "^8.2.0",
     "gatsby": "^2.25.3",
     "gatsby-alias-imports": "^1.0.6",
+    "gatsby-plugin-anchor-links": "^1.2.0",
     "gatsby-plugin-fontawesome-css": "^1.0.0",
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-scroll-reveal": "^0.0.7",

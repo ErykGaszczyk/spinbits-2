@@ -15,6 +15,7 @@ import { facebookAddress, linkedinAddress } from '@utils/variables';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Hero from '@images/who-we-are/hero.webp';
 import DownloadButton from '@components/DownloadButton';
+import { AnchorLink } from 'gatsby-plugin-anchor-links';
 
 const ButtonsContainer = styled.div`
   margin: 2rem 0 0 0;
@@ -37,7 +38,7 @@ const FontawesomeContainer = styled.div`
 const Home = () => {
   return (
     <Layout>
-      <HeadingSection topTitle="Who we are" img={Hero}>
+      <HeadingSection topTitle="Who we are" img={Hero} id="who-we-are">
         <Title coloredStrong>
           <strong>IT specialist</strong> that understand your <strong>business</strong> and will
           help you <strong>grow</strong>
@@ -66,6 +67,9 @@ const Home = () => {
       <TechnologiesSliderSection />
       <ServicesSection />
       <AboutUsSection />
+      <AnchorLink to="/#who-we-are">
+        <button type="button">dupa</button>
+      </AnchorLink>
       <PortfolioSection />
       <TestimonialsSection />
       {/* // TODO: form */}

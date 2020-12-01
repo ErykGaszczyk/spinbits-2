@@ -56,5 +56,11 @@ module.exports = {
         disable: false, // Flag for disabling animations
       },
     },
+    {
+      resolve: 'gatsby-plugin-anchor-links',
+      options: {
+        offset: -120,
+      },
+    },
   ],
 };

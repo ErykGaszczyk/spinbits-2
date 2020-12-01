@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
 import { DEVICE } from '@assets/const';
+import { AnchorLink } from 'gatsby-plugin-anchor-links';
 
 const { LG } = DEVICE;
 
@@ -82,7 +82,7 @@ const DropdownMenuItem = ({ name, subitems }) => {
       const { slug, id, url, name: subname } = item;
       return (
         <DropdownItem key={`${slug}-${id}`}>
-          <Link to={url}>{subname}</Link>
+          <AnchorLink to={url}>{subname}</AnchorLink>
         </DropdownItem>
       );
     });
