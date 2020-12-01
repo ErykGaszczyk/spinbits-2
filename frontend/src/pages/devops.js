@@ -7,7 +7,7 @@ import HeadingSection from '@components/sections/HeadingSection';
 import Title from '@components/typography/Title';
 import Paragraph from '@components/typography/Paragraph';
 import devopsImg from '@images/devops.webp';
-import { devopsData } from '@utils/pages/devops-data';
+import { data } from '@utils/pages/devops-data';
 
 const devops = () => {
   return (
@@ -27,7 +27,7 @@ const devops = () => {
           equipment.
         </Paragraph>
       </HeadingSection>
-      <ApproachSection data={devopsData} />
+      <ApproachSection data={data} />
       <TechnologiesSliderSection />
       <TestimonialsSection />
       {/* // TODO: form */}

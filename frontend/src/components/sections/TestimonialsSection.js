@@ -38,7 +38,6 @@ const TestimonialParagraph = styled.p`
   font-family: 'Playfair Display';
   font-weight: 400;
   line-height: 1.875rem;
-  color: var(--primary-font-color);
 `;
 
 const AuthorParagraph = styled.p`
@@ -149,14 +148,14 @@ const TestimonialsSection = () => {
       return (
         <TestimonialColumn key={id}>
           <TestimonialBox data-sal="slide-up" data-sal-easing="easeOutCubic">
-            <TestimonialParagraph>{text}</TestimonialParagraph>
+            <TestimonialParagraph primary>{text}</TestimonialParagraph>
             <AuthorParagraph>{author}</AuthorParagraph>
             <Paragraph>{position}</Paragraph>
             {renderStars(stars)}
           </TestimonialBox>
           {row[1] && (
             <TestimonialBox data-sal="slide-up" data-sal-easing="easeOutCubic">
-              <TestimonialParagraph>{text2}</TestimonialParagraph>
+              <TestimonialParagraph primary>{text2}</TestimonialParagraph>
               <AuthorParagraph>{author2}</AuthorParagraph>
               <Paragraph>{position2}</Paragraph>
               {renderStars(stars2)}

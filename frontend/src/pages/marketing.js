@@ -6,7 +6,7 @@ import HeadingSection from '@components/sections/HeadingSection';
 import Title from '@components/typography/Title';
 import Paragraph from '@components/typography/Paragraph';
 import marketingImg from '@images/marketing.webp';
-import { marketingData } from '@utils/pages/marketing-data';
+import { data } from '@utils/pages/marketing-data';
 
 const marketing = () => {
   return (
@@ -29,7 +29,7 @@ const marketing = () => {
           industries - give us a try!
         </Paragraph>
       </HeadingSection>
-      <ApproachSection data={marketingData} />
+      <ApproachSection data={data} />
       {/* // TODO: form */}
       <TestimonialsSection />
     </Layout>

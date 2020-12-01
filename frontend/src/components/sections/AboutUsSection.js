@@ -53,7 +53,6 @@ const DescriptionContainer = styled.div`
 const DescriptionContainerTitle = styled.h3`
   ${BasicText}
   font-size: 1.5rem;
-  color: var(--primary-font-color);
   font-weight: 700;
 `;
 
@@ -99,7 +98,7 @@ const AboutUsSection = () => {
             <img src={icon} alt={`Spinbits - ${title}`} />
           </IconBox>
           <DescriptionContainer>
-            <DescriptionContainerTitle>{title}</DescriptionContainerTitle>
+            <DescriptionContainerTitle primary>{title}</DescriptionContainerTitle>
             <Paragraph>{text1}</Paragraph>
             {text2 && <Paragraph>{text2}</Paragraph>}
           </DescriptionContainer>

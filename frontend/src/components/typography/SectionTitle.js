@@ -7,10 +7,13 @@ const Title = styled.h3`
   ${BasicText}
   font-size: 2.25rem;
   font-weight: 800;
-  color: var(--primary-font-color);
 `;
 
-const SectionTitle = ({ children }) => <Title coloredStrong>{children}</Title>;
+const SectionTitle = ({ children }) => (
+  <Title coloredStrong primary>
+    {children}
+  </Title>
+);
 
 SectionTitle.propTypes = {
   children: PropTypes.node.isRequired,

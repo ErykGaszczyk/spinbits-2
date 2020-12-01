@@ -1,4 +1,4 @@
-export const marketingData = [
+export const data = [
   {
     id: 1,
     title: `Consulting and Audits`,

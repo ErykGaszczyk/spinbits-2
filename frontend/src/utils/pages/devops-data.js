@@ -1,4 +1,4 @@
-export const devopsData = [
+export const data = [
   {
     id: 1,
     title: `Technical Consulting`,

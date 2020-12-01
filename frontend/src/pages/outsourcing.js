@@ -13,13 +13,12 @@ import TestimonialsSection from '@components/sections/TestimonialsSection';
 import HeadingSection from '@components/sections/HeadingSection';
 import Title from '@components/typography/Title';
 import outsourcingImg from '@images/outsourcing.webp';
-import { approachData } from '@utils/pages/outsourcing-data';
+import { data as approachData } from '@utils/pages/outsourcing-data';
 
 const MainTitle = styled.h3`
   ${BasicText}
   font-size: 2.063rem;
   font-weight: 900;
-  color: var(--primary-font-color);
 `;
 
 const outsourcing = ({ data }) => {
@@ -47,7 +46,7 @@ const outsourcing = ({ data }) => {
         <Row>
           <Col xs={12} lg={5} data-sal="slide-right" data-sal-easing="easeOutCubic">
             <SectionTopTitle>Available developers</SectionTopTitle>
-            <MainTitle coloredStrong>
+            <MainTitle coloredStrong primary>
               Check out our awesome <strong>team</strong> members that are available for{' '}
               <strong>bodylease</strong> and <strong>oursource</strong>
             </MainTitle>

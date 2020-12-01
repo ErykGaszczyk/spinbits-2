@@ -11,12 +11,13 @@ const ChildrenContainter = styled.div`
 `;
 
 const Layout = ({ children }) => {
+  const url = window.location.pathname;
   return (
     <>
       <GlobalStyle />
       <Menu />
       <ChildrenContainter>{children}</ChildrenContainter>
-      <Faq />
+      {url !== '/terms-of-use' && <Faq />}
       <Footer />
     </>
   );

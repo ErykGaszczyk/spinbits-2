@@ -40,7 +40,6 @@ const CardTitle = styled.h3`
   ${BasicText}
   font-size: 1.4rem;
   font-weight: 800;
-  color: var(--primary-font-color);
   text-align: center;
 `;
 
@@ -121,7 +120,7 @@ const OurExpertise = () => {
             containerStyle={{ height: '100%' }}
           >
             <CardContainer onClick={handleFlip}>
-              <CardTitle>{title}</CardTitle>
+              <CardTitle primary>{title}</CardTitle>
               <ImgBox>
                 <img src={img} alt={`Spinbits - ${title}`} />
               </ImgBox>
@@ -129,7 +128,7 @@ const OurExpertise = () => {
             </CardContainer>
 
             <CardContainer onClick={handleFlip}>
-              <CardTitle>{title}</CardTitle>
+              <CardTitle primary>{title}</CardTitle>
               <Paragraph center>{description}</Paragraph>
               <FontAwesome icon={faAngleLeft} size="2x" />
             </CardContainer>

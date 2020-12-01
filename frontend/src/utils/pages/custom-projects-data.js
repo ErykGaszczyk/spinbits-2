@@ -1,4 +1,4 @@
-export const customProjectData = [
+export const data = [
   {
     id: 1,
     title: `Initiating`,

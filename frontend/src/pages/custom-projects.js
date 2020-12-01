@@ -8,7 +8,7 @@ import HeadingSection from '@components/sections/HeadingSection';
 import Title from '@components/typography/Title';
 import Paragraph from '@components/typography/Paragraph';
 import customProjectsImg from '@images/custom-projects.webp';
-import { customProjectData } from '@utils/pages/custom-projects-data';
+import { data } from '@utils/pages/custom-projects-data';
 
 const customProjects = () => {
   return (
@@ -29,7 +29,7 @@ const customProjects = () => {
         <Paragraph>You can count on our experience and friendly approach.</Paragraph>
       </HeadingSection>
       <OurExpertise />
-      <ApproachSection data={customProjectData} />
+      <ApproachSection data={data} />
       <PortfolioSection />
       <TestimonialsSection />
       {/* // TODO: form */}

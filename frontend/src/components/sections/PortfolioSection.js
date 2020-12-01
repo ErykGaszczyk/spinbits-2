@@ -56,7 +56,6 @@ const TechnologiesTitleParagraph = styled.h3`
   ${BasicText}
   font-size: 1.5rem; // 24px
   font-weight: 800;
-  color: var(--primary-font-color);
 `;
 
 const TechnologiesColumn = styled.div`
@@ -170,7 +169,7 @@ const PortfolioSection = () => {
           <TechnologiesLink to="/projects" data-sal="slide-up" data-sal-easing="easeOutCubic">
             <ItemBox>
               <TechnologiesParagraph>{technologies}</TechnologiesParagraph>
-              <TechnologiesTitleParagraph>{title}</TechnologiesTitleParagraph>
+              <TechnologiesTitleParagraph primary>{title}</TechnologiesTitleParagraph>
               <img src={img} alt={`Spinbits - ${title}`} />
             </ItemBox>
           </TechnologiesLink>
@@ -178,7 +177,7 @@ const PortfolioSection = () => {
             <TechnologiesLink to="/projects" data-sal="slide-up" data-sal-easing="easeOutCubic">
               <ItemBox>
                 <TechnologiesParagraph>{technologies2}</TechnologiesParagraph>
-                <TechnologiesTitleParagraph>{title2}</TechnologiesTitleParagraph>
+                <TechnologiesTitleParagraph primary>{title2}</TechnologiesTitleParagraph>
                 <img src={img2} alt={`Spinbits - ${title2}`} />
               </ItemBox>
             </TechnologiesLink>

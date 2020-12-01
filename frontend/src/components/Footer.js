@@ -38,7 +38,6 @@ const CopyrightContainer = styled.div`
 const CopyParagraph = styled.p`
   ${BasicText}
   font-weight: 600;
-  color: var(--primary-font-color);
   margin: 0;
 `;
 
@@ -60,7 +59,7 @@ const Footer = () => {
             </FontawesomeContainer>
           </FooterContainer>
           <CopyrightContainer>
-            <CopyParagraph>Copyright © 2020 spinbits.io</CopyParagraph>
+            <CopyParagraph primary>Copyright © 2020 spinbits.io</CopyParagraph>
           </CopyrightContainer>
         </Col>
       </Row>
