@@ -5,8 +5,10 @@ import SectionTopTitle from '@components/typography/SectionTopTitle';
 // import SectionTitle from '@components/typography/SectionTitle';
 import { BasicText } from '@components/typography/Paragraph';
 import { SpinContainer } from '@components/overrides';
-import SpinButton from '@components/SpinButton';
-import { Row, Col } from '@bootstrap-styled/v4';
+import { Button } from '@components/SpinButton';
+import { faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Row, Col, InputGroup, Input, InputGroupAddon } from '@bootstrap-styled/v4';
 
 const FormContainer = styled.form`
   background-color: var(--primary-font-color);
@@ -19,6 +21,38 @@ const FormTitle = styled.h3`
   font-size: 2.25rem;
   line-height: 3rem;
   color: var(--white);
+`;
+
+const CustomInputGroup = styled(InputGroup)`
+  margin: 0 0 1rem 0;
+
+  .input-group-addon {
+    background-color: var(--white);
+  }
+
+  .form-control {
+    padding: 0.5rem 0.75rem 0.5rem 0;
+    border-color: var(--white);
+
+    &--textarea {
+      padding: 0.5rem 0.75rem;
+      height: 6rem;
+    }
+
+    &:focus {
+      border-color: var(--white);
+    }
+  }
+`;
+
+const SendButton = styled.button`
+  ${Button}
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--white);
+    color: var(--secondary-font-color);
+  }
 `;
 
 const ContactFormSection = () => {
@@ -40,12 +74,29 @@ const ContactFormSection = () => {
                 </FormTitle>
               </Col>
               <Col md={5}>
-                <input type="text" placeholder="1" />
-                <input type="text" placeholder="2" />
+                <CustomInputGroup>
+                  <InputGroupAddon>
+                    <FontAwesomeIcon icon={faUser} />
+                  </InputGroupAddon>
+                  <Input type="text" id="inlineFormInputGroup" placeholder="Name and surname" />
+                </CustomInputGroup>
+
+                <CustomInputGroup>
+                  <InputGroupAddon>
+                    <FontAwesomeIcon icon={faEnvelope} />
+                  </InputGroupAddon>
+                  <Input type="text" id="inlineFormInputGroup" placeholder="E-mail" />
+                </CustomInputGroup>
               </Col>
               <Col md={7}>
-                <textarea name="contack_message" placeholder="3" />
-                <SpinButton>Send message</SpinButton>
+                <CustomInputGroup>
+                  <textarea
+                    className="form-control form-control--textarea"
+                    name="contack_message"
+                    placeholder="Message"
+                  />
+                </CustomInputGroup>
+                <SendButton>Send message</SendButton>
               </Col>
             </Row>
           </FormContainer>
