@@ -15,7 +15,6 @@ import { facebookAddress, linkedinAddress } from '@utils/variables';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Hero from '@images/who-we-are/hero.webp';
 import DownloadButton from '@components/DownloadButton';
-import { AnchorLink } from 'gatsby-plugin-anchor-links';
 
 const ButtonsContainer = styled.div`
   margin: 2rem 0 0 0;
@@ -67,9 +66,6 @@ const Home = () => {
       <TechnologiesSliderSection />
       <ServicesSection />
       <AboutUsSection />
-      <AnchorLink to="/#who-we-are">
-        <button type="button">dupa</button>
-      </AnchorLink>
       <PortfolioSection />
       <TestimonialsSection />
       {/* // TODO: form */}
