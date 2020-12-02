@@ -67,6 +67,10 @@ const SpinInput = css`
   border-radius: 0.25rem;
   border: 1px solid var(--white);
   padding: 0.5rem 0.75rem 0.5rem 0;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 const Input = styled.input`
@@ -117,6 +121,7 @@ const ContactFormSection = () => {
         }
       })
       .catch((error) => {
+        // eslint-disable-next-line
         console.error(error);
       });
   };
