@@ -30,6 +30,40 @@ const HeadingSection = ({ children, topTitle, img, id, seoTitle }) => {
     <>
       <Helmet>
         <title>{`Spinbits - ${seoTitle}`}</title>
+        {/* <!-- Global site tag (gtag.js) - Google Ads: 655719417 -->  */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-655719417" />
+        <script>
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "AW-655719417");
+          `}
+        </script>
+        <script>
+          {/* <!-- Event snippet for Click- free project estimation conversion page In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. --> */}
+          {`
+              function gtag_report_conversion(url) {
+              var callback = function () {
+                if (typeof url != "undefined") {
+                  window.location = url;
+                }
+              };
+              gtag("event", "conversion", {
+                send_to: "AW-655719417/AuffCLfMlusBEPn31bgC",
+                event_callback: callback,
+              });
+              return false;
+            }
+          `}
+        </script>
+        <script
+          async
+          custom-element="amp-analytics"
+          src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"
+        />
       </Helmet>
       <CustomContainer id={id}>
         <Row data-sal="slide-down" data-sal-easing="easeOutCubic">
