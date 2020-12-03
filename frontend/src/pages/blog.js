@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Link, graphql } from 'gatsby';
 import Layout from '@components/Layout';
@@ -56,22 +57,27 @@ const Blog = ({ data }) => {
   };
 
   return (
-    <Layout>
-      <SpinContainer>
-        <CustomRow>
-          <Col sm="12" data-sal="slide-down" data-sal-easing="easeOutCubic">
-            <SectionTopTitle>Blog</SectionTopTitle>
-            <Link to="/blog/2">
-              <FirstBlogBox>
-                <Title hover>{firstPost.title}</Title>
-                <Paragraph>{PostDate(firstPost.publishedAt)}</Paragraph>
-              </FirstBlogBox>
-            </Link>
-          </Col>
-        </CustomRow>
-        <Row>{renderColumns()}</Row>
-      </SpinContainer>
-    </Layout>
+    <>
+      <Helmet>
+        <title>Spinbits - Blog</title>
+      </Helmet>
+      <Layout>
+        <SpinContainer>
+          <CustomRow>
+            <Col sm="12" data-sal="slide-down" data-sal-easing="easeOutCubic">
+              <SectionTopTitle>Blog</SectionTopTitle>
+              <Link to="/blog/2">
+                <FirstBlogBox>
+                  <Title hover>{firstPost.title}</Title>
+                  <Paragraph>{PostDate(firstPost.publishedAt)}</Paragraph>
+                </FirstBlogBox>
+              </Link>
+            </Col>
+          </CustomRow>
+          <Row>{renderColumns()}</Row>
+        </SpinContainer>
+      </Layout>
+    </>
   );
 };
 
