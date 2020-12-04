@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Layout from '@components/Layout';
 import ServicesSection from '@components/sections/ServicesSection';
@@ -16,6 +16,7 @@ import { facebookAddress, linkedinAddress } from '@utils/variables';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Hero from '@images/who-we-are/hero.webp';
 import DownloadButton from '@components/DownloadButton';
+import FreeEstimationStepper from '@components/FreeEstimationStepper';
 
 const ButtonsContainer = styled.div`
   margin: 2rem 0 0 0;
@@ -38,9 +39,29 @@ const FontawesomeContainer = styled.div`
 const Home = () => {
   // eslint-disable-next-line
   const gtag = (url) => gtag_report_conversion(url);
+  const [openModal, setOpenModal] = useState(false);
+
+  const showModal = () => {
+    setOpenModal(true);
+  };
+
+  const callbackFunction = (childData) => {
+    setOpenModal(childData);
+  };
 
   return (
     <Layout>
+      <button
+        type="button"
+        onClick={() => {
+          showModal();
+        }}
+      >
+        OPEN
+      </button>
+      {openModal && (
+        <FreeEstimationStepper openFromParent={openModal} parentCallback={callbackFunction} />
+      )}
       <HeadingSection topTitle="Who we are" img={Hero} id="who-we-are">
         <Title coloredStrong>
           <strong>IT specialist</strong> that understand your <strong>business</strong> and will
