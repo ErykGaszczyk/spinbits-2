@@ -128,7 +128,11 @@ const ContactFormSection = () => {
 
   const renderForm = () => {
     return (
-      <FormContainer onSubmit={handleSubmit(onSubmit)}>
+      <FormContainer
+        onSubmit={handleSubmit(onSubmit)}
+        data-sal="slide-up"
+        data-sal-easing="easeOutCubic"
+      >
         <Row>
           <Col xs={12}>
             <FormTitle center bold>

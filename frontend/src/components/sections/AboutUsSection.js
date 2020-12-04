@@ -126,7 +126,12 @@ const AboutUsSection = () => {
             love to get to know you and make your plans real.
           </MarginParagraph>
           {/* // TODO: url */}
-          <SpinButton url="/" data-sal="slide-up" data-sal-easing="easeOutCubic">
+          <SpinButton
+            onClick="return gtag_report_conversion('/#contact');"
+            url="/#contact"
+            data-sal="slide-up"
+            data-sal-easing="easeOutCubic"
+          >
             Contact us
           </SpinButton>
           <Img

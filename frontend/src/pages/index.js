@@ -36,6 +36,9 @@ const FontawesomeContainer = styled.div`
 `;
 
 const Home = () => {
+  // eslint-disable-next-line
+  const gtag = (url) => gtag_report_conversion(url);
+
   return (
     <Layout>
       <HeadingSection topTitle="Who we are" img={Hero} id="who-we-are">
@@ -55,10 +58,10 @@ const Home = () => {
           <DownloadButton />
         </ButtonsContainer>
         <FontawesomeContainer>
-          <a href={facebookAddress}>
+          <a href={facebookAddress} onClick={() => gtag(faFacebookF)}>
             <FontAwesomeIcon icon={faFacebookF} />
           </a>
-          <a href={linkedinAddress}>
+          <a href={linkedinAddress} onClick={() => gtag(faLinkedinIn)}>
             <FontAwesomeIcon icon={faLinkedinIn} />
           </a>
         </FontawesomeContainer>
