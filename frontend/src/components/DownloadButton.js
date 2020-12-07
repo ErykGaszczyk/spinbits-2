@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '@components/SpinButton';
 import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const PortfolioButton = styled(Button)`
+const PortfolioButton = styled.button`
   border-bottom: 2px solid var(--light-font-color);
   background-color: transparent;
   padding: 1.063rem 0; // 17px

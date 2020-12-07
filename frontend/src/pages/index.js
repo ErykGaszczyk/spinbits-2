@@ -7,6 +7,7 @@ import PortfolioSection from '@components/sections/PortfolioSection';
 import TestimonialsSection from '@components/sections/TestimonialsSection';
 import TechnologiesSliderSection from '@components/sections/TechnologiesSliderSection';
 import HeadingSection from '@components/sections/HeadingSection';
+import ContactFormSection from '@components/sections/ContactFormSection';
 import Title from '@components/typography/Title';
 import Paragraph from '@components/typography/Paragraph';
 import SpinButton from '@components/SpinButton';
@@ -68,7 +69,7 @@ const Home = () => {
       <AboutUsSection />
       <PortfolioSection />
       <TestimonialsSection />
-      {/* // TODO: form */}
+      <ContactFormSection />
     </Layout>
   );
 };
