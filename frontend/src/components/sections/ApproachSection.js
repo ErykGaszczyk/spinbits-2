@@ -30,7 +30,6 @@ const ColumnTitle = styled.h3`
   ${BasicText}
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--primary-font-color);
 `;
 
 const Li = styled.li`
@@ -62,7 +61,7 @@ const ApproachSection = ({ data }) => {
           data-sal-delay={100 * index}
         >
           <ColumnBox>
-            <ColumnTitle>{title}</ColumnTitle>
+            <ColumnTitle primary>{title}</ColumnTitle>
             {description.map((el) => {
               return typeof el === 'string' ? (
                 <Paragraph key={el}>{el}</Paragraph>

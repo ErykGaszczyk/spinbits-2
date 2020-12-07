@@ -108,7 +108,6 @@ const ServiceContainer = styled.div`
 const ServiceContainerTitle = styled.h3`
   ${BasicText}
   font-size: 1.5rem;
-  color: var(--primary-font-color);
   font-weight: 700;
 `;
 
@@ -206,7 +205,7 @@ const ServicesSection = () => {
                 <img src={icon} alt={`Spinbits - ${title}`} />
               </IconBox>
               <div>
-                <ServiceContainerTitle>{title}</ServiceContainerTitle>
+                <ServiceContainerTitle primary>{title}</ServiceContainerTitle>
                 <Paragraph>{text1}</Paragraph>
                 <Paragraph>{text2}</Paragraph>
               </div>

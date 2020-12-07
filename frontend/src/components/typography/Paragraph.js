@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 export const BasicText = css`
   font-size: 1rem;
   margin: 0 0 1rem 0;
-  color: var(--thirdary-font-color);
+  color: ${(props) => (props.primary ? 'var(--primary-font-color)' : 'var(--thirdary-font-color)')};
   font-weight: ${(props) => (!props.bold ? 'normal' : '800')};
   transition: 0.5s;
   ${(props) => props.center && `text-align: center`};
@@ -23,8 +23,8 @@ const P = styled.p`
   ${BasicText}
 `;
 
-const Paragraph = ({ children, bold, hover, coloredStrong, center }) => (
-  <P bold={bold} hover={hover} coloredStrong={coloredStrong} center={center}>
+const Paragraph = ({ children, bold, hover, coloredStrong, center, primary }) => (
+  <P bold={bold} hover={hover} coloredStrong={coloredStrong} center={center} primary={primary}>
     {children}
   </P>
 );
@@ -35,6 +35,7 @@ Paragraph.propTypes = {
   hover: PropTypes.bool,
   coloredStrong: PropTypes.bool,
   center: PropTypes.bool,
+  primary: PropTypes.bool,
 };
 
 Paragraph.defaultProps = {
@@ -42,6 +43,7 @@ Paragraph.defaultProps = {
   hover: false,
   coloredStrong: false,
   center: false,
+  primary: false,
 };
 
 export default Paragraph;

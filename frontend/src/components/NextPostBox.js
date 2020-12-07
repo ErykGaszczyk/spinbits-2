@@ -12,7 +12,6 @@ const TagParagraph = styled.p`
 
 const TitleParagraph = styled.h3`
   ${BasicText}
-  color: var(--primary-font-color);
   font-size: 1.75rem;
 `;
 
@@ -34,7 +33,7 @@ const NextPostBox = ({ id, title, date }) => {
             {/* TODO: */}
             {/* Technologie trzeba dorobić w strapi */}
           </TagParagraph>
-          <TitleParagraph bold hover>
+          <TitleParagraph bold primary hover>
             {title}
           </TitleParagraph>
         </div>

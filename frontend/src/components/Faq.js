@@ -13,7 +13,6 @@ const MainTitle = styled.h3`
   ${BasicText}
   font-size: 2.063rem;
   font-weight: 900;
-  color: var(--primary-font-color);
 `;
 
 const Faq = ({ data }) => {
@@ -27,7 +26,7 @@ const Faq = ({ data }) => {
       </Row>
       <Row>
         <Col xs={12} lg={5} data-sal="slide-right" data-sal-easing="easeOutCubic">
-          <MainTitle coloredStrong>
+          <MainTitle coloredStrong primary>
             Any <strong>questions?</strong> Don&apos;t hesitate to ask us
           </MainTitle>
           {/* {TODO: add <a href/>} */}
