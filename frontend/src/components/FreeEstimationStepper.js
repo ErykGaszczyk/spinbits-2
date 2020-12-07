@@ -1,16 +1,54 @@
 import React, { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Modal from 'react-modal';
+import { SpinInput } from '@components/sections/ContactFormSection';
 import Paragraph, { BasicText } from '@components/typography/Paragraph';
 import { Button } from '@components/SpinButton';
 import CustomProject from '@images/stepper/custom_project.webp';
 import DigitalMarketing from '@images/stepper/digital_marketing.webp';
 import StaffOutsourcing from '@images/stepper/staff_outsourcing.webp';
 import SupportMaintenance from '@images/stepper/support_maintenance.webp';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCheck,
+  faUser,
+  faEnvelope,
+  faPhoneAlt,
+  faCalculator,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Container, Row, Col } from '@bootstrap-styled/v4';
+import { Container, Row, Col, InputGroup, InputGroupAddon } from '@bootstrap-styled/v4';
+
+const CustomInputGroup = styled(InputGroup)`
+  margin: 0 0 1rem 0;
+  display: flex;
+  flex-direction: column;
+  .input-group-addon {
+    background-color: #f8f8f8;
+    border: none;
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+`;
+
+const InputFlexBox = styled.div`
+  display: flex;
+`;
+
+const Input = styled.input`
+  ${SpinInput}
+  background-color: #f8f8f8;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  width: 100%;
+`;
+
+const ErrorMessage = styled.p`
+  ${BasicText}
+  margin: 1rem 0 0 0;
+  color: var(--secondary-font-color);
+`;
 
 const CustomRow = styled(Row)`
   margin: 0 0 2rem 0;
@@ -19,6 +57,7 @@ const CustomRow = styled(Row)`
 const CustomColButton = styled(Col)`
   display: flex;
   justify-content: flex-end;
+  padding: 0 0 2rem 0;
 `;
 
 const NextStepButton = styled.button`
@@ -112,6 +151,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
   ];
   const [step, setStep] = useState(1);
   const [modalIsOpen, setModalIsOpen] = useState(openFromParent);
+  const { register, handleSubmit, errors, reset } = useForm();
 
   useEffect(() => {
     Modal.setAppElement('body');
@@ -121,8 +161,6 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
     setModalIsOpen(false);
     parentCallback(false);
   };
-
-  console.log('step', step);
 
   const nextStep = () => {
     if (step < 4) setStep((origin) => origin + 1);
@@ -167,14 +205,18 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
       <>
         <CustomRow>
           <Col xs={12}>
-            <Paragraph bold>Service</Paragraph>
+            <Paragraph bold>Budget</Paragraph>
           </Col>
           <Col xs={12}>
-            <Paragraph>rande slider</Paragraph>
+            <Paragraph>rander slider</Paragraph>
           </Col>
         </CustomRow>
       </>
     );
+  };
+
+  const errorHandler = (message) => {
+    return <ErrorMessage bold>{message}</ErrorMessage>;
   };
 
   const renderContactDetails = () => {
@@ -184,8 +226,90 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
           <Col xs={12}>
             <Paragraph bold>Contact Details</Paragraph>
           </Col>
-          <Col xs={12}>
-            <Paragraph>inputy</Paragraph>
+          <Col md={6}>
+            <CustomInputGroup>
+              <InputFlexBox>
+                <InputGroupAddon>
+                  <FontAwesomeIcon icon={faUser} />
+                </InputGroupAddon>
+                <Input
+                  type="text"
+                  placeholder="Name and surname"
+                  // TODOFIX:
+                  name="name_surname"
+                  ref={register({
+                    required: { value: true, message: '*This field is required.' },
+                    minLength: { value: 3, message: '*Min 3 characters' },
+                    maxLength: { value: 20, message: '*Max 20 characters' },
+                  })}
+                />
+              </InputFlexBox>
+              {errors.name_surname !== undefined && errorHandler(errors.name_surname.message)}
+            </CustomInputGroup>
+          </Col>
+
+          <Col md={6}>
+            <CustomInputGroup>
+              <InputFlexBox>
+                <InputGroupAddon>
+                  <FontAwesomeIcon icon={faCalculator} />
+                </InputGroupAddon>
+                <Input
+                  type="text"
+                  placeholder="Company name"
+                  // TODOFIX:
+                  name="name_surname"
+                  ref={register({
+                    required: { value: true, message: '*This field is required.' },
+                    minLength: { value: 3, message: '*Min 3 characters' },
+                    maxLength: { value: 20, message: '*Max 20 characters' },
+                  })}
+                />
+              </InputFlexBox>
+              {errors.name_surname !== undefined && errorHandler(errors.name_surname.message)}
+            </CustomInputGroup>
+          </Col>
+
+          <Col md={6}>
+            <CustomInputGroup>
+              <InputFlexBox>
+                <InputGroupAddon>
+                  <FontAwesomeIcon icon={faPhoneAlt} />
+                </InputGroupAddon>
+                <Input
+                  type="text"
+                  placeholder="Phone"
+                  // TODOFIX:
+                  name="phone"
+                  ref={register({
+                    required: { value: true, message: '*This field is required.' },
+                    pattern: { value: /^\S+@\S+$/i, message: '*Inccorect email' },
+                  })}
+                />
+              </InputFlexBox>
+              {errors.email !== undefined && errorHandler(errors.email.message)}
+            </CustomInputGroup>
+          </Col>
+
+          <Col md={6}>
+            <CustomInputGroup>
+              <InputFlexBox>
+                <InputGroupAddon>
+                  <FontAwesomeIcon icon={faEnvelope} />
+                </InputGroupAddon>
+                <Input
+                  type="text"
+                  placeholder="E-mail"
+                  // TODOFIX:
+                  name="email"
+                  ref={register({
+                    required: { value: true, message: '*This field is required.' },
+                    pattern: { value: /^\S+@\S+$/i, message: '*Inccorect email' },
+                  })}
+                />
+              </InputFlexBox>
+              {errors.email !== undefined && errorHandler(errors.email.message)}
+            </CustomInputGroup>
           </Col>
         </CustomRow>
       </>

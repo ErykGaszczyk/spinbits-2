@@ -63,7 +63,7 @@ const InputFlexBox = styled.div`
   display: flex;
 `;
 
-const SpinInput = css`
+export const SpinInput = css`
   border-radius: 0.25rem;
   border: 1px solid var(--white);
   padding: 0.5rem 0.75rem 0.5rem 0;
