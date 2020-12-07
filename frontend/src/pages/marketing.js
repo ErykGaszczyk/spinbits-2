@@ -11,7 +11,7 @@ import { data } from '@utils/pages/marketing-data';
 const marketing = () => {
   return (
     <Layout>
-      <HeadingSection topTitle="Digital marketing" img={marketingImg}>
+      <HeadingSection topTitle="Digital marketing" img={marketingImg} seoTitle="Digital Marketing">
         <Title coloredStrong>
           <strong>Grow up</strong> your business <strong>quickly</strong> and{' '}
           <strong>efficiently</strong>

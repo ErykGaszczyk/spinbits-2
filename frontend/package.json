@@ -30,6 +30,7 @@
     "gatsby-plugin-anchor-links": "^1.2.0",
     "gatsby-plugin-fontawesome-css": "^1.0.0",
     "gatsby-plugin-google-fonts": "^1.0.1",
+    "gatsby-plugin-react-helmet": "^3.6.0",
     "gatsby-plugin-scroll-reveal": "^0.0.7",
     "gatsby-plugin-styled-components": "^3.3.14",
     "gatsby-source-graphql": "^2.7.7",
@@ -37,6 +38,7 @@
     "react": "^16.12.0",
     "react-card-flip": "^1.0.11",
     "react-dom": "^16.12.0",
+    "react-helmet": "^6.1.0",
     "react-hook-form": "^6.12.2",
     "react-markdown": "^5.0.2",
     "react-slick": "^0.27.13",
@@ -45,7 +47,7 @@
     "styled-normalize": "^8.0.7"
   },
   "devDependencies": {
-    "eslint": "^7.2.0",
+    "eslint": "^7.14.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-import-resolver-alias": "^1.1.2",

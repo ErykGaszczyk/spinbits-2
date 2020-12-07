@@ -30,7 +30,9 @@ const Faq = ({ data }) => {
             Any <strong>questions?</strong> Don&apos;t hesitate to ask us
           </MainTitle>
           {/* {TODO: add <a href/>} */}
-          <SpinButton url="/">Ask a question</SpinButton>
+          <SpinButton onClick="return gtag_report_conversion('/#contact');" url="/#contact">
+            Ask a question
+          </SpinButton>
         </Col>
         <Col xs={12} lg={7}>
           <SpinAccordion data={faqs} />
