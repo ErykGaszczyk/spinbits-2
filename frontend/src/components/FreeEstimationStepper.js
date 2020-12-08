@@ -20,6 +20,8 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Container, Row, Col, InputGroup, InputGroupAddon } from '@bootstrap-styled/v4';
 
+const axios = require('axios');
+
 const CustomInputGroup = styled(InputGroup)`
   margin: 0 0 1rem 0;
   display: flex;
@@ -102,7 +104,7 @@ const ServiceBox = styled.div`
   }
 `;
 
-const Checkbox = styled.div`
+const Checkbox = styled.button`
   height: 25px;
   width: 25px;
   display: flex;
@@ -128,24 +130,28 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
       id: 1,
       img: `${CustomProject}`,
       title: `Custom Project`,
+      name: `dupa`,
       slug: `custom-project`,
     },
     {
       id: 2,
       img: `${SupportMaintenance}`,
       title: `Support & Maintenance`,
+      name: `dupa2`,
       slug: `support-maintenance`,
     },
     {
       id: 3,
       img: `${StaffOutsourcing}`,
       title: `Staff Outsourcing`,
+      name: `dupa3`,
       slug: `staff-outsourcing`,
     },
     {
       id: 4,
       img: `${DigitalMarketing}`,
       title: `Digital Marketing`,
+      name: `dupa4`,
       slug: `digital-marketing`,
     },
   ];
@@ -157,25 +163,56 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
     Modal.setAppElement('body');
   }, [modalIsOpen, setModalIsOpen]);
 
+  const onSubmit = (data) => {
+    axios({
+      method: 'post',
+      // url: `https://api.spinbits.io/emails/contacts`,
+      url: `https://httpbin.org/post`,
+      data,
+    })
+      .then((response) => {
+        console.log(data);
+        if (response.status === 200) {
+          // reset();
+        }
+      })
+      .catch((error) => {
+        // eslint-disable-next-line
+        console.error(error);
+      });
+  };
+
   const closeModal = () => {
     setModalIsOpen(false);
     parentCallback(false);
   };
 
-  const nextStep = () => {
+  const nextStep = (event) => {
+    event.preventDefault();
     if (step < 4) setStep((origin) => origin + 1);
   };
 
   const renderServicesCheckbox = () => {
     return serviceData.map((item) => {
       const [serviceCheckbox, setServiceCheckbox] = useState(false);
-      const { id, img, title, slug } = item;
+      const handleServiceBoxes = (event) => {
+        console.log(event.target);
+        console.log(event.target.checked);
+        event.preventDefault();
+        setServiceCheckbox((origin) => !origin);
+      };
+
+      const { id, img, title, name, slug } = item;
       return (
         <Col lg={3} key={`${id}-${slug}`}>
           <ServiceBox serviceCheckbox={serviceCheckbox}>
             <Checkbox
+              type="checkbox"
+              value={id}
+              name={name}
+              ref={register({ required: false })}
               serviceCheckbox={serviceCheckbox}
-              onClick={() => setServiceCheckbox((origin) => !origin)}
+              onClick={(event) => handleServiceBoxes(event)}
             >
               {serviceCheckbox && <FontAwesome icon={faCheck} />}
             </Checkbox>
@@ -346,8 +383,8 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
     return (
       <Row>
         <CustomColButton>
-          {step < 4 && <NextStepButton onClick={() => nextStep()}>Next Step</NextStepButton>}
-          {step === 4 && <NextStepButton onClick={() => nextStep()}>Send request</NextStepButton>}
+          {step < 4 && <NextStepButton onClick={(e) => nextStep(e)}>Next Step</NextStepButton>}
+          {step === 4 && <NextStepButton onClick={() => onSubmit()}>Send request</NextStepButton>}
         </CustomColButton>
       </Row>
     );
@@ -382,8 +419,10 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
             <Subtitle center>Let us know about your idea or how can we help you.</Subtitle>
           </Col>
         </CustomRow>
-        {handleStepRender()}
-        {renderButtons()}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {handleStepRender()}
+          {renderButtons()}
+        </form>
       </Modal>
     </Container>
   );
