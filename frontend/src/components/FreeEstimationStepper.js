@@ -72,6 +72,11 @@ const Subtitle = styled.p`
   color: var(--secondary-font-color);
 `;
 
+const StepTitle = styled.p`
+  ${BasicText}
+  color: var(--light-font-color);
+`;
+
 const BoxTitle = styled.p`
   ${BasicText}
   ${(props) => props.checked && 'color: var(--white)'};
@@ -141,6 +146,18 @@ const StyledCheckbox = styled.div`
   }
 `;
 
+const Textarea = styled.textarea`
+  ${SpinInput}
+  background-color: #f8f8f8;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  height: 6rem;
+
+  &:focus {
+    border-color: var(--white);
+  }
+`;
+
 const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
   const serviceData = [
     {
@@ -181,6 +198,8 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
   }, [modalIsOpen, setModalIsOpen]);
 
   const onSubmit = (data) => {
+    // eslint-disable-next-line
+        console.log(data);
     axios({
       method: 'post',
       // url: `https://api.spinbits.io/emails/contacts`,
@@ -188,8 +207,6 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
       data,
     })
       .then((response) => {
-        // eslint-disable-next-line
-        console.log(data);
         if (response.status === 200) {
           // reset();
         }
@@ -210,6 +227,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
     if (step < 4) setStep((origin) => origin + 1);
   };
 
+  // eslint-disable-next-line
   const CustomCheckbox = ({ checked, name, value, onChange }) => {
     return (
       <CheckboxContainer>
@@ -266,7 +284,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
     return (
       <CustomRow>
         <Col xs={12}>
-          <Paragraph bold>Service</Paragraph>
+          <StepTitle bold>Service</StepTitle>
         </Col>
         {renderServicesCheckbox()}
       </CustomRow>
@@ -278,7 +296,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
       <>
         <CustomRow>
           <Col xs={12}>
-            <Paragraph bold>Budget</Paragraph>
+            <StepTitle bold>Budget</StepTitle>
           </Col>
           <Col xs={12}>
             <Paragraph>rander slider</Paragraph>
@@ -297,7 +315,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
       <>
         <CustomRow>
           <Col xs={12}>
-            <Paragraph bold>Contact Details</Paragraph>
+            <StepTitle bold>Contact Details</StepTitle>
           </Col>
           <Col md={6}>
             <CustomInputGroup>
@@ -398,10 +416,22 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
       <>
         <CustomRow>
           <Col xs={12}>
-            <Paragraph bold>Additional info (optional)</Paragraph>
+            <StepTitle bold>Additional info (optional)</StepTitle>
           </Col>
           <Col xs={12}>
-            <Paragraph>pliki</Paragraph>
+            <CustomInputGroup>
+              <InputFlexBox>
+                <Textarea
+                  type="text"
+                  placeholder="Message"
+                  // TODOFIX:
+                  name="message"
+                  defaultValue="Message"
+                  ref={register}
+                />
+              </InputFlexBox>
+              {errors.name_surname !== undefined && errorHandler(errors.name_surname.message)}
+            </CustomInputGroup>
           </Col>
         </CustomRow>
       </>
@@ -471,18 +501,10 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
 FreeEstimationStepper.propTypes = {
   openFromParent: PropTypes.bool,
   parentCallback: PropTypes.func.isRequired,
-  checked: PropTypes.bool,
-  name: PropTypes.string,
-  value: PropTypes.string,
-  onChange: PropTypes.func,
 };
 
 FreeEstimationStepper.defaultProps = {
   openFromParent: false,
-  checked: false,
-  name: '',
-  value: '',
-  onChange: () => {},
 };
 
 export default FreeEstimationStepper;
