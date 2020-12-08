@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Modal from 'react-modal';
 import { SpinInput } from '@components/sections/ContactFormSection';
 import Paragraph, { BasicText } from '@components/typography/Paragraph';
@@ -10,13 +10,7 @@ import CustomProject from '@images/stepper/custom_project.webp';
 import DigitalMarketing from '@images/stepper/digital_marketing.webp';
 import StaffOutsourcing from '@images/stepper/staff_outsourcing.webp';
 import SupportMaintenance from '@images/stepper/support_maintenance.webp';
-import {
-  faCheck,
-  faUser,
-  faEnvelope,
-  faPhoneAlt,
-  faCalculator,
-} from '@fortawesome/free-solid-svg-icons';
+import { faUser, faEnvelope, faPhoneAlt, faCalculator } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Container, Row, Col, InputGroup, InputGroupAddon } from '@bootstrap-styled/v4';
 
@@ -80,7 +74,7 @@ const Subtitle = styled.p`
 
 const BoxTitle = styled.p`
   ${BasicText}
-  ${(props) => props.serviceCheckbox && 'color: var(--white)'};
+  ${(props) => props.checked && 'color: var(--white)'};
 `;
 
 const ServiceBox = styled.div`
@@ -92,36 +86,59 @@ const ServiceBox = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-color: ${(props) =>
-    !props.serviceCheckbox ? 'var(--white)' : 'var(--light-font-color)'};
+  background-color: ${(props) => (!props.checked ? 'var(--white)' : 'var(--light-font-color)')};
   transition: 0.3s;
+
+  &:hover {
+    cursor: pointer;
+  }
 
   img {
     height: auto;
     max-width: 60px;
     transition: 0.3s;
-    ${(props) => props.serviceCheckbox && 'filter: brightness(0) invert(1)'};
+    ${(props) => props.checked && 'filter: brightness(0) invert(1)'};
   }
 `;
 
-const Checkbox = styled.button`
-  height: 25px;
-  width: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const CheckboxContainer = styled.div`
+  display: inline-block;
+  vertical-align: middle;
   align-self: flex-end;
-  border-radius: 50%;
-  background-color: var(--white);
-  cursor: pointer;
   margin: 0.5rem 0.5rem 0 0;
-  transition: 0.3s;
-  border: 2px solid
-    ${(props) => (!props.serviceCheckbox ? 'var(--thirdary-font-color)' : 'var(--white)')};
 `;
 
-const FontAwesome = styled(FontAwesomeIcon)`
-  color: var(--light-font-color);
+const Icon = styled.svg`
+  fill: none;
+  stroke: var(--light-font-color);
+  stroke-width: 2px;
+`;
+
+const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+`;
+
+const StyledCheckbox = styled.div`
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: var(--white);
+  border: 2px solid ${(props) => (!props.checked ? 'var(--thirdary-font-color)' : 'var(--white)')};
+  border-radius: 50%;
+  transition: all 150ms;
+
+  ${Icon} {
+    visibility: ${(props) => (props.checked ? 'visible' : 'hidden')};
+  }
 `;
 
 const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
@@ -130,28 +147,28 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
       id: 1,
       img: `${CustomProject}`,
       title: `Custom Project`,
-      name: `dupa`,
+      name: `custom_project`,
       slug: `custom-project`,
     },
     {
       id: 2,
       img: `${SupportMaintenance}`,
       title: `Support & Maintenance`,
-      name: `dupa2`,
+      name: `support_maintenance`,
       slug: `support-maintenance`,
     },
     {
       id: 3,
       img: `${StaffOutsourcing}`,
       title: `Staff Outsourcing`,
-      name: `dupa3`,
+      name: `staff_outsourcing`,
       slug: `staff-outsourcing`,
     },
     {
       id: 4,
       img: `${DigitalMarketing}`,
       title: `Digital Marketing`,
-      name: `dupa4`,
+      name: `digital_marketing`,
       slug: `digital-marketing`,
     },
   ];
@@ -171,6 +188,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
       data,
     })
       .then((response) => {
+        // eslint-disable-next-line
         console.log(data);
         if (response.status === 200) {
           // reset();
@@ -192,32 +210,50 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
     if (step < 4) setStep((origin) => origin + 1);
   };
 
+  const CustomCheckbox = ({ checked, name, value, onChange }) => {
+    return (
+      <CheckboxContainer>
+        <HiddenCheckbox
+          ref={register}
+          value={value}
+          name={name}
+          checked={checked}
+          onChange={onChange}
+        />
+        <StyledCheckbox checked={checked}>
+          <Icon viewBox="0 0 24 24">
+            <polyline points="20 6 9 17 4 12" />
+          </Icon>
+        </StyledCheckbox>
+      </CheckboxContainer>
+    );
+  };
+
   const renderServicesCheckbox = () => {
     return serviceData.map((item) => {
-      const [serviceCheckbox, setServiceCheckbox] = useState(false);
+      const [checked, setChecked] = useState(false);
+
       const handleServiceBoxes = (event) => {
-        console.log(event.target);
-        console.log(event.target.checked);
         event.preventDefault();
-        setServiceCheckbox((origin) => !origin);
+        setChecked((origin) => !origin);
+      };
+
+      const handleCheckboxChange = (event) => {
+        setChecked(event.target.checked[0]);
       };
 
       const { id, img, title, name, slug } = item;
       return (
         <Col lg={3} key={`${id}-${slug}`}>
-          <ServiceBox serviceCheckbox={serviceCheckbox}>
-            <Checkbox
-              type="checkbox"
-              value={id}
-              name={name}
-              ref={register({ required: false })}
-              serviceCheckbox={serviceCheckbox}
-              onClick={(event) => handleServiceBoxes(event)}
-            >
-              {serviceCheckbox && <FontAwesome icon={faCheck} />}
-            </Checkbox>
-            <img src={img} alt="Spinbits - Custom Projects" />
-            <BoxTitle serviceCheckbox={serviceCheckbox} center primary bold>
+          <ServiceBox checked={checked} onClick={(event) => handleServiceBoxes(event)}>
+            <CustomCheckbox
+              name="service"
+              value={name}
+              checked={checked}
+              onChange={handleCheckboxChange}
+            />
+            <img src={img} alt={`Spinbits - ${name}`} />
+            <BoxTitle checked={checked} center primary bold>
               {title}
             </BoxTitle>
           </ServiceBox>
@@ -274,6 +310,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
                   placeholder="Name and surname"
                   // TODOFIX:
                   name="name_surname"
+                  defaultValue="aaasd@asd.asd"
                   ref={register({
                     required: { value: true, message: '*This field is required.' },
                     minLength: { value: 3, message: '*Min 3 characters' },
@@ -296,6 +333,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
                   placeholder="Company name"
                   // TODOFIX:
                   name="name_surname"
+                  defaultValue="asd@asd.asd"
                   ref={register({
                     required: { value: true, message: '*This field is required.' },
                     minLength: { value: 3, message: '*Min 3 characters' },
@@ -318,6 +356,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
                   placeholder="Phone"
                   // TODOFIX:
                   name="phone"
+                  defaultValue="asd@asd.asd"
                   ref={register({
                     required: { value: true, message: '*This field is required.' },
                     pattern: { value: /^\S+@\S+$/i, message: '*Inccorect email' },
@@ -339,6 +378,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
                   placeholder="E-mail"
                   // TODOFIX:
                   name="email"
+                  defaultValue="asd@asd.asd"
                   ref={register({
                     required: { value: true, message: '*This field is required.' },
                     pattern: { value: /^\S+@\S+$/i, message: '*Inccorect email' },
@@ -431,10 +471,18 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
 FreeEstimationStepper.propTypes = {
   openFromParent: PropTypes.bool,
   parentCallback: PropTypes.func.isRequired,
+  checked: PropTypes.bool,
+  name: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 FreeEstimationStepper.defaultProps = {
   openFromParent: false,
+  checked: false,
+  name: '',
+  value: '',
+  onChange: () => {},
 };
 
 export default FreeEstimationStepper;
