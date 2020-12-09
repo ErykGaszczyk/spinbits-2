@@ -12,7 +12,14 @@ import CustomProject from '@images/stepper/custom_project.webp';
 import DigitalMarketing from '@images/stepper/digital_marketing.webp';
 import StaffOutsourcing from '@images/stepper/staff_outsourcing.webp';
 import SupportMaintenance from '@images/stepper/support_maintenance.webp';
-import { faUser, faEnvelope, faPhoneAlt, faCalculator } from '@fortawesome/free-solid-svg-icons';
+import {
+  faUser,
+  faEnvelope,
+  faPhoneAlt,
+  faCalculator,
+  faTrashAlt,
+  faFile,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Container, Row, Col, InputGroup, InputGroupAddon } from '@bootstrap-styled/v4';
 
@@ -160,6 +167,42 @@ const Textarea = styled.textarea`
   }
 `;
 
+const DropArea = styled.p`
+  ${BasicText}
+  border: 2px dashed var(--shadow);
+  padding: 1rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const RemoveItemBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  p {
+    display: inline-block;
+    color: var(--primary-font-color);
+    font-weight: 800;
+    padding: 0 0 0 0.5rem;
+  }
+
+  button {
+    background: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+`;
+
+const RemoveItemFontAwesome = styled(FontAwesomeIcon)`
+  color: ${(props) =>
+    props.primary ? 'var(--secondary-font-color)' : 'var(--thirdary-font-color)'};
+`;
+
 const StyledSlider = styled(ReactSlider)`
   width: 100%;
   height: 0.438rem; // 7px
@@ -173,7 +216,7 @@ const StyledThumb = styled.div`
   background-color: var(--white);
   border: 3px solid var(--light-font-color);
   border-radius: 50%;
-  color: #fff;
+  color: var(--white);
   cursor: grab;
   top: calc(50% - 1.313rem / 2);
 `;
@@ -181,23 +224,23 @@ const StyledThumb = styled.div`
 const StyledTrack = styled.div`
   top: 0;
   bottom: 0;
-  background: ${(props) => (props.index === 1 ? 'var(--light-font-color)' : '#ddd')};
+  background: ${(props) => (props.index === 1 ? 'var(--light-font-color)' : '#f8f8f8')};
   border-radius: 999px;
 `;
 
 const Tooltip = styled.div`
   position: absolute;
-  top: -45px;
+  top: -2.813rem;
   left: calc(100% - 1.313rem / 2);
-  margin: 0 0 0 -24px;
+  margin: 0 0 0 -1.5rem;
   text-align: center;
   display: block;
-  font-size: 12px;
-  color: #fff;
-  background: #1a0b60;
-  width: 50px;
-  padding: 7px;
-  border-radius: 5px;
+  font-size: 0.75rem;
+  color: var(--white);
+  background: var(--primary-font-color);
+  width: 3.125rem;
+  padding: 0.438rem;
+  border-radius: 0.313rem;
 
   &:after {
     position: absolute;
@@ -209,7 +252,7 @@ const Tooltip = styled.div`
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 5px solid #1a0b60;
+    border-top: 5px solid var(--primary-font-color);
   }
 `;
 
@@ -267,14 +310,24 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
   };
 
   const renderFileList = () => {
-    return filesToSend.map((file) => (
-      <li key={file.path}>
-        {file.path} - {file.size} bytes
-        <button type="button" onClick={() => removeFile(file)}>
-          REMOVE
-        </button>
-      </li>
-    ));
+    return filesToSend.map((file) => {
+      const { path, name } = file;
+      return (
+        <Col md={8} key={path}>
+          <RemoveItemBox>
+            <div>
+              <p>
+                <RemoveItemFontAwesome primary icon={faFile} />
+              </p>
+              <p>{name}</p>
+            </div>
+            <button type="button" onClick={() => removeFile(file)}>
+              <RemoveItemFontAwesome icon={faTrashAlt} />
+            </button>
+          </RemoveItemBox>
+        </Col>
+      );
+    });
   };
 
   const renderDropzone = () => {
@@ -284,12 +337,16 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
         <div {...getRootProps()}>
           {/* eslint-disable-next-line */}
           <input {...getInputProps()} />
-          <p>Drag n drop some files here, or click to select files</p>
+          <DropArea coloredStrong>
+            Drag your file here or <strong>browse</strong>
+          </DropArea>
         </div>
-        <aside>
-          <h4>Files</h4>
-          <ul>{renderFileList()}</ul>
-        </aside>
+        {filesToSend.length > 0 && (
+          <aside>
+            <h4>Files</h4>
+            <div>{renderFileList()}</div>
+          </aside>
+        )}
       </section>
     );
   };
