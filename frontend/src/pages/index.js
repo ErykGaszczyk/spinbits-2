@@ -16,7 +16,7 @@ import { facebookAddress, linkedinAddress } from '@utils/variables';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Hero from '@images/who-we-are/hero.webp';
 import DownloadButton from '@components/DownloadButton';
-import FreeEstimationStepper from '@components/FreeEstimationStepper';
+import FreeEstimationStepper from '@components/FreeEstimationStepper/FreeEstimationStepper';
 
 const ButtonsContainer = styled.div`
   margin: 2rem 0 0 0;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDropzone } from 'react-dropzone';
+import ReactSlider from 'react-slider';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Modal from 'react-modal';
@@ -159,6 +160,59 @@ const Textarea = styled.textarea`
   }
 `;
 
+const StyledSlider = styled(ReactSlider)`
+  width: 100%;
+  height: 0.438rem; // 7px
+  margin: 3rem 0 0 0;
+`;
+
+const StyledThumb = styled.div`
+  height: 1.313rem;
+  width: 1.313rem;
+  text-align: center;
+  background-color: var(--white);
+  border: 3px solid var(--light-font-color);
+  border-radius: 50%;
+  color: #fff;
+  cursor: grab;
+  top: calc(50% - 1.313rem / 2);
+`;
+
+const StyledTrack = styled.div`
+  top: 0;
+  bottom: 0;
+  background: ${(props) => (props.index === 1 ? 'var(--light-font-color)' : '#ddd')};
+  border-radius: 999px;
+`;
+
+const Tooltip = styled.div`
+  position: absolute;
+  top: -45px;
+  left: calc(100% - 1.313rem / 2);
+  margin: 0 0 0 -24px;
+  text-align: center;
+  display: block;
+  font-size: 12px;
+  color: #fff;
+  background: #1a0b60;
+  width: 50px;
+  padding: 7px;
+  border-radius: 5px;
+
+  &:after {
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #1a0b60;
+  }
+`;
+
 const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
   const serviceData = [
     {
@@ -195,6 +249,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
   const { register, handleSubmit, errors } = useForm();
 
   const [filesToSend, setFilesToSend] = useState([]);
+  const [budgetRange, setBudgetRange] = useState([1, 10]);
 
   const onDrop = useCallback(
     (acceptedFiles) => {
@@ -247,6 +302,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
     const customData = {
       ...data,
       files: filesToSend,
+      range: budgetRange,
     };
     axios({
       method: 'post',
@@ -349,7 +405,21 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
             <StepTitle bold>Budget</StepTitle>
           </Col>
           <Col xs={12}>
-            <Paragraph>rander slider</Paragraph>
+            <StyledSlider
+              className="horizontal-slider"
+              defaultValue={budgetRange}
+              max={50}
+              ariaLabel={['Leftmost thumb', 'Middle thumb', 'Rightmost thumb']}
+              onAfterChange={(state) => setBudgetRange([state[0], state[1]])}
+              renderTrack={(props, state) => <StyledTrack {...props} index={state.index} />}
+              renderThumb={(props, state) => (
+                <StyledThumb {...props}>
+                  <Tooltip>${state.valueNow}K</Tooltip>
+                </StyledThumb>
+              )}
+              pearling
+              minDistance={1}
+            />
           </Col>
         </CustomRow>
       </>
