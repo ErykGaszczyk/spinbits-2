@@ -47,12 +47,31 @@ const Input = styled.input`
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
   width: 100%;
+  color: var(--thirdary-font-color);
+`;
+
+const PrimaryInput = styled(Input)`
+  border: 1px solid #f1f5ff;
+  background-color: #f1f5ff;
+  color: var(--primary-font-color);
+  font-weight: 800;
+
+  &::placeholder {
+    color: var(--primary-font-color);
+    font-weight: 800;
+  }
+`;
+
+const PrimaryInputGroupAddon = styled(InputGroupAddon)`
+  background: #f1f5ff !important;
+  color: var(--primary-font-color) !important;
 `;
 
 const ErrorMessage = styled.p`
   ${BasicText}
   margin: 1rem 0 0 0;
   color: var(--secondary-font-color);
+  font-size: 12px;
 `;
 
 const CustomRow = styled(Row)`
@@ -161,6 +180,7 @@ const Textarea = styled.textarea`
   width: 100%;
   padding: 0.5rem 0.75rem;
   height: 6rem;
+  color: var(--thirdary-font-color);
 
   &:focus {
     border-color: var(--white);
@@ -365,7 +385,8 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
       method: 'post',
       // url: `https://api.spinbits.io/emails/estimation`,
       url: `https://httpbin.org/post`,
-      customData,
+      // customData,
+      data,
     })
       .then((response) => {
         // eslint-disable-next-line
@@ -484,7 +505,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
   };
 
   const errorHandler = (message) => {
-    return <ErrorMessage bold>{message}</ErrorMessage>;
+    return <ErrorMessage>{message}</ErrorMessage>;
   };
 
   const renderContactDetails = () => {
@@ -505,7 +526,6 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
                   placeholder="Name and surname"
                   // TODOFIX:
                   name="name_surname"
-                  defaultValue="aaasd@asd.asd"
                   ref={register({
                     required: { value: true, message: '*This field is required.' },
                     minLength: { value: 3, message: '*Min 3 characters' },
@@ -520,15 +540,14 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
           <Col md={6}>
             <CustomInputGroup>
               <InputFlexBox>
-                <InputGroupAddon>
+                <PrimaryInputGroupAddon>
                   <FontAwesomeIcon icon={faCalculator} />
-                </InputGroupAddon>
-                <Input
+                </PrimaryInputGroupAddon>
+                <PrimaryInput
                   type="text"
                   placeholder="Company name"
                   // TODOFIX:
-                  name="name_surname"
-                  defaultValue="asd@asd.asd"
+                  name="company_name"
                   ref={register({
                     required: { value: true, message: '*This field is required.' },
                     minLength: { value: 3, message: '*Min 3 characters' },
@@ -536,7 +555,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
                   })}
                 />
               </InputFlexBox>
-              {errors.name_surname !== undefined && errorHandler(errors.name_surname.message)}
+              {errors.company_name !== undefined && errorHandler(errors.company_name.message)}
             </CustomInputGroup>
           </Col>
 
@@ -547,33 +566,30 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
                   <FontAwesomeIcon icon={faPhoneAlt} />
                 </InputGroupAddon>
                 <Input
-                  type="text"
+                  type="tel"
                   placeholder="Phone"
                   // TODOFIX:
                   name="phone"
-                  defaultValue="asd@asd.asd"
                   ref={register({
-                    required: { value: true, message: '*This field is required.' },
-                    pattern: { value: /^\S+@\S+$/i, message: '*Inccorect email' },
+                    required: { value: false, message: '*This field is required.' },
                   })}
                 />
               </InputFlexBox>
-              {errors.email !== undefined && errorHandler(errors.email.message)}
+              {errors.phone !== undefined && errorHandler(errors.phone.message)}
             </CustomInputGroup>
           </Col>
 
           <Col md={6}>
             <CustomInputGroup>
               <InputFlexBox>
-                <InputGroupAddon>
+                <PrimaryInputGroupAddon>
                   <FontAwesomeIcon icon={faEnvelope} />
-                </InputGroupAddon>
-                <Input
+                </PrimaryInputGroupAddon>
+                <PrimaryInput
                   type="text"
                   placeholder="E-mail"
                   // TODOFIX:
                   name="email"
-                  defaultValue="asd@asd.asd"
                   ref={register({
                     required: { value: true, message: '*This field is required.' },
                     pattern: { value: /^\S+@\S+$/i, message: '*Inccorect email' },
@@ -607,7 +623,6 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
                   ref={register}
                 />
               </InputFlexBox>
-              {errors.name_surname !== undefined && errorHandler(errors.name_surname.message)}
             </CustomInputGroup>
           </Col>
           <Col xs={12}>{renderDropzone()}</Col>
