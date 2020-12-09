@@ -10,7 +10,7 @@ import HeadingSection from '@components/sections/HeadingSection';
 import ContactFormSection from '@components/sections/ContactFormSection';
 import Title from '@components/typography/Title';
 import Paragraph from '@components/typography/Paragraph';
-import SpinButton from '@components/SpinButton';
+import { Button } from '@components/SpinButton';
 import { faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { facebookAddress, linkedinAddress } from '@utils/variables';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -36,6 +36,10 @@ const FontawesomeContainer = styled.div`
   }
 `;
 
+const EstimationButton = styled.button`
+  ${Button}
+`;
+
 const Home = () => {
   // eslint-disable-next-line
   const gtag = (url) => gtag_report_conversion(url);
@@ -51,14 +55,6 @@ const Home = () => {
 
   return (
     <Layout>
-      <button
-        type="button"
-        onClick={() => {
-          showModal();
-        }}
-      >
-        OPEN
-      </button>
       {openModal && (
         <FreeEstimationStepper openFromParent={openModal} parentCallback={callbackFunction} />
       )}
@@ -75,7 +71,7 @@ const Home = () => {
         <Paragraph>Let&apos;s talk and make the bits spin :-)</Paragraph>
         <ButtonsContainer>
           {/* TODO: url */}
-          <SpinButton url="/">Free project estimation</SpinButton>
+          <EstimationButton onClick={() => showModal()}>Free project estimation</EstimationButton>
           <DownloadButton />
         </ButtonsContainer>
         <FontawesomeContainer>

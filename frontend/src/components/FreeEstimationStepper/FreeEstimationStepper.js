@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Modal from 'react-modal';
 import { SpinInput } from '@components/sections/ContactFormSection';
-import Paragraph, { BasicText } from '@components/typography/Paragraph';
+import { BasicText } from '@components/typography/Paragraph';
 import { Button } from '@components/SpinButton';
 import CustomProject from '@images/stepper/custom_project.webp';
 import DigitalMarketing from '@images/stepper/digital_marketing.webp';
@@ -19,11 +19,22 @@ import {
   faCalculator,
   faTrashAlt,
   faFile,
+  faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Container, Row, Col, InputGroup, InputGroupAddon } from '@bootstrap-styled/v4';
 
 const axios = require('axios');
+
+const CloseButton = styled.button`
+  color: var(--secondary-font-color);
+  background: none;
+  float: right;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 const CustomInputGroup = styled(InputGroup)`
   margin: 0 0 1rem 0;
@@ -671,9 +682,13 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
           },
         }}
       >
-        <button type="button" onClick={closeModal}>
-          close
-        </button>
+        <Row>
+          <Col>
+            <CloseButton type="button" onClick={closeModal}>
+              <FontAwesomeIcon icon={faTimes} size="2x" />
+            </CloseButton>
+          </Col>
+        </Row>
         <CustomRow>
           <Col>
             <Title coloredStrong center bold>
