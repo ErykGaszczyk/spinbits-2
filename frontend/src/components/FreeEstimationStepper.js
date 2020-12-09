@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDropzone } from 'react-dropzone';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Modal from 'react-modal';
@@ -189,24 +190,73 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
       slug: `digital-marketing`,
     },
   ];
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(4);
   const [modalIsOpen, setModalIsOpen] = useState(openFromParent);
-  const { register, handleSubmit, errors, reset } = useForm();
+  const { register, handleSubmit, errors } = useForm();
+
+  const [filesToSend, setFilesToSend] = useState([]);
+
+  const onDrop = useCallback(
+    (acceptedFiles) => {
+      setFilesToSend([...filesToSend, ...acceptedFiles]);
+    },
+    [filesToSend]
+  );
+
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+
+  const removeFile = (file) => {
+    const newFiles = [...filesToSend];
+    newFiles.splice(newFiles.indexOf(file), 1);
+    setFilesToSend(newFiles);
+  };
+
+  const renderFileList = () => {
+    return filesToSend.map((file) => (
+      <li key={file.path}>
+        {file.path} - {file.size} bytes
+        <button type="button" onClick={() => removeFile(file)}>
+          REMOVE
+        </button>
+      </li>
+    ));
+  };
+
+  const renderDropzone = () => {
+    return (
+      <section>
+        {/* eslint-disable-next-line */}
+        <div {...getRootProps()}>
+          {/* eslint-disable-next-line */}
+          <input {...getInputProps()} />
+          <p>Drag n drop some files here, or click to select files</p>
+        </div>
+        <aside>
+          <h4>Files</h4>
+          <ul>{renderFileList()}</ul>
+        </aside>
+      </section>
+    );
+  };
 
   useEffect(() => {
     Modal.setAppElement('body');
   }, [modalIsOpen, setModalIsOpen]);
 
   const onSubmit = (data) => {
-    // eslint-disable-next-line
-        console.log(data);
+    const customData = {
+      ...data,
+      files: filesToSend,
+    };
     axios({
       method: 'post',
-      // url: `https://api.spinbits.io/emails/contacts`,
+      // url: `https://api.spinbits.io/emails/estimation`,
       url: `https://httpbin.org/post`,
-      data,
+      customData,
     })
       .then((response) => {
+        // eslint-disable-next-line
+        console.log('customData', customData);
         if (response.status === 200) {
           // reset();
         }
@@ -433,6 +483,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
               {errors.name_surname !== undefined && errorHandler(errors.name_surname.message)}
             </CustomInputGroup>
           </Col>
+          <Col xs={12}>{renderDropzone()}</Col>
         </CustomRow>
       </>
     );
