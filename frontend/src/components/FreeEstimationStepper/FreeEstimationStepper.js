@@ -97,6 +97,14 @@ const CustomColButton = styled(Col)`
 
 const NextStepButton = styled.button`
   ${Button}
+  margin: 1rem 0 0 0;
+
+  &:disabled {
+    background-color: var(--thirdary-font-color);
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
 `;
 
 const Title = styled.p`
@@ -185,6 +193,28 @@ const StyledCheckbox = styled.div`
   }
 `;
 
+const PrivacyBox = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const PrivacyCheckboxContainer = styled(CheckboxContainer)`
+  margin: 0 0.5rem 0 0;
+`;
+
+const PrivacyStyledCheckbox = styled(StyledCheckbox)`
+  border-radius: 20%;
+  border-color: var(--secondary-font-color);
+  ${Icon} {
+    stroke: var(--secondary-font-color);
+  }
+`;
+
+const PrivacyText = styled.p`
+  ${BasicText}
+  margin: 0;
+`;
+
 const Textarea = styled.textarea`
   ${SpinInput}
   background-color: #f8f8f8;
@@ -205,6 +235,9 @@ const DropArea = styled.p`
 
   &:hover {
     cursor: pointer;
+  }
+  &:focus {
+    outline: none;
   }
 `;
 
@@ -288,6 +321,18 @@ const Tooltip = styled.div`
   }
 `;
 
+const GreetingsBox = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const GreetingsText = styled.p`
+  ${BasicText}
+  font-size: 5rem;
+`;
+
 const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
   const serviceData = [
     {
@@ -325,6 +370,8 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
 
   const [filesToSend, setFilesToSend] = useState([]);
   const [budgetRange, setBudgetRange] = useState([1, 10]);
+  const [privacyCheck, setPrivacyCheck] = useState(false);
+  const [sended, setSended] = useState(false);
 
   const onDrop = useCallback(
     (acceptedFiles) => {
@@ -363,6 +410,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
                   ref={register}
                   name="attachments_qty"
                   style={{ display: 'none' }}
+                  defaultValue={0}
                 />
               </label>
             </div>
@@ -401,34 +449,37 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
     Modal.setAppElement('body');
   }, [modalIsOpen, setModalIsOpen]);
 
+  const closeModal = () => {
+    setModalIsOpen(false);
+    parentCallback(false);
+  };
+
   const onSubmit = (data) => {
-    // const price_range = `$${budgetRange[0]}K - $${budgetRange[1]}K`;
+    let price_range = '';
+    let service = '';
+    if (data !== undefined) {
+      price_range = `$${data.price_range[0]}K - $${data.price_range[1]}K`;
+      service = data.service.join();
+    }
     axios({
       method: 'post',
       // url: `https://api.spinbits.io/emails/estimation`,
       url: `https://httpbin.org/post`,
-      // customData,
       data: {
         ...data,
-        // attachments_qty: filesToSend,
-        // price_range,
+        price_range,
+        service,
       },
     })
       .then((response) => {
-        // eslint-disable-next-line
         if (response.status === 200) {
-          // reset();
+          // closeModal();
         }
       })
       .catch((error) => {
         // eslint-disable-next-line
         console.error(error);
       });
-  };
-
-  const closeModal = () => {
-    setModalIsOpen(false);
-    parentCallback(false);
   };
 
   const nextStep = (event) => {
@@ -659,14 +710,86 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
     );
   };
 
+  const renderPrivacyCheckbox = () => {
+    const handleServiceBoxes = (event) => {
+      event.preventDefault();
+      setPrivacyCheck((origin) => !origin);
+    };
+
+    return (
+      <PrivacyBox>
+        <PrivacyCheckboxContainer onClick={(event) => handleServiceBoxes(event)}>
+          <HiddenCheckbox name="privacy_policy" checked={privacyCheck} />
+          <PrivacyStyledCheckbox checked={privacyCheck}>
+            <Icon viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </Icon>
+          </PrivacyStyledCheckbox>
+        </PrivacyCheckboxContainer>
+        <PrivacyText>
+          By sending request, you agree to the <strong>Terms and Conditions</strong> and{' '}
+          <strong>Privacy Policy</strong>
+        </PrivacyText>
+      </PrivacyBox>
+    );
+  };
+
   const renderButtons = () => {
     return (
-      <Row>
-        <CustomColButton>
-          {step < 4 && <NextStepButton onClick={(e) => nextStep(e)}>Next Step</NextStepButton>}
-          {step === 4 && <NextStepButton onClick={() => onSubmit()}>Send request</NextStepButton>}
-        </CustomColButton>
-      </Row>
+      <>
+        {step === 4 && (
+          <Row>
+            <Col>{renderPrivacyCheckbox()}</Col>
+          </Row>
+        )}
+
+        <Row>
+          <CustomColButton>
+            {step < 4 && <NextStepButton onClick={(e) => nextStep(e)}>Next Step</NextStepButton>}
+            {step === 4 && (
+              <NextStepButton onClick={() => onSubmit()} disabled={!privacyCheck}>
+                Send request
+              </NextStepButton>
+            )}
+          </CustomColButton>
+        </Row>
+      </>
+    );
+  };
+
+  const renderModalForm = () => {
+    return (
+      <>
+        <Row>
+          <Col>
+            <CloseButton type="button" onClick={closeModal}>
+              <FontAwesomeIcon icon={faTimes} size="2x" />
+            </CloseButton>
+          </Col>
+        </Row>
+        <CustomRow>
+          <Col>
+            <Title coloredStrong center bold>
+              Get a <strong>free</strong> estimation in <strong>24 hours</strong>
+            </Title>
+            <Subtitle center>Let us know about your idea or how can we help you.</Subtitle>
+          </Col>
+        </CustomRow>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {handleStepRender()}
+          {renderButtons()}
+        </form>
+      </>
+    );
+  };
+
+  const renderGreetings = () => {
+    return (
+      <GreetingsBox>
+        <GreetingsText bold primary>
+          Email was sended
+        </GreetingsText>
+      </GreetingsBox>
     );
   };
 
@@ -688,25 +811,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
           },
         }}
       >
-        <Row>
-          <Col>
-            <CloseButton type="button" onClick={closeModal}>
-              <FontAwesomeIcon icon={faTimes} size="2x" />
-            </CloseButton>
-          </Col>
-        </Row>
-        <CustomRow>
-          <Col>
-            <Title coloredStrong center bold>
-              Get a <strong>free</strong> estimation in <strong>24 hours</strong>
-            </Title>
-            <Subtitle center>Let us know about your idea or how can we help you.</Subtitle>
-          </Col>
-        </CustomRow>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          {handleStepRender()}
-          {renderButtons()}
-        </form>
+        {!sended ? renderModalForm() : renderGreetings()}
       </Modal>
     </Container>
   );
