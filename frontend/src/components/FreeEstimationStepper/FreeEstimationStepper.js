@@ -387,21 +387,20 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
   }, [modalIsOpen, setModalIsOpen]);
 
   const onSubmit = (data) => {
-    const customData = {
-      ...data,
-      files: filesToSend,
-      range: budgetRange,
-    };
+    // const price_range = `$${budgetRange[0]}K - $${budgetRange[1]}K`;
     axios({
       method: 'post',
       // url: `https://api.spinbits.io/emails/estimation`,
       url: `https://httpbin.org/post`,
       // customData,
-      data,
+      data: {
+        ...data,
+        // attachments_qty: filesToSend,
+        // price_range,
+      },
     })
       .then((response) => {
         // eslint-disable-next-line
-        console.log('customData', customData);
         if (response.status === 200) {
           // reset();
         }
@@ -535,7 +534,6 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
                 <Input
                   type="text"
                   placeholder="Name and surname"
-                  // TODOFIX:
                   name="name_surname"
                   ref={register({
                     required: { value: true, message: '*This field is required.' },
@@ -557,7 +555,6 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
                 <PrimaryInput
                   type="text"
                   placeholder="Company name"
-                  // TODOFIX:
                   name="company_name"
                   ref={register({
                     required: { value: true, message: '*This field is required.' },
@@ -579,7 +576,6 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
                 <Input
                   type="tel"
                   placeholder="Phone"
-                  // TODOFIX:
                   name="phone"
                   ref={register({
                     required: { value: false, message: '*This field is required.' },
@@ -599,7 +595,6 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
                 <PrimaryInput
                   type="text"
                   placeholder="E-mail"
-                  // TODOFIX:
                   name="email"
                   ref={register({
                     required: { value: true, message: '*This field is required.' },
@@ -625,14 +620,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
           <Col xs={12}>
             <CustomInputGroup>
               <InputFlexBox>
-                <Textarea
-                  type="text"
-                  placeholder="Message"
-                  // TODOFIX:
-                  name="message"
-                  defaultValue="Message"
-                  ref={register}
-                />
+                <Textarea type="text" placeholder="Message" name="additional_info" ref={register} />
               </InputFlexBox>
             </CustomInputGroup>
           </Col>
