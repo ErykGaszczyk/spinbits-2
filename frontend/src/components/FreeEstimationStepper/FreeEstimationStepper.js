@@ -352,7 +352,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
       slug: `digital-marketing`,
     },
   ];
-  const [step, setStep] = useState(4);
+  const [step, setStep] = useState(1);
   const [modalIsOpen, setModalIsOpen] = useState(openFromParent);
   const { register, handleSubmit, errors, control } = useForm();
 
