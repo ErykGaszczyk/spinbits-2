@@ -321,18 +321,6 @@ const Tooltip = styled.div`
   }
 `;
 
-const GreetingsBox = styled.div`
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const GreetingsText = styled.p`
-  ${BasicText}
-  font-size: 5rem;
-`;
-
 const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
   const serviceData = [
     {
@@ -371,7 +359,6 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
   const [filesToSend, setFilesToSend] = useState([]);
   const [budgetRange, setBudgetRange] = useState([1, 10]);
   const [privacyCheck, setPrivacyCheck] = useState(false);
-  const [sended, setSended] = useState(false);
 
   const onDrop = useCallback(
     (acceptedFiles) => {
@@ -410,7 +397,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
                   ref={register}
                   name="attachments_qty"
                   style={{ display: 'none' }}
-                  defaultValue={0}
+                  defaultValue="0"
                 />
               </label>
             </div>
@@ -463,8 +450,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
     }
     axios({
       method: 'post',
-      // url: `https://api.spinbits.io/emails/estimation`,
-      url: `https://httpbin.org/post`,
+      url: `https://api.spinbits.io/emails/estimation`,
       data: {
         ...data,
         price_range,
@@ -473,7 +459,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
     })
       .then((response) => {
         if (response.status === 200) {
-          // closeModal();
+          closeModal();
         }
       })
       .catch((error) => {
@@ -783,16 +769,6 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
     );
   };
 
-  const renderGreetings = () => {
-    return (
-      <GreetingsBox>
-        <GreetingsText bold primary>
-          Email was sended
-        </GreetingsText>
-      </GreetingsBox>
-    );
-  };
-
   return (
     <Container>
       <Modal
@@ -811,7 +787,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
           },
         }}
       >
-        {!sended ? renderModalForm() : renderGreetings()}
+        {renderModalForm()}
       </Modal>
     </Container>
   );
