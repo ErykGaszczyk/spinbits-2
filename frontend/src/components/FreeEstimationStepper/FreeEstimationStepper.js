@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { useDropzone } from 'react-dropzone';
 import ReactSlider from 'react-slider';
 import PropTypes from 'prop-types';
@@ -213,7 +213,8 @@ const RemoveItemBox = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  p {
+  p,
+  label {
     display: inline-block;
     color: var(--primary-font-color);
     font-weight: 800;
@@ -320,7 +321,7 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
   ];
   const [step, setStep] = useState(4);
   const [modalIsOpen, setModalIsOpen] = useState(openFromParent);
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, control } = useForm();
 
   const [filesToSend, setFilesToSend] = useState([]);
   const [budgetRange, setBudgetRange] = useState([1, 10]);
@@ -333,6 +334,10 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
   );
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
+
+  const errorHandler = (message) => {
+    return <ErrorMessage>{message}</ErrorMessage>;
+  };
 
   const removeFile = (file) => {
     const newFiles = [...filesToSend];
@@ -350,8 +355,18 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
               <p>
                 <RemoveItemFontAwesome primary icon={faFile} />
               </p>
-              <p>{name}</p>
+              <label htmlFor={name}>
+                {name}
+                <input
+                  id={name}
+                  value={filesToSend.length}
+                  ref={register}
+                  name="attachments_qty"
+                  style={{ display: 'none' }}
+                />
+              </label>
             </div>
+
             <button type="button" onClick={() => removeFile(file)}>
               <RemoveItemFontAwesome icon={faTrashAlt} />
             </button>
@@ -493,29 +508,32 @@ const FreeEstimationStepper = ({ openFromParent, parentCallback }) => {
             <StepTitle bold>Budget</StepTitle>
           </Col>
           <Col xs={12}>
-            <StyledSlider
-              className="horizontal-slider"
+            <Controller
+              as={
+                <StyledSlider
+                  className="horizontal-slider"
+                  defaultValue={budgetRange}
+                  max={50}
+                  ariaLabel={['Leftmost thumb', 'Middle thumb', 'Rightmost thumb']}
+                  onAfterChange={(state) => setBudgetRange([state[0], state[1]])}
+                  renderTrack={(props, state) => <StyledTrack {...props} index={state.index} />}
+                  renderThumb={(props, state) => (
+                    <StyledThumb {...props}>
+                      <Tooltip>${state.valueNow}K</Tooltip>
+                    </StyledThumb>
+                  )}
+                  pearling
+                  minDistance={1}
+                />
+              }
+              name="price_range"
               defaultValue={budgetRange}
-              max={50}
-              ariaLabel={['Leftmost thumb', 'Middle thumb', 'Rightmost thumb']}
-              onAfterChange={(state) => setBudgetRange([state[0], state[1]])}
-              renderTrack={(props, state) => <StyledTrack {...props} index={state.index} />}
-              renderThumb={(props, state) => (
-                <StyledThumb {...props}>
-                  <Tooltip>${state.valueNow}K</Tooltip>
-                </StyledThumb>
-              )}
-              pearling
-              minDistance={1}
+              control={control}
             />
           </Col>
         </CustomRow>
       </>
     );
-  };
-
-  const errorHandler = (message) => {
-    return <ErrorMessage>{message}</ErrorMessage>;
   };
 
   const renderContactDetails = () => {
