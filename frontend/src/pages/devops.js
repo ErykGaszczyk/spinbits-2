@@ -6,6 +6,8 @@ import TestimonialsSection from '@components/sections/TestimonialsSection';
 import HeadingSection from '@components/sections/HeadingSection';
 import Title from '@components/typography/Title';
 import Paragraph from '@components/typography/Paragraph';
+import ContactFormSection from '@components/sections/ContactFormSection';
+import Faq from '@components/Faq';
 import devopsImg from '@images/devops.webp';
 import { data } from '@utils/pages/devops-data';
 
@@ -30,7 +32,8 @@ const devops = () => {
       <ApproachSection data={data} />
       <TechnologiesSliderSection />
       <TestimonialsSection />
-      {/* // TODO: form */}
+      <Faq />
+      <ContactFormSection />
     </Layout>
   );
 };

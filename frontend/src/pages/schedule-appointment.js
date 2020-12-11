@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Layout from '@components/Layout';
 import { Helmet } from 'react-helmet';
+import Layout from '@components/Layout';
 import SectionTopTitle from '@components/typography/SectionTopTitle';
+import ContactFormSection from '@components/sections/ContactFormSection';
 import { SpinContainer } from '@components/overrides';
 import { Row, Col } from '@bootstrap-styled/v4';
 import { DEVICE } from '@assets/const';
@@ -48,6 +49,7 @@ const scheduleAppointment = () => {
             </Col>
           </Row>
         </SpinContainer>
+        <ContactFormSection />
       </Layout>
     </>
   );

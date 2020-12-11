@@ -1,14 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { graphql } from 'gatsby';
 import { TitleText } from '@components/typography/Title';
 import Layout from '@components/Layout';
-import PropTypes from 'prop-types';
-import { graphql } from 'gatsby';
 import SectionTopTitle from '@components/typography/SectionTopTitle';
-import ReactMarkdown from 'react-markdown';
-import { Container, Row, Col } from '@bootstrap-styled/v4';
-import styled from 'styled-components';
 import Paragraph, { BasicText } from '@components/typography/Paragraph';
 import NextPostBox from '@components/NextPostBox';
+import ContactFormSection from '@components/sections/ContactFormSection';
+import Faq from '@components/Faq';
+import { SpinContainer } from '@components/overrides';
+import ReactMarkdown from 'react-markdown';
+import { Container, Row, Col } from '@bootstrap-styled/v4';
 
 const ContentRow = styled(Row)`
   margin: 2rem 0 0 0;
@@ -126,7 +129,7 @@ const Template = ({ data }) => {
 
   return (
     <Layout>
-      <Container>
+      <SpinContainer>
         <Row data-sal="slide-down" data-sal-easing="easeOutCubic">
           <Col sm="12">
             <SectionTopTitle>Blog</SectionTopTitle>
@@ -148,7 +151,9 @@ const Template = ({ data }) => {
             {renderSidePosts()}
           </Col>
         </ContentRow>
-      </Container>
+      </SpinContainer>
+      <Faq />
+      <ContactFormSection />
     </Layout>
   );
 };
