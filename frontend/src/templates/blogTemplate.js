@@ -11,7 +11,7 @@ import ContactFormSection from '@components/sections/ContactFormSection';
 import Faq from '@components/Faq';
 import { SpinContainer } from '@components/overrides';
 import ReactMarkdown from 'react-markdown';
-import { Container, Row, Col } from '@bootstrap-styled/v4';
+import { Row, Col } from '@bootstrap-styled/v4';
 
 const ContentRow = styled(Row)`
   margin: 2rem 0 0 0;
