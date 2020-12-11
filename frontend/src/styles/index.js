@@ -17,9 +17,15 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html {
+    
     height: 100%;
     font-size: 16px;
     font-family: 'Nunito', sans-serif; 
+    height: auto !important; /* reset default to allow scroll navigation */
+    
+    .calendly-page-scroll-locked {
+      height: 100% !important;  /* set height when popup is active */
+    }
 
     body {}
 
