@@ -3,15 +3,13 @@ import styled from 'styled-components';
 import { Row, Col } from '@bootstrap-styled/v4';
 import { SpinContainer } from '@components/overrides';
 import Blockchain from '@images/technologies/blockchain.webp';
-import Css3 from '@images/technologies/css3.webp';
+import Selenium from '@images/technologies/selenium.webp';
 import Flutter from '@images/technologies/flutter.webp';
-import Html5 from '@images/technologies/html5.webp';
 import Javascript from '@images/technologies/javascript.webp';
 import Php from '@images/technologies/php.webp';
 import Python from '@images/technologies/python.webp';
-import ReactLogo from '@images/technologies/react.webp';
-import Symfony from '@images/technologies/symfony.webp';
-import Wordpress from '@images/technologies/wordpress.webp';
+import Aws from '@images/technologies/aws.webp';
+import Gcp from '@images/technologies/gcp.webp';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -39,63 +37,51 @@ const TechnologiesSliderSection = () => {
   const technologies = [
     {
       id: 1,
-      icon: `${Blockchain}`,
-      slug: `blockchain`,
-      url: `https://www.blockchain.com/`,
-    },
-    {
-      id: 2,
-      icon: `${Css3}`,
-      slug: `css3`,
-      url: `https://developer.mozilla.org/en-US/docs/Archive/CSS3`,
-    },
-    {
-      id: 3,
-      icon: `${Flutter}`,
-      slug: `flutter`,
-      url: `https://flutter.dev/`,
-    },
-    {
-      id: 4,
-      icon: `${Html5}`,
-      slug: `html5`,
-      url: `https://developer.mozilla.org/en-US/docs/Web/HTML`,
-    },
-    {
-      id: 5,
-      icon: `${Javascript}`,
-      slug: `javascript`,
-      url: `https://developer.mozilla.org/en-US/docs/Web/JavaScript`,
-    },
-    {
-      id: 6,
       icon: `${Php}`,
       slug: `php`,
       url: `https://www.php.net/`,
     },
     {
-      id: 7,
+      id: 2,
       icon: `${Python}`,
       slug: `python`,
       url: `https://www.python.org/`,
     },
     {
+      id: 3,
+      icon: `${Javascript}`,
+      slug: `javascript`,
+      url: `https://developer.mozilla.org/en-US/docs/Web/JavaScript`,
+    },
+    {
+      id: 4,
+      icon: `${Flutter}`,
+      slug: `flutter`,
+      url: `https://flutter.dev/`,
+    },
+    {
+      id: 5,
+      icon: `${Blockchain}`,
+      slug: `blockchain`,
+      url: `https://www.blockchain.com/`,
+    },
+    {
+      id: 6,
+      icon: `${Selenium}`,
+      slug: `selenium`,
+      url: `https://www.selenium.dev/`,
+    },
+    {
+      id: 7,
+      icon: `${Aws}`,
+      slug: `aws`,
+      url: `https://aws.amazon.com/`,
+    },
+    {
       id: 8,
-      icon: `${ReactLogo}`,
-      slug: `react`,
-      url: `https://reactjs.org/`,
-    },
-    {
-      id: 9,
-      icon: `${Symfony}`,
-      slug: `symfony`,
-      url: `https://symfony.com/`,
-    },
-    {
-      id: 10,
-      icon: `${Wordpress}`,
-      slug: `wordpress`,
-      url: `https://wordpress.com/`,
+      icon: `${Gcp}`,
+      slug: `gcp`,
+      url: `https://cloud.google.com/`,
     },
   ];
 
@@ -105,7 +91,7 @@ const TechnologiesSliderSection = () => {
     infinite: true,
     arrows: false,
     speed: 500,
-    slidesToShow: 9,
+    slidesToShow: 7,
     slidesToScroll: 1,
     pauseOnFocus: true,
     responsive: [
