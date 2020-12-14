@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 import Layout from '@components/Layout';
 import ServicesSection from '@components/sections/ServicesSection';
 import AboutUsSection from '@components/sections/AboutUsSection';
@@ -40,40 +41,53 @@ const Home = () => {
   const gtag = (url) => gtag_report_conversion(url);
 
   return (
-    <Layout>
-      <HeadingSection topTitle="Who we are" img={Hero} id="who-we-are">
-        <Title coloredStrong>
-          <strong>IT specialist</strong> that understand your <strong>business</strong> and will
-          help you <strong>grow</strong>
-        </Title>
-        <Paragraph>
-          We are a passionate group of specialists that love to create, build and deliver
-          tailor-made IT solutions. Creating our own products and building business with our
-          partners give us best understanding of your needs.
-        </Paragraph>
-        <Paragraph>Let&apos;s talk and make the bits spin :-)</Paragraph>
-        <ButtonsContainer>
-          {/* TODO: url */}
-          <SpinButton url="/">Free project estimation</SpinButton>
-          <DownloadButton />
-        </ButtonsContainer>
-        <FontawesomeContainer>
-          <a href={facebookAddress} onClick={() => gtag(faFacebookF)}>
-            <FontAwesomeIcon icon={faFacebookF} />
-          </a>
-          <a href={linkedinAddress} onClick={() => gtag(faLinkedinIn)}>
-            <FontAwesomeIcon icon={faLinkedinIn} />
-          </a>
-        </FontawesomeContainer>
-      </HeadingSection>
+    <>
+      <Helmet>
+        {/* // TODOFIX: dokładnie tak samo jest dondany calendly i działał od strzała */}
+        <script type="text/javascript" src="https://widget.clutch.co/static/js/widget.js" />
+      </Helmet>
+      <Layout>
+        <HeadingSection topTitle="Who we are" img={Hero} id="who-we-are">
+          <Title coloredStrong>
+            <strong>IT specialist</strong> that understand your <strong>business</strong> and will
+            help you <strong>grow</strong>
+          </Title>
+          <Paragraph>
+            We are a passionate group of specialists that love to create, build and deliver
+            tailor-made IT solutions. Creating our own products and building business with our
+            partners give us best understanding of your needs.
+          </Paragraph>
+          <Paragraph>Let&apos;s talk and make the bits spin :-)</Paragraph>
+          <ButtonsContainer>
+            {/* TODO: url */}
+            <SpinButton url="/">Free project estimation</SpinButton>
+            <DownloadButton />
+          </ButtonsContainer>
+          <FontawesomeContainer>
+            <a href={facebookAddress} onClick={() => gtag(faFacebookF)}>
+              <FontAwesomeIcon icon={faFacebookF} />
+            </a>
+            <a href={linkedinAddress} onClick={() => gtag(faLinkedinIn)}>
+              <FontAwesomeIcon icon={faLinkedinIn} />
+            </a>
+          </FontawesomeContainer>
+          <div
+            className="clutch-widget"
+            data-url="https://widget.clutch.co"
+            data-widget-type="2"
+            data-height="50"
+            data-clutchcompany-id="1585115"
+          />
+        </HeadingSection>
 
-      <TechnologiesSliderSection />
-      <ServicesSection />
-      <AboutUsSection />
-      <PortfolioSection />
-      <TestimonialsSection />
-      <ContactFormSection />
-    </Layout>
+        <TechnologiesSliderSection />
+        <ServicesSection />
+        <AboutUsSection />
+        <PortfolioSection />
+        <TestimonialsSection />
+        <ContactFormSection />
+      </Layout>
+    </>
   );
 };
 
