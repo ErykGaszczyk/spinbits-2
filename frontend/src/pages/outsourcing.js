@@ -12,6 +12,8 @@ import SpinAccordion from '@components/SpinAccordion';
 import TestimonialsSection from '@components/sections/TestimonialsSection';
 import HeadingSection from '@components/sections/HeadingSection';
 import Title from '@components/typography/Title';
+import ContactFormSection from '@components/sections/ContactFormSection';
+import Faq from '@components/Faq';
 import outsourcingImg from '@images/outsourcing.webp';
 import { data as approachData } from '@utils/pages/outsourcing-data';
 
@@ -63,7 +65,8 @@ const outsourcing = ({ data }) => {
         </Row>
       </SpinContainer>
       <TestimonialsSection />
-      {/* // TODO: form */}
+      <Faq />
+      <ContactFormSection />
     </Layout>
   );
 };
