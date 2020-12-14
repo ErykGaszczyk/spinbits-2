@@ -17,6 +17,7 @@ import { facebookAddress, linkedinAddress } from '@utils/variables';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Hero from '@images/who-we-are/hero.webp';
 import DownloadButton from '@components/DownloadButton';
+import addClutchScript from '../helpers/AddClutchScript';
 
 const ButtonsContainer = styled.div`
   margin: 2rem 0 0 0;
@@ -40,11 +41,12 @@ const Home = () => {
   // eslint-disable-next-line
   const gtag = (url) => gtag_report_conversion(url);
 
+  addClutchScript();
+
   return (
     <>
       <Helmet>
         {/* // TODOFIX: dokładnie tak samo jest dondany calendly i działał od strzała */}
-        <script type="text/javascript" src="https://widget.clutch.co/static/js/widget.js" />
       </Helmet>
       <Layout>
         <HeadingSection topTitle="Who we are" img={Hero} id="who-we-are">
