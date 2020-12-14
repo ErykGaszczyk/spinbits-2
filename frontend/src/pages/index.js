@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Layout from '@components/Layout';
 import ServicesSection from '@components/sections/ServicesSection';
@@ -8,14 +8,16 @@ import TestimonialsSection from '@components/sections/TestimonialsSection';
 import TechnologiesSliderSection from '@components/sections/TechnologiesSliderSection';
 import HeadingSection from '@components/sections/HeadingSection';
 import ContactFormSection from '@components/sections/ContactFormSection';
+import Faq from '@components/Faq';
 import Title from '@components/typography/Title';
 import Paragraph from '@components/typography/Paragraph';
-import SpinButton from '@components/SpinButton';
+import { Button } from '@components/SpinButton';
 import { faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { facebookAddress, linkedinAddress } from '@utils/variables';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Hero from '@images/who-we-are/hero.webp';
 import DownloadButton from '@components/DownloadButton';
+import FreeEstimationStepper from '@components/FreeEstimationStepper/FreeEstimationStepper';
 
 const ButtonsContainer = styled.div`
   margin: 2rem 0 0 0;
@@ -35,12 +37,28 @@ const FontawesomeContainer = styled.div`
   }
 `;
 
+const EstimationButton = styled.button`
+  ${Button}
+`;
+
 const Home = () => {
   // eslint-disable-next-line
   const gtag = (url) => gtag_report_conversion(url);
+  const [openModal, setOpenModal] = useState(false);
+
+  const showModal = () => {
+    setOpenModal(true);
+  };
+
+  const callbackFunction = (childData) => {
+    setOpenModal(childData);
+  };
 
   return (
     <Layout>
+      {openModal && (
+        <FreeEstimationStepper openFromParent={openModal} parentCallback={callbackFunction} />
+      )}
       <HeadingSection topTitle="Who we are" img={Hero} id="who-we-are">
         <Title coloredStrong>
           <strong>IT specialist</strong> that understand your <strong>business</strong> and will
@@ -54,7 +72,7 @@ const Home = () => {
         <Paragraph>Let&apos;s talk and make the bits spin :-)</Paragraph>
         <ButtonsContainer>
           {/* TODO: url */}
-          <SpinButton url="/">Free project estimation</SpinButton>
+          <EstimationButton onClick={() => showModal()}>Free project estimation</EstimationButton>
           <DownloadButton />
         </ButtonsContainer>
         <FontawesomeContainer>
@@ -72,6 +90,7 @@ const Home = () => {
       <AboutUsSection />
       <PortfolioSection />
       <TestimonialsSection />
+      <Faq />
       <ContactFormSection />
     </Layout>
   );
