@@ -8,7 +8,7 @@ export const menuItems = [
       {
         id: 1,
         name: 'Free estimation',
-        url: '/#free-estimation',
+        url: '/#who-we-are',
         slug: 'free-estimation',
       },
       {
@@ -150,7 +150,7 @@ export const menuItems = [
       {
         id: 1,
         name: 'Free Estimation',
-        url: '/#free-estimation',
+        url: '/#who-we-are',
         slug: 'free-estimation',
       },
       {
