@@ -65,12 +65,13 @@ export const about = {
       url: '/#who-we-are',
       slug: 'who-we-are',
     },
-    {
-      id: 2,
-      name: 'Team',
-      url: '/team',
-      slug: 'team',
-    },
+    // TODO: czeka na projekt
+    // {
+    //   id: 2,
+    //   name: 'Team',
+    //   url: '/team',
+    //   slug: 'team',
+    // },
   ],
 };
 
@@ -117,12 +118,13 @@ export const clients = {
       url: '/#testimonials',
       slug: 'testimonials',
     },
-    {
-      id: 2,
-      name: 'Case Studies',
-      url: '/case-studies',
-      slug: 'case-studies',
-    },
+    // TODO: czeka na projekt
+    // {
+    //   id: 2,
+    //   name: 'Case Studies',
+    //   url: '/case-studies',
+    //   slug: 'case-studies',
+    // },
     {
       id: 3,
       name: 'Portfolio',
@@ -158,7 +160,7 @@ export const contact = {
     {
       id: 3,
       name: 'Contact Form',
-      url: '/#contact-form',
+      url: '/#contact',
       slug: 'contact-form',
     },
     {
