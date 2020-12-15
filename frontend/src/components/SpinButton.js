@@ -12,6 +12,7 @@ export const Button = css`
 
   &:hover {
     cursor: pointer;
+    background-color: var(--primary-font-color);
   }
 `;
 
