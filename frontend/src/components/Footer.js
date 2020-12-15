@@ -50,10 +50,10 @@ const Footer = () => {
             <Logo />
             {/* // TODO: tu jeszcze coś będzie */}
             <FontawesomeContainer>
-              <a href={facebookAddress}>
+              <a target="_blank" rel="noopener noreferrer" href={facebookAddress}>
                 <FontAwesomeIcon icon={faFacebookF} />
               </a>
-              <a href={linkedinAddress}>
+              <a target="_blank" rel="noopener noreferrer" href={linkedinAddress}>
                 <FontAwesomeIcon icon={faLinkedinIn} />
               </a>
             </FontawesomeContainer>

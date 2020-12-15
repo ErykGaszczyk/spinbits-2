@@ -101,10 +101,20 @@ const Home = () => {
           </EstimationButton>
           <DownloadButton />
           <FontawesomeContainer>
-            <a href={facebookAddress} onClick={() => gtag(faFacebookF)}>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={facebookAddress}
+              onClick={() => gtag(facebookAddress)}
+            >
               <FontAwesomeIcon icon={faFacebookF} />
             </a>
-            <a href={linkedinAddress} onClick={() => gtag(faLinkedinIn)}>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={linkedinAddress}
+              onClick={() => gtag(linkedinAddress)}
+            >
               <FontAwesomeIcon icon={faLinkedinIn} />
             </a>
           </FontawesomeContainer>

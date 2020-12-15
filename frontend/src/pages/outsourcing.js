@@ -20,7 +20,6 @@ import { data as approachData } from '@utils/pages/outsourcing-data';
 const MainTitle = styled.h3`
   ${BasicText}
   font-size: 2.063rem;
-  font-weight: 900;
 `;
 
 const outsourcing = ({ data }) => {

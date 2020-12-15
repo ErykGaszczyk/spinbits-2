@@ -29,10 +29,7 @@ const NextPostBox = ({ id, title, date }) => {
     <Link to={`/blog/${id}`}>
       <ColumnBox>
         <div>
-          <TagParagraph>
-            {/* TODO: */}
-            {/* Technologie trzeba dorobić w strapi */}
-          </TagParagraph>
+          <TagParagraph>{/* TODO: Technologie trzeba dorobić w strapi */}</TagParagraph>
           <TitleParagraph bold primary hover>
             {title}
           </TitleParagraph>

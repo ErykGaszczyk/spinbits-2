@@ -112,7 +112,6 @@ const TestimonialsSection = () => {
     slidesToShow: 2,
     slidesToScroll: 1,
     pauseOnFocus: true,
-    // adaptiveHeight: true, // TODOFIX:
     responsive: [
       {
         breakpoint: md,

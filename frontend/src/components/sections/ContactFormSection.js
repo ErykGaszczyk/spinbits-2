@@ -135,9 +135,7 @@ const ContactFormSection = () => {
       >
         <Row>
           <Col xs={12}>
-            <FormTitle center bold>
-              Let&apos;s build your business together
-            </FormTitle>
+            <FormTitle center>Let&apos;s build your business together</FormTitle>
           </Col>
           <Col md={5}>
             <CustomInputGroup>
@@ -216,7 +214,6 @@ const ContactFormSection = () => {
   };
 
   return (
-    // TODOFIX: id="contact" || id="contact-form"
     <SpinContainer id="contact">
       <Row>
         <Col>

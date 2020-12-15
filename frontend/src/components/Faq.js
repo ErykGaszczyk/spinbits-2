@@ -12,7 +12,6 @@ import { StaticQuery, graphql } from 'gatsby';
 const MainTitle = styled.h3`
   ${BasicText}
   font-size: 2.063rem;
-  font-weight: 900;
 `;
 
 const Faq = ({ data }) => {
