@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Menu from '@components/menu/Menu';
-import Faq from '@components/Faq';
 import Footer from '@components/Footer';
 import GlobalStyle from '../styles';
 
@@ -16,7 +15,6 @@ const Layout = ({ children }) => {
       <GlobalStyle />
       <Menu />
       <ChildrenContainter>{children}</ChildrenContainter>
-      <Faq />
       <Footer />
     </>
   );

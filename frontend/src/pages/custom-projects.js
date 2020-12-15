@@ -7,6 +7,8 @@ import TestimonialsSection from '@components/sections/TestimonialsSection';
 import HeadingSection from '@components/sections/HeadingSection';
 import Title from '@components/typography/Title';
 import Paragraph from '@components/typography/Paragraph';
+import ContactFormSection from '@components/sections/ContactFormSection';
+import Faq from '@components/Faq';
 import customProjectsImg from '@images/custom-projects.webp';
 import { data } from '@utils/pages/custom-projects-data';
 
@@ -32,7 +34,8 @@ const customProjects = () => {
       <ApproachSection data={data} />
       <PortfolioSection />
       <TestimonialsSection />
-      {/* // TODO: form */}
+      <Faq />
+      <ContactFormSection />
     </Layout>
   );
 };

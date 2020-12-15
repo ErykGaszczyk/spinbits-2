@@ -8,9 +8,11 @@ import Title from '@components/typography/Title';
 import { SpinContainer } from '@components/overrides';
 import SectionTopTitle from '@components/typography/SectionTopTitle';
 import Paragraph from '@components/typography/Paragraph';
+import NextPostBox from '@components/NextPostBox';
+import ContactFormSection from '@components/sections/ContactFormSection';
+import Faq from '@components/Faq';
 import { Row, Col } from '@bootstrap-styled/v4';
 import FirstPostBg from '@images/blog/1st-blog-bg.webp';
-import NextPostBox from '@components/NextPostBox';
 import PostDate from '@helpers/PostDate';
 
 const FirstBlogBox = styled.div`
@@ -76,6 +78,8 @@ const Blog = ({ data }) => {
           </CustomRow>
           <Row>{renderColumns()}</Row>
         </SpinContainer>
+        <Faq />
+        <ContactFormSection />
       </Layout>
     </>
   );
