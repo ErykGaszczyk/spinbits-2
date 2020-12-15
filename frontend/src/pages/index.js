@@ -17,11 +17,8 @@ import { facebookAddress, linkedinAddress } from '@utils/variables';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Hero from '@images/who-we-are/hero.webp';
 import DownloadButton from '@components/DownloadButton';
-<<<<<<< HEAD
-import addClutchScript from '../helpers/AddClutchScript';
-=======
 import FreeEstimationStepper from '@components/FreeEstimationStepper/FreeEstimationStepper';
->>>>>>> @{-1}
+import addClutchScript from '../helpers/AddClutchScript';
 
 const ButtonsContainer = styled.div`
   margin: 2rem 0 0 0;
@@ -41,13 +38,8 @@ const FontawesomeContainer = styled.div`
   }
 `;
 
-<<<<<<< HEAD
-const ClutchWidget = styled.div`
-  margin: 1rem 0 0 0;
-=======
 const EstimationButton = styled.button`
   ${Button}
->>>>>>> @{-1}
 `;
 
 const Home = () => {
@@ -93,7 +85,7 @@ const Home = () => {
             <FontAwesomeIcon icon={faLinkedinIn} />
           </a>
         </FontawesomeContainer>
-        <ClutchWidget
+        <div
           className="clutch-widget"
           data-url="https://widget.clutch.co"
           data-widget-type="2"
