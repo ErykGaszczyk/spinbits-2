@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Logo from '@components/Logo';
 import { Link } from 'gatsby';
 import { Navbar, Collapse, Nav, Container } from '@bootstrap-styled/v4';
-import { menuItems } from '@utils/menu-data';
+import { home, about, services, clients, blog, contact } from '@utils/menu-data';
 import { DEVICE, MOBILE_BREAKPOINT } from '@assets/const';
 import DropdownMenuItem from '../DropdownMenuItem';
 
@@ -122,18 +122,6 @@ const StyledBurger = styled.button`
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const renderMenuItems = () => {
-    return menuItems.map((item) => {
-      const { id, slug, name, url, dropdown } = item;
-      return dropdown && dropdown !== 'undefined' ? (
-        <DropdownMenuItem key={`${slug}-${id}`} name={name} subitems={dropdown} />
-      ) : (
-        <NavItem key={`${slug}-${id}`} to={url}>
-          {name}
-        </NavItem>
-      );
-    });
-  };
 
   return (
     <NavShadow isOpen={isOpen}>
@@ -150,7 +138,14 @@ const Menu = () => {
             </StyledBurger>
           </NavBrandBox>
           <CustomCollapse navbar isOpen={isOpen}>
-            <Nav navbar>{renderMenuItems()}</Nav>
+            <Nav navbar>
+              <DropdownMenuItem name={home.name} subitems={home.dropdown} />
+              <DropdownMenuItem name={about.name} subitems={about.dropdown} />
+              <DropdownMenuItem name={services.name} subitems={services.dropdown} />
+              <DropdownMenuItem name={clients.name} subitems={clients.dropdown} />
+              <NavItem to={blog.url}>{blog.name}</NavItem>
+              <DropdownMenuItem name={contact.name} subitems={contact.dropdown} />
+            </Nav>
           </CustomCollapse>
         </CustomNavbar>
       </CustomContainer>
