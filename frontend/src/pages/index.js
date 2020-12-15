@@ -12,13 +12,16 @@ import Faq from '@components/Faq';
 import Title from '@components/typography/Title';
 import Paragraph from '@components/typography/Paragraph';
 import { Button } from '@components/SpinButton';
-import { faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
-import { facebookAddress, linkedinAddress } from '@utils/variables';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Hero from '@images/who-we-are/hero.webp';
-import DownloadButton from '@components/DownloadButton';
 import FreeEstimationStepper from '@components/FreeEstimationStepper/FreeEstimationStepper';
+import DownloadButton from '@components/DownloadButton';
+import { facebookAddress, linkedinAddress } from '@utils/variables';
+import Hero from '@images/who-we-are/hero.webp';
+import { DEVICE } from '@assets/const';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import addClutchScript from '../helpers/AddClutchScript';
+
+const { MD } = DEVICE;
 
 const ButtonsContainer = styled.div`
   margin: 2rem 0 0 0;
@@ -33,6 +36,11 @@ const SocialBox = styled.div`
 const FontawesomeContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
+
+  @media ${MD} {
+    justify-content: flex-start;
+  }
 
   a {
     margin: 0 1rem 0 0;
@@ -47,6 +55,13 @@ const FontawesomeContainer = styled.div`
 
 const EstimationButton = styled.button`
   ${Button}
+`;
+
+const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2rem;
+  row-gap: 2rem;
 `;
 
 const Home = () => {
@@ -80,11 +95,11 @@ const Home = () => {
           partners give us best understanding of your needs.
         </Paragraph>
         <Paragraph>Let&apos;s talk and make the bits spin :-)</Paragraph>
-        <ButtonsContainer>
-          <EstimationButton onClick={() => showModal()}>Free project estimation</EstimationButton>
+        <GridContainer>
+          <EstimationButton onClick={() => showModal()}>
+            Free&nbsp;project estimation
+          </EstimationButton>
           <DownloadButton />
-        </ButtonsContainer>
-        <SocialBox>
           <FontawesomeContainer>
             <a href={facebookAddress} onClick={() => gtag(faFacebookF)}>
               <FontAwesomeIcon icon={faFacebookF} />
@@ -100,7 +115,9 @@ const Home = () => {
             data-height="50"
             data-clutchcompany-id="1585115"
           />
-        </SocialBox>
+        </GridContainer>
+        <ButtonsContainer />
+        <SocialBox />
       </HeadingSection>
 
       <TechnologiesSliderSection />
