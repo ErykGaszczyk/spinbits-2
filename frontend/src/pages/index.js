@@ -24,8 +24,15 @@ const ButtonsContainer = styled.div`
   margin: 2rem 0 0 0;
 `;
 
-const FontawesomeContainer = styled.div`
+const SocialBox = styled.div`
+  display: flex;
+  justify-content: space-between;
   margin: 2rem 0 0 0;
+`;
+
+const FontawesomeContainer = styled.div`
+  display: flex;
+  align-items: center;
 
   a {
     margin: 0 1rem 0 0;
@@ -77,21 +84,23 @@ const Home = () => {
           <EstimationButton onClick={() => showModal()}>Free project estimation</EstimationButton>
           <DownloadButton />
         </ButtonsContainer>
-        <FontawesomeContainer>
-          <a href={facebookAddress} onClick={() => gtag(faFacebookF)}>
-            <FontAwesomeIcon icon={faFacebookF} />
-          </a>
-          <a href={linkedinAddress} onClick={() => gtag(faLinkedinIn)}>
-            <FontAwesomeIcon icon={faLinkedinIn} />
-          </a>
-        </FontawesomeContainer>
-        <div
-          className="clutch-widget"
-          data-url="https://widget.clutch.co"
-          data-widget-type="2"
-          data-height="50"
-          data-clutchcompany-id="1585115"
-        />
+        <SocialBox>
+          <FontawesomeContainer>
+            <a href={facebookAddress} onClick={() => gtag(faFacebookF)}>
+              <FontAwesomeIcon icon={faFacebookF} />
+            </a>
+            <a href={linkedinAddress} onClick={() => gtag(faLinkedinIn)}>
+              <FontAwesomeIcon icon={faLinkedinIn} />
+            </a>
+          </FontawesomeContainer>
+          <div
+            className="clutch-widget"
+            data-url="https://widget.clutch.co"
+            data-widget-type="2"
+            data-height="50"
+            data-clutchcompany-id="1585115"
+          />
+        </SocialBox>
       </HeadingSection>
 
       <TechnologiesSliderSection />
