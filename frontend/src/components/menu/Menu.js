@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Logo from '@components/Logo';
+import FreeEstimationStepper from '@components/FreeEstimationStepper/FreeEstimationStepper';
+import { Button } from '@components/SpinButton';
 import { Link } from 'gatsby';
 import { Navbar, Collapse, Nav, Container } from '@bootstrap-styled/v4';
-import { menuItems } from '@utils/menu-data';
+import { home, about, services, clients, blog, contact } from '@utils/menu-data';
 import { DEVICE, MOBILE_BREAKPOINT } from '@assets/const';
 import DropdownMenuItem from '../DropdownMenuItem';
 
@@ -44,8 +46,8 @@ const NavBrandBox = styled.div`
 `;
 
 const NavItem = styled(Link)`
-  color: var(--primary-font-color);
   font-weight: 700;
+  color: var(--primary-font-color);
   transition: 0.2s;
   margin: 0 0 1rem 0;
 
@@ -54,7 +56,7 @@ const NavItem = styled(Link)`
   }
 
   @media ${LG} {
-    margin: 0 1rem 0 0;
+    margin: 0 1.5rem 0 0;
   }
 `;
 
@@ -72,6 +74,8 @@ const CustomCollapse = styled(Collapse)`
   ${Nav} {
     text-align: center;
     padding: 0 0 1rem 0;
+    align-items: center;
+
     @media ${LG} {
       padding: 0;
       text-align: left;
@@ -120,19 +124,20 @@ const StyledBurger = styled.button`
   }
 `;
 
+const EstimationButton = styled.button`
+  ${Button}
+`;
+
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const renderMenuItems = () => {
-    return menuItems.map((item) => {
-      const { id, slug, name, url, dropdown } = item;
-      return dropdown && dropdown !== 'undefined' ? (
-        <DropdownMenuItem key={`${slug}-${id}`} name={name} subitems={dropdown} />
-      ) : (
-        <NavItem key={`${slug}-${id}`} to={url}>
-          {name}
-        </NavItem>
-      );
-    });
+  const [openModal, setOpenModal] = useState(false);
+
+  const showModal = () => {
+    setOpenModal(true);
+  };
+
+  const callbackFunction = (childData) => {
+    setOpenModal(childData);
   };
 
   return (
@@ -150,7 +155,23 @@ const Menu = () => {
             </StyledBurger>
           </NavBrandBox>
           <CustomCollapse navbar isOpen={isOpen}>
-            <Nav navbar>{renderMenuItems()}</Nav>
+            <Nav navbar>
+              <DropdownMenuItem name={home.name} subitems={home.dropdown} />
+              <DropdownMenuItem name={about.name} subitems={about.dropdown} />
+              <DropdownMenuItem name={services.name} subitems={services.dropdown} />
+              <DropdownMenuItem name={clients.name} subitems={clients.dropdown} />
+              <NavItem to={blog.url}>{blog.name}</NavItem>
+              <DropdownMenuItem name={contact.name} subitems={contact.dropdown} />
+              <EstimationButton onClick={() => showModal()}>
+                Free project estimation
+              </EstimationButton>
+              {openModal && (
+                <FreeEstimationStepper
+                  openFromParent={openModal}
+                  parentCallback={callbackFunction}
+                />
+              )}
+            </Nav>
           </CustomCollapse>
         </CustomNavbar>
       </CustomContainer>

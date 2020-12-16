@@ -71,7 +71,6 @@ const Home = () => {
         </Paragraph>
         <Paragraph>Let&apos;s talk and make the bits spin :-)</Paragraph>
         <ButtonsContainer>
-          {/* TODO: url */}
           <EstimationButton onClick={() => showModal()}>Free project estimation</EstimationButton>
           <DownloadButton />
         </ButtonsContainer>

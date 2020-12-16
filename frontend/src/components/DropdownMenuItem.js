@@ -3,19 +3,21 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { DEVICE } from '@assets/const';
 import { AnchorLink } from 'gatsby-plugin-anchor-links';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const { LG } = DEVICE;
 
 const DropdownContent = styled.ul`
   display: ${(props) => (props.isOpen ? 'block' : 'none')};
   z-index: 1;
-  padding: 0 1rem;
+  padding: 0;
   min-width: 160px;
 
   @media ${LG} {
     position: absolute;
     background-color: var(--white);
-    box-shadow: 0 0.5rem 1rem 0 var(--shadow);
+    box-shadow: 0 0 1rem 0 var(--shadow);
     border-radius: 0.5rem;
   }
 `;
@@ -23,6 +25,7 @@ const DropdownContent = styled.ul`
 const Dropdown = styled.li`
   font-weight: 700;
   color: var(--primary-font-color);
+
   &:not(:last-child) {
     margin: 0 0 1rem 0;
   }
@@ -35,18 +38,14 @@ const Dropdown = styled.li`
   @media ${LG} {
     position: relative;
     &:not(:last-child) {
-      margin: 0 1rem 0 0;
-    }
-    &:hover ${DropdownContent} {
-      display: block;
+      margin: 0 1.5rem 0 0;
     }
   }
 `;
 
 const DropdownItem = styled.li`
   a {
-    color: var(--primary-font-color);
-    padding: 0.75rem 0;
+    padding: 0.75rem;
     display: block;
     transition: 0.2s;
     cursor: pointer;
@@ -60,7 +59,8 @@ const DropdownItem = styled.li`
     @media ${LG} {
       color: var(--primary-font-color);
       &:hover {
-        color: var(--secondary-font-color);
+        color: var(--white);
+        background-color: var(--light-font-color);
       }
     }
   }
@@ -91,6 +91,8 @@ const DropdownMenuItem = ({ name, subitems }) => {
   return (
     <Dropdown onClick={toggleSubItems}>
       {name}
+      &nbsp;
+      <FontAwesomeIcon icon={faChevronDown} />
       <DropdownContent isOpen={isOpen}>{renderDropdownItems()}</DropdownContent>
     </Dropdown>
   );
