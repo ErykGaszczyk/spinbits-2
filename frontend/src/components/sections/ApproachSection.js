@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Row, Col } from '@bootstrap-styled/v4';
@@ -6,7 +6,8 @@ import { SpinContainer } from '@components/overrides';
 import SectionTopTitle from '@components/typography/SectionTopTitle';
 import SectionTitle from '@components/typography/SectionTitle';
 import Paragraph, { BasicText } from '@components/typography/Paragraph';
-import SpinButton from '@components/SpinButton';
+import { Button } from '@components/SpinButton';
+import FreeEstimationStepper from '@components/FreeEstimationStepper/FreeEstimationStepper';
 
 const CustomColumn = styled(Col)`
   margin: 2rem 0;
@@ -34,6 +35,10 @@ const ColumnTitle = styled.h3`
 
 const Li = styled.li`
   ${BasicText}
+`;
+
+const EstimationButton = styled.button`
+  ${Button}
 `;
 
 const ApproachSection = ({ data }) => {
@@ -75,38 +80,55 @@ const ApproachSection = ({ data }) => {
     });
   };
 
+  const [openModal, setOpenModal] = useState(false);
+
+  const showModal = () => {
+    setOpenModal(true);
+  };
+
+  const callbackFunction = (childData) => {
+    setOpenModal(childData);
+  };
+
   return (
-    <SpinContainer>
-      <Row>
-        <Col>
-          <SectionTopTitle>Approach</SectionTopTitle>
-          <SectionTitle coloredStrong>
-            How do we do <strong>it</strong>?
-          </SectionTitle>
-          <Paragraph>
-            We&apos;ve learned to simplify complicated things as much as possible, yet to still
-            maintain flexibility and attention to detail.
-          </Paragraph>
-        </Col>
-      </Row>
-      <Row>{renderColumns()}</Row>
-      <Row>
-        <Col>
-          <Paragraph>
-            In spinbits, we understand how important it is to be agile and open - that’s why we
-            won’t impose any approach. If you would like to work on the project your way - we are
-            ready to talk about that! We’ve worked on dozens of various projects - we are sure that
-            we will find a common language.
-          </Paragraph>
-        </Col>
-      </Row>
-      <Row>
-        <CustomColumnFlexEnd>
-          {/* TODO: url do modala */}
-          <SpinButton url="/">Free project estimation</SpinButton>
-        </CustomColumnFlexEnd>
-      </Row>
-    </SpinContainer>
+    <>
+      {openModal && (
+        <FreeEstimationStepper openFromParent={openModal} parentCallback={callbackFunction} />
+      )}
+      <SpinContainer>
+        <Row>
+          <Col>
+            <SectionTopTitle>Approach</SectionTopTitle>
+            <SectionTitle coloredStrong>
+              How do we do <strong>it</strong>?
+            </SectionTitle>
+            <Paragraph>
+              We&apos;ve learned to simplify complicated things as much as possible, yet to still
+              maintain flexibility and attention to detail.
+            </Paragraph>
+          </Col>
+        </Row>
+        <Row>{renderColumns()}</Row>
+        <Row>
+          <Col>
+            <Paragraph>
+              In spinbits, we understand how important it is to be agile and open - that’s why we
+              won’t impose any approach. If you would like to work on the project your way - we are
+              ready to talk about that! We’ve worked on dozens of various projects - we are sure
+              that we will find a common language.
+            </Paragraph>
+          </Col>
+        </Row>
+        <Row>
+          <CustomColumnFlexEnd>
+            {/* TODOFIX: zmergowac button z reszta komponentu free estimation */}
+            <EstimationButton onClick={() => showModal()}>
+              Free&nbsp;project estimation
+            </EstimationButton>
+          </CustomColumnFlexEnd>
+        </Row>
+      </SpinContainer>
+    </>
   );
 };
 

@@ -11,6 +11,7 @@ export const BasicText = css`
   ${(props) => props.center && `text-align: center`};
 
   strong {
+    font-weight: inherit;
     ${(props) => props.coloredStrong && `color: var(--light-font-color)`};
   }
 

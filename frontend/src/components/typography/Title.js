@@ -4,7 +4,6 @@ import styled, { css } from 'styled-components';
 
 export const TitleText = css`
   font-size: 2.938rem; // 47px
-  font-weight: 900;
   color: var(--primary-font-color);
   margin-top: 0;
   transition: 0.5s;
@@ -13,6 +12,7 @@ export const TitleText = css`
     color: ${(props) => props.hover && `var(--secondary-font-color)`};
   }
   strong {
+    font-weight: inherit;
     ${(props) => props.coloredStrong && `color: var(--light-font-color)`};
   }
 `;

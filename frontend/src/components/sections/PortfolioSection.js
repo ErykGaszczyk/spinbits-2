@@ -143,7 +143,6 @@ const PortfolioSection = () => {
     slidesToShow: 2,
     slidesToScroll: 1,
     pauseOnFocus: true,
-    // adaptiveHeight: true, // TODOFIX:
     responsive: [
       {
         breakpoint: md,
@@ -166,7 +165,11 @@ const PortfolioSection = () => {
 
       return (
         <TechnologiesColumn key={id}>
-          <TechnologiesLink to="/projects" data-sal="slide-up" data-sal-easing="easeOutCubic">
+          <TechnologiesLink
+            to="/custom-projects"
+            data-sal="slide-up"
+            data-sal-easing="easeOutCubic"
+          >
             <ItemBox>
               <TechnologiesParagraph>{technologies}</TechnologiesParagraph>
               <TechnologiesTitleParagraph primary>{title}</TechnologiesTitleParagraph>

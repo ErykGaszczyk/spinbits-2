@@ -8,7 +8,6 @@ const PortfolioButton = styled.button`
   background-color: transparent;
   padding: 1.063rem 0; // 17px
   border-radius: 0;
-  /* margin: 0 0 0 2rem; */
 
   &:hover {
     bottom: 2px solid var(--light-font-color);

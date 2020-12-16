@@ -125,7 +125,6 @@ const AboutUsSection = () => {
             almost all of continents in dozens of IT projects. No matter of project size - we&apos;d
             love to get to know you and make your plans real.
           </MarginParagraph>
-          {/* // TODO: url */}
           <SpinButton
             onClick="return gtag_report_conversion('/#contact');"
             url="/#contact"

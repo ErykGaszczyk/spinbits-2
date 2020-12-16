@@ -31,9 +31,11 @@ const ServicesTechnologyContainer = styled.div`
   background-color: var(--primary-font-color);
   padding: 2.5rem; // 40px;
   border-radius: 0.5rem;
+  margin: 0 0 2rem 0;
 
   @media ${XL} {
     padding: 2.5rem 4.375rem;
+    margin: 0;
   }
 `;
 
@@ -143,8 +145,7 @@ const ServicesSection = () => {
       title: `Custom Projects`,
       text1: `Passion and dreams propel our engines and we can help you to cross the finish line. `,
       text2: `From early stage consulting, through design, development, QA to marketing and maintenance - we got you covered.`,
-      // TODO: url
-      url: '/',
+      url: '/custom-projects',
     },
     {
       id: 2,
@@ -152,8 +153,7 @@ const ServicesSection = () => {
       title: `Support & Maintenance`,
       text1: `Successfully launched project is only the beginning of journey.`,
       text2: `Let us keep your product and infrastructure safe and stable, so you will be able to look into future of your business.`,
-      // TODO: url
-      url: '/',
+      url: '/devops',
     },
     {
       id: 3,
@@ -161,8 +161,7 @@ const ServicesSection = () => {
       title: `Outsourcing & Body Leasing`,
       text1: `Creating adaptive and scalable business is not easy and we know it.`,
       text2: `That's why we understand the need of always available, experienced and well managed specialists.`,
-      // TODO: url
-      url: '/',
+      url: '/outsourcing',
     },
     {
       id: 4,
@@ -170,8 +169,7 @@ const ServicesSection = () => {
       title: `Digital Marketing`,
       text1: `Most agencies are great in marketing but not in technology.`,
       text2: `We combine both to deliver effects, not promises - 94% of our customers stay with us for the next campaigns and new projects.`,
-      // TODO: url
-      url: '/',
+      url: '/marketing',
     },
   ];
 
@@ -221,7 +219,7 @@ const ServicesSection = () => {
       <Row>
         <Col md={6} xl={5} data-sal="slide-right" data-sal-easing="easeOutCubic">
           <ServicesTechnologyContainer>
-            <ServicesTechnologyParagraph bold>Technologies</ServicesTechnologyParagraph>
+            <ServicesTechnologyParagraph>Technologies</ServicesTechnologyParagraph>
             <TechnologgiesList>{renderTechnologies()}</TechnologgiesList>
           </ServicesTechnologyContainer>
         </Col>
